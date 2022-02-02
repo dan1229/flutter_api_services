@@ -24,6 +24,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Tests!
     - service tests
 
+release on pub
+
+
 ---------------------------
 
 ### [0.0.1] - YYYY-MM-DD
