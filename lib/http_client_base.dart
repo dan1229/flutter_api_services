@@ -1,3 +1,4 @@
+library flutter_api_services;
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';

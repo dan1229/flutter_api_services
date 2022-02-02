@@ -1,4 +1,3 @@
-library flutter_api_services;
 
 /// A Calculator.
 class Calculator {

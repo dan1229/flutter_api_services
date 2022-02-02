@@ -1,8 +1,9 @@
+library flutter_api_services;
 
 import 'dart:convert';
 
 import 'package:flutter_api_services/api_helpers.dart';
-import 'package:flutter_api_services/templates/json/django_paginated_api_json.dart';
+import 'package:flutter_api_services/templates/django/json/django_paginated_api_json.dart';
 import 'package:http/http.dart' as http;
 
 /// ===============================================================================/

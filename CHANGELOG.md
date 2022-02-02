@@ -29,6 +29,9 @@ ci/cd via pub?
 
 release on pub
 
+improve doc strings
+- move under function header?
+
 update results template if improved to include auth stuff
 - or just include auth api
 
