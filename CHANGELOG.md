@@ -24,8 +24,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Tests!
     - service tests
 
+ci/cd via pub?
+
+
 release on pub
 
+update results template if improved to include auth stuff
+- or just include auth api
+
+add create service
 
 ---------------------------
 
