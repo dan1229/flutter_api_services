@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:flutter_api_services/api_helpers.dart';
+import 'package:flutter_api_services/templates/json/django_paginated_api_json.dart';
 import 'package:http/http.dart' as http;
 
 /// ===============================================================================/
@@ -112,7 +113,7 @@ class ResultsService<T> {
     updating = false;
     if (response.statusCode == 200) {
       // 200 -> valid
-      PaginatedApiJson<T> res = PaginatedApiJson<T>.fromJson(json: decoded, fromJson: fromJson);
+      DjangoPaginatedApiJson<T> res = DjangoPaginatedApiJson<T>.fromJson(json: decoded, fromJson: fromJson);
       next = res.next;
       previous = res.previous;
       count = res.count;
@@ -176,7 +177,7 @@ class ResultsService<T> {
         }
 
         // process json
-        PaginatedApiJson<T> res = PaginatedApiJson<T>.fromJson(json: decoded, fromJson: fromJson);
+        DjangoPaginatedApiJson<T> res = DjangoPaginatedApiJson<T>.fromJson(json: decoded, fromJson: fromJson);
         next = res.next;
         previous = res.previous;
         count = res.count;
@@ -230,7 +231,7 @@ class ResultsService<T> {
         }
 
         // process json
-        PaginatedApiJson<T> res = PaginatedApiJson<T>.fromJson(json: decoded, fromJson: fromJson);
+        DjangoPaginatedApiJson<T> res = DjangoPaginatedApiJson<T>.fromJson(json: decoded, fromJson: fromJson);
         next = res.next;
         previous = res.previous;
         count = res.count;

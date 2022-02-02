@@ -1,8 +1,30 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+
 /// ============================================================================/
 /// API HELPERS ================================================================/
 /// ============================================================================/
+
+
+///
+/// LOGGING ====================================================================/
+///
+/// Default logging function. Will not print in production and offers some nice
+/// formatting to make more noticeable.
+///
+logPrint(
+    String msg, {
+      String tag = "INFO",
+      String sym = "*",
+    }) {
+  debugPrint("========================================");
+  debugPrint("[ $sym $tag $sym ]\n$msg");
+  debugPrint("========================================");
+}
+
+
+
 ///
 /// API HEADER
 ///
