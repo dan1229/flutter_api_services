@@ -21,19 +21,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -------------------------------------------------------
 ### TODO
 
+graphql?
+
+
 - Tests!
     - service tests
+  
+badges
 
-release on pub
+
+code coverage
+
+
+ci/cd via pub?
+
+
+improve doc strings
+- move under function header?
+
+update create service to include auth stuff
+
+### [0.0.2] - 2022-02-DD
+
+
+#### release on pub
 
 
 ---------------------------
 
-### [0.0.1] - YYYY-MM-DD
-
-#### Added
-
-#### Changed
+### [0.0.1] - 2022-02-03
+- Initial release!
+- Templates included:
+  - Django Results Service
+  - Django Create Service
+  - Django Auth Service
+- Helpers
+- Base HTTP Client
 
 -------------------------------------------------------
 

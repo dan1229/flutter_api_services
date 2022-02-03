@@ -1,7 +1,7 @@
 library flutter_api_services;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'templates/django/django_auth_service.dart' show DjangoAuthService;
+export 'templates/django/django_results_service.dart' show DjangoResultsService;
+export 'templates/django/django_create_service.dart' show DjangoCreateService;
+export 'templates/django/json/django_paginated_api_json.dart' show DjangoPaginatedApiJson;
+export 'http_client_base.dart' show HttpClientBase;
