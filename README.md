@@ -19,6 +19,8 @@ stability and reduce boilerplate. Declare a hardened and efficient API in as lit
 declaration:
 
 ```dart
+import 'package:http/http.dart';
+
 class PostsApi extends DjangoResultsService<Post> {
   PostsApi({
     required Client client,
@@ -48,6 +50,8 @@ To use, simple create your API classes as children of the included templates. To
 a `DjangoCreateService` API for example you might do something like the following:
 
 ```dart
+import 'package:http/http.dart';
+
 class MessageApi extends CreateService<Message> {
   MessageApi({
     required Client client,

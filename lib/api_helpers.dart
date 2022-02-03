@@ -1,4 +1,3 @@
-library flutter_api_services;
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
