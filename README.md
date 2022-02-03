@@ -1,49 +1,76 @@
 # Flutter API Services
+
 #### By: [Daniel Nazarian](https://danielnazarian) 🐧
+
 ##### Contact me at <dnaz@danielnazarian.com>
 
 -------------------------------------------------------
 
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+Templates for HTTP services for Flutter/Dart. Includes templates and support
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
+Currently supporting:
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+- Django REST
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+Support common HTTP REST methods, authentication, serialization, error handling and more to increase
+stability and reduce boilerplate. Declare a hardened and efficient API in as little as one simple
+declaration:
+
+```dart
+class PostsApi extends DjangoResultsService<Post> {
+  PostsApi({
+    required Client client,
+  }) : super(
+      client: client,
+      uriApiBase: Uri.parse("https://danielnazarian.com/posts/"),
+      fromJson: (Map<String, dynamic> json) => Post.fromJson(json));
+}
+```
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+To use the package declare it like so in your `pubspec.yaml`
+
+```yaml
+flutter_api_services:
+  git:
+    url: https://github.com/Dan-Incorporated/flutter_api_services.git
+    ref: main # branch name
+```
+
+Then run `flutter pub get` to download and install it. Then, you're ready to get using!
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+To use, simple create your API classes as children of the included templates. To create
+a `DjangoCreateService` API for example you might do something like the following:
 
 ```dart
-const like = 'sample';
+class MessageApi extends CreateService<Message> {
+  MessageApi({
+    required Client client,
+  }) : super(client: client,
+      uriApiBase: Uri.parse("${uriBaseApi()}/message/"),
+      fromJson: (Map<String, dynamic> json) => Message.fromJson(json));
+
+
+  Future<Map<String, dynamic>> sendMessage({required String message}) {
+    return super.postApi(body: <String, dynamic>{"message": message});
+  }
+}
 ```
+
+TODO
+- `examples` folder
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+TODO
 
 -------------------------------------------------------
+
 ##### [https://danielnazarian.com](https://danielnazarian.com)
+
 ##### Copyright 2022 © Daniel Nazarian.

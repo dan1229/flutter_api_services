@@ -41,6 +41,11 @@ improve doc strings
 
 update create service to include auth stuff
 
+are 'fromJson' optional?
+
+update docs
+
+
 ### [0.0.2] - 2022-02-DD
 
 
