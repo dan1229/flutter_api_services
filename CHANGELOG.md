@@ -14,6 +14,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Released]
 
+
+### [0.0.1] - 2022-02-03
+- Initial release!
+- Templates included:
+  - Django Results Service
+  - Django Create Service
+  - Django Auth Service
+- Helpers
+- Base HTTP Client
+
+
+
 -------------------------------------------------------
 
 ## [Unreleased]
@@ -51,17 +63,6 @@ update docs
 
 #### release on pub
 
-
----------------------------
-
-### [0.0.1] - 2022-02-03
-- Initial release!
-- Templates included:
-  - Django Results Service
-  - Django Create Service
-  - Django Auth Service
-- Helpers
-- Base HTTP Client
 
 -------------------------------------------------------
 
