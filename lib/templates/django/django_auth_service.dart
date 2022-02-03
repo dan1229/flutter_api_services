@@ -5,14 +5,14 @@ import 'package:flutter_api_services/api_helpers.dart';
 import 'package:http/http.dart';
 
 // ===============================================================================/
-// AUTH API ======================================================================/
+// DJANGO AUTH SERVICE ===========================================================/
 // ===============================================================================/
 
-class AuthApi {
+class DjangoAuthService {
   final Client client;
   final Uri uriApiBase;
 
-  AuthApi({
+  DjangoAuthService({
     required this.client,
     required this.uriApiBase,
   });

@@ -1,5 +1,3 @@
-library flutter_api_services;
-
 import 'dart:convert';
 
 import 'package:flutter_api_services/api_helpers.dart';
@@ -7,7 +5,7 @@ import 'package:flutter_api_services/templates/django/json/django_paginated_api_
 import 'package:http/http.dart' as http;
 
 /// ===============================================================================/
-/// RESULTS SERVICE ===============================================================/
+/// DJANGO RESULTS SERVICE ========================================================/
 /// ===============================================================================/
 ///
 /// This template is for any Django results based API results. It uses the paginated
@@ -20,7 +18,7 @@ import 'package:http/http.dart' as http;
 ///   - Prev
 /// - Details API
 ///
-class ResultsService<T> {
+class DjangoResultsService<T> {
   // input
   http.Client client;
   Function fromJson; // This is the fromJson constructor on the model (T). Dart doesn't support generic constructors sadly (yet?)
@@ -37,7 +35,7 @@ class ResultsService<T> {
   // properties - custom
   bool updating = false;
 
-  ResultsService({
+  DjangoResultsService({
     required this.client,
     required this.uriApiBase,
     required this.fromJson,
