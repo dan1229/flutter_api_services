@@ -6,7 +6,7 @@
 
 -------------------------------------------------------
 
-Templates for HTTP services for Flutter/Dart. Includes templates and support
+Services for HTTP services for Flutter/Dart. Includes templates and support
 
 Currently supporting:
 
@@ -16,29 +16,16 @@ Currently supporting:
 
 Support common HTTP REST methods, authentication, serialization, error handling and more to increase
 stability and reduce boilerplate. Declare a hardened and efficient API in as little as one simple
-declaration:
-
-```dart
-import 'package:http/http.dart';
-
-class PostsApi extends DjangoResultsService<Post> {
-  PostsApi({
-    required Client client,
-  }) : super(
-      client: client,
-      uriApiBase: Uri.parse("https://danielnazarian.com/posts/"),
-      fromJson: (Map<String, dynamic> json) => Post.fromJson(json));
-}
-```
+declaration.
 
 ## Getting started
 
-To use the package declare it like so in your `pubspec.yaml`
+This package **is not** on pub.dev so to use the package declare it like so in your `pubspec.yaml`
 
 ```yaml
 flutter_api_services:
   git:
-    url: https://github.com/Dan-Incorporated/flutter_api_services.git
+    url: https://github.com/dan1229/flutter_api_services.git
     ref: main # branch name
 ```
 
@@ -47,7 +34,20 @@ Then run `flutter pub get` to download and install it. Then, you're ready to get
 ## Usage
 
 To use, simple create your API classes as children of the included templates. To create
-a `DjangoCreateService` API for example you might do something like the following:
+a `DjangoResultsService` API for example you might do something like the following:
+
+```dart
+class PostsApi extends DjangoResultsService< Post > {
+  PostsApi({
+    required Client client,
+  }) : super(
+      client: client,
+      uriApiBase: Uri.parse("https://danielnazarian.com/api/posts/"),
+      fromJson: (Map< String, dynamic> json) => Post.fromJson(json));
+}
+```
+
+To create a `DjangoCreateService` API for example you might do something like the following:
 
 ```dart
 import 'package:http/http.dart';
@@ -56,7 +56,7 @@ class MessageApi extends CreateService<Message> {
   MessageApi({
     required Client client,
   }) : super(client: client,
-      uriApiBase: Uri.parse("${uriBaseApi()}/message/"),
+      uriApiBase: Uri.parse("https://danielnazarian.com/api/messages/"),
       fromJson: (Map<String, dynamic> json) => Message.fromJson(json));
 
 
@@ -68,10 +68,8 @@ class MessageApi extends CreateService<Message> {
 
 TODO
 - `examples` folder
+    - just show each template
 
-## Additional information
-
-TODO
 
 -------------------------------------------------------
 
