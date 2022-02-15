@@ -37,15 +37,17 @@ To use, simple create your API classes as children of the included templates. To
 a `DjangoResultsService` API for example you might do something like the following:
 
 ```dart
-class PostsApi extends DjangoResultsService< Post > {
+class PostsApi extends DjangoResultsService<Post> {
   PostsApi({
     required Client client,
   }) : super(
       client: client,
       uriApiBase: Uri.parse("https://danielnazarian.com/api/posts/"),
-      fromJson: (Map< String, dynamic> json) => Post.fromJson(json));
+      fromJson: (Map<String, dynamic> json) => Post.fromJson(json));
 }
 ```
+
+Now, instances of `PostApi` will have access to all the methods and functionality of `DjangoResultsService` including `list`, `retrieve`, `next`, `prev`, etc.
 
 To create a `DjangoCreateService` API for example you might do something like the following:
 
