@@ -36,32 +36,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 graphql?
 
 
-- Tests!
-    - service tests
-  
 badges
-
+- flutter/dart
+- workflows?
 
 code coverage
 
 
-ci/cd via pub?
+ci/cd?
 
+
+create api service
+- add patch
+- add delete
+
+
+Tests!
+- service tests
 
 improve doc strings
 - move under function header?
 
-update create service to include auth stuff
 
 are 'fromJson' optional?
 
-update docs
 
 
 ### [0.0.2] - 2022-02-DD
 
 
-#### release on pub
 
 
 -------------------------------------------------------
