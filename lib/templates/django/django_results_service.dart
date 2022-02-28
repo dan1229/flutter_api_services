@@ -95,7 +95,7 @@ class DjangoResultsService<T> {
       response = await client.get(uri, headers: headers);
     } catch (e) {
       updating = false;
-      logPrint("ResultsService.callApiList<${T.toString()}>: HTTP error\n${e.toString()}", tag: "EXP");
+      logApiPrint("ResultsService.callApiList<${T.toString()}>: HTTP error\n${e.toString()}", tag: "EXP");
       return defaultErrorMap();
     }
 
@@ -104,7 +104,7 @@ class DjangoResultsService<T> {
     try {
       decoded = jsonDecode(response.body);
     } catch (e) {
-      logPrint("ResultsService.callApiList<${T.toString()}>: jsonDecode error\n${e.toString()}", tag: "EXP");
+      logApiPrint("ResultsService.callApiList<${T.toString()}>: jsonDecode error\n${e.toString()}", tag: "EXP");
       return defaultErrorMap();
     }
 
@@ -161,7 +161,7 @@ class DjangoResultsService<T> {
         response = await client.get(Uri.parse(next!), headers: headers);
       } catch (e) {
         updating = false;
-        logPrint("ResultsService.callNext<${T.toString()}>: HTTP error\n${e.toString()}", tag: "EXP");
+        logApiPrint("ResultsService.callNext<${T.toString()}>: HTTP error\n${e.toString()}", tag: "EXP");
         return defaultErrorMap();
       }
       // Successful HTTP request
@@ -171,7 +171,7 @@ class DjangoResultsService<T> {
         try {
           decoded = jsonDecode(response.body);
         } catch (e) {
-          logPrint("ResultsService.callNext<${T.toString()}>: jsonDecode error\n${e.toString()}", tag: "EXP");
+          logApiPrint("ResultsService.callNext<${T.toString()}>: jsonDecode error\n${e.toString()}", tag: "EXP");
           return defaultErrorMap();
         }
 
@@ -189,7 +189,8 @@ class DjangoResultsService<T> {
         return defaultSuccessMap(message: "Updated ${T.toString()}(s) list.", extras: <String, dynamic>{"count": count});
       }
     }
-    return defaultErrorMap(); // ERROR
+    // no next - error
+    return defaultErrorMap();
   }
 
   /// =======================================/
@@ -214,7 +215,7 @@ class DjangoResultsService<T> {
         response = await client.get(Uri.parse(previous!), headers: headers);
       } catch (e) {
         updating = false;
-        logPrint("ResultsService.callPrevious<${T.toString()}>: HTTP error\n${e.toString()}", tag: "EXP");
+        logApiPrint("ResultsService.callPrevious<${T.toString()}>: HTTP error\n${e.toString()}", tag: "EXP");
         return defaultErrorMap();
       }
 
@@ -225,7 +226,7 @@ class DjangoResultsService<T> {
         try {
           decoded = jsonDecode(response.body);
         } catch (e) {
-          logPrint("ResultsService.callPrevious<${T.toString()}>: jsonDecode error\n${e.toString()}", tag: "EXP");
+          logApiPrint("ResultsService.callPrevious<${T.toString()}>: jsonDecode error\n${e.toString()}", tag: "EXP");
           return defaultErrorMap();
         }
 
@@ -238,7 +239,8 @@ class DjangoResultsService<T> {
         return defaultSuccessMap(message: "Updated ${T.toString()}(s) list.", extras: <String, dynamic>{"count": count});
       }
     }
-    return defaultErrorMap(); // ERROR
+    // no prev - error
+    return defaultErrorMap();
   }
 
   /// =============================================================================/
@@ -273,7 +275,7 @@ class DjangoResultsService<T> {
       response = await client.get(uri, headers: headers);
     } catch (e) {
       updating = false;
-      logPrint("ResultsService.callApiDetails<${T.toString()}>: HTTP error\n${e.toString()}", tag: "EXP");
+      logApiPrint("ResultsService.callApiDetails<${T.toString()}>: HTTP error\n${e.toString()}", tag: "EXP");
       return defaultErrorMap();
     }
 
@@ -282,7 +284,7 @@ class DjangoResultsService<T> {
     try {
       decoded = jsonDecode(response.body);
     } catch (e) {
-      logPrint("ResultsService.callApiDetails<${T.toString()}>: jsonDecode error\n${e.toString()}", tag: "EXP");
+      logApiPrint("ResultsService.callApiDetails<${T.toString()}>: jsonDecode error\n${e.toString()}", tag: "EXP");
       return defaultErrorMap();
     }
 

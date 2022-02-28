@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Released]
 
+### [0.0.2] - 2022-02-28
+- Updated API logging
+
 
 ### [0.0.1] - 2022-02-03
 - Initial release!
@@ -42,14 +45,15 @@ badges
 
 code coverage
 
-
 ci/cd?
 
+------
 
 create api service
 - add patch
 - add delete
 
+------
 
 Tests!
 - service tests
@@ -61,9 +65,8 @@ improve doc strings
 are 'fromJson' optional?
 
 
-
-### [0.0.2] - 2022-02-DD
-
+### [0.0.3] - 2022-MM-DD
+- TESTS
 
 
 

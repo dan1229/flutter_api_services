@@ -67,7 +67,7 @@ class DjangoCreateService<T> {
       response = await client.post(uriApiBase, headers: headers, body: bodyStr);
     } catch (e) {
       updating = false;
-      logPrint("CreateService.postApi<${T.toString()}>: HTTP error\n${e.toString()}", tag: "EXP");
+      logApiPrint("CreateService.postApi<${T.toString()}>: HTTP error\n${e.toString()}", tag: "EXP");
       return defaultErrorMap();
     }
 
@@ -76,7 +76,7 @@ class DjangoCreateService<T> {
     try {
       decoded = jsonDecode(response.body);
     } catch (e) {
-      logPrint("CreateService.postApi<${T.toString()}>: jsonDecode error\n${e.toString()}", tag: "EXP");
+      logApiPrint("CreateService.postApi<${T.toString()}>: jsonDecode error\n${e.toString()}", tag: "EXP");
       return defaultErrorMap();
     }
 

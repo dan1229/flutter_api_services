@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 /// Default logging function. Will not print in production and offers some nice
 /// formatting to make more noticeable.
 ///
-logPrint(
+logApiPrint(
     String msg, {
       String tag = "INFO",
       String sym = "*",

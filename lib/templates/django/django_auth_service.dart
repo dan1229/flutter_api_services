@@ -51,7 +51,7 @@ class DjangoAuthService {
           return defaultErrorMap();
       }
     } catch (e) {
-      logPrint("callLoginApi: " + e.toString());
+      logApiPrint("AuthService.postLoginApi: error\n${e.toString()}", tag: "EXP");
       return defaultErrorMap();
     }
   }
@@ -96,7 +96,7 @@ class DjangoAuthService {
           return defaultErrorMap();
       }
     } catch (e) {
-      logPrint("callSignupApi: " + e.toString());
+      logApiPrint("AuthService.postSignupApi: error\n${e.toString()}", tag: "EXP");
       return defaultErrorMap();
     }
   }
