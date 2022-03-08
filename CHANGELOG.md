@@ -64,7 +64,6 @@ improve doc strings
 
 are 'fromJson' optional?
 
-
 ### [0.0.3] - 2022-MM-DD
 - TESTS
 

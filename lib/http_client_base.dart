@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_api_services/api_helpers.dart';
 import 'package:http/http.dart';
 
 /// ==================================================================================/
@@ -29,6 +30,6 @@ class HttpClientBase extends BaseClient {
   void close() => delegate.close();
 
   void _logRequest(BaseRequest request) {
-    debugPrint(request.toString());
+    logApiPrint(request.toString(), tag: "REQ");
   }
 }
