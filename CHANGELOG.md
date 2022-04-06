@@ -55,6 +55,12 @@ create api service
 
 ------
 
+change response types
+- responseMapSuccess - create explicit class/response
+- same with errors
+- copy typescript format?
+
+
 Tests!
 - service tests
 
