@@ -62,6 +62,11 @@ create api service
 
 ------
 
+gh actions
+- create release in github
+- create 'verison/X.X.X' branch for versioning
+
+
 docs
 - examples folder?
 
