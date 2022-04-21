@@ -61,6 +61,11 @@ change response types
 - copy typescript format?
 
 
+make logging optional
+- default to on
+- add param or something
+
+
 Tests!
 - service tests
 
@@ -70,8 +75,21 @@ improve doc strings
 
 are 'fromJson' optional?
 
-### [0.0.3] - 2022-MM-DD
+### [0.0.4] - 2022-MM-DD
 - TESTS
+
+
+
+TODO
+- validate auth functions
+- validate create functions?
+
+docs
+
+
+### [0.0.3] - 2022-04-DD
+- API handler update/fixes
+- Doc improvements
 
 
 
