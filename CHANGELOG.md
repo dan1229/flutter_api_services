@@ -14,6 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Released]
 
+### [0.0.3] - 2022-04-21
+- API handler update/fixes
+- Doc improvements
+- Logging for HTTP requests is optional
+- Response Type classes!
+
+
 ### [0.0.2] - 2022-02-28
 - Updated API logging
 
@@ -74,16 +81,6 @@ are 'fromJson' optional?
 
 ### [0.0.4] - 2022-MM-DD
 - TESTS
-
----
-
-### [0.0.3] - 2022-04-DD
-- API handler update/fixes
-- Doc improvements
-- Logging for HTTP requests is optional
-- Response Type classes!
-
-
 
 -------------------------------------------------------
 
