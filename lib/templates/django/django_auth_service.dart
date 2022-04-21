@@ -1,7 +1,8 @@
 
 import 'dart:convert';
 
-import 'package:flutter_api_services/api_helpers.dart';
+import 'package:flutter_api_services/src/api_helpers.dart';
+import 'package:flutter_api_services/src/response_types.dart';
 import 'package:http/http.dart';
 
 // ===============================================================================/
@@ -28,7 +29,7 @@ class DjangoAuthService {
   /// @[RETURN]
   /// Map<String, dynamic>             - map containing response info/results
   ///
-  Future<Map<String, dynamic>> postLoginApi({required String email, required String password}) async {
+  Future<ApiResponse> postLoginApi({required String email, required String password}) async {
     Uri uri = _uriLogin();
     Map<String, String> headers = headerNoAuth();
     String body = bodyGeneric(map: <String, String>{
@@ -42,17 +43,17 @@ class DjangoAuthService {
 
       switch (response.statusCode) {
         case 200: // success
-          return defaultSuccessMap(message: "Successfully logged in.", extras: <String, dynamic>{'token': decoded['token'], 'decoded': decoded});
+          return ApiResponseSuccess(message: "Successfully logged in.", results: <String, dynamic>{'token': decoded['token'], 'decoded': decoded});
         case 400: // bad request
-          return defaultErrorMap(message: decoded['message']);
+          return ApiResponseError(message: decoded['message']);
         case 500: // server error
-          return defaultErrorMap(message: decoded['message']);
+          return ApiResponseError(message: decoded['message']);
         default: // who knows
-          return defaultErrorMap();
+          return ApiResponseError();
       }
     } catch (e) {
       logApiPrint("AuthService.postLoginApi: error\n${e.toString()}", tag: "EXP");
-      return defaultErrorMap();
+      return ApiResponseError();
     }
   }
 
@@ -71,7 +72,7 @@ class DjangoAuthService {
   /// @[RETURN]
   /// Map<String, dynamic>             - map containing response info/results
   ///
-  Future<Map<String, dynamic>> postSignupApi({required String email, required String password}) async {
+  Future<ApiResponse> postSignupApi({required String email, required String password}) async {
     Uri uri = _uriSignup();
     Map<String, String> headers = headerNoAuth();
     String body = bodyGeneric(map: <String, String>{
@@ -85,19 +86,19 @@ class DjangoAuthService {
 
       switch (response.statusCode) {
         case 200: // success
-          return defaultSuccessMap(message: decoded['message'], extras: <String, dynamic>{'token': decoded['token'], 'decoded': decoded});
+          return ApiResponseSuccess(message: decoded['message'], results: <String, dynamic>{'token': decoded['token'], 'decoded': decoded});
         case 201: // success
-          return defaultSuccessMap(message: decoded['message'], extras: <String, dynamic>{'token': decoded['token'], 'decoded': decoded});
+          return ApiResponseSuccess(message: decoded['message'], results: <String, dynamic>{'token': decoded['token'], 'decoded': decoded});
         case 400: // bad request
-          return defaultErrorMap(message: getErrorMessage(decoded));
+          return ApiResponseError(message: getErrorMessage(decoded));
         case 500: // server error
-          return defaultErrorMap(message: getErrorMessage(decoded));
+          return ApiResponseError(message: getErrorMessage(decoded));
         default: // who knows
-          return defaultErrorMap();
+          return ApiResponseError();
       }
     } catch (e) {
       logApiPrint("AuthService.postSignupApi: error\n${e.toString()}", tag: "EXP");
-      return defaultErrorMap();
+      return ApiResponseError();
     }
   }
 
@@ -105,7 +106,7 @@ class DjangoAuthService {
     return Uri.parse("$uriApiBase/signup/");
   }
 
-  String? getErrorMessage(Map<String, dynamic> decoded) {
+  String getErrorMessage(Map<String, dynamic> decoded) {
     if (decoded['error'] != null) {
       return decoded['error'];
     } else if (decoded['message'] != null) {
@@ -115,7 +116,7 @@ class DjangoAuthService {
     } else if (decoded['non_field_errors'] != null) {
       return decoded['non_field_errors'][0];
     } else {
-      return null;
+      return "Error. Please try again later.";
     }
   }
 }

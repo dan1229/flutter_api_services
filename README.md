@@ -19,7 +19,6 @@ stability and reduce boilerplate. Declare a hardened and efficient API in as lit
 declaration.
 
 ### Classes Available
-TODO
 - Django Auth Service
   - Login/Signup
 - Django Create Service
@@ -44,6 +43,12 @@ flutter_api_services:
 ```
 
 Then run `flutter pub get` to download and install it. Then, you're ready to get using!
+
+### Versioning
+
+Versioning for Git packages in Flutter isn't exactly the best - to work around this, each 'official' release will need to be made into a branch on GitHub, then you can reference that branch. As of this writing the format for these branchers is:
+`version/X.X.X`
+
 
 ## Usage
 

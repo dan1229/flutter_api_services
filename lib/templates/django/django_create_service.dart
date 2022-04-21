@@ -1,7 +1,8 @@
 
 import 'dart:convert';
 
-import 'package:flutter_api_services/api_helpers.dart';
+import 'package:flutter_api_services/src/api_helpers.dart';
+import 'package:flutter_api_services/src/response_types.dart';
 import 'package:http/http.dart' as http;
 
 /// ===============================================================================/
@@ -49,7 +50,7 @@ class DjangoCreateService<T> {
   /// Map<String, dynamic>    - map containing information about response
   /// class fields should be updated to reflect API response/results
   ///
-  Future<Map<String, dynamic>> postApi(
+  Future<ApiResponse> postApi(
       {required Map<String, dynamic> body, bool authenticated = false, Function? onSuccess, Function? onError}) async {
     updating = true;
 
@@ -69,7 +70,7 @@ class DjangoCreateService<T> {
     } catch (e) {
       updating = false;
       logApiPrint("CreateService.postApi<${T.toString()}>: HTTP error\n${e.toString()}", tag: "EXP");
-      return defaultErrorMap();
+      return ApiResponseError();
     }
 
     // deserialize json
@@ -78,7 +79,7 @@ class DjangoCreateService<T> {
       decoded = jsonDecode(response.body);
     } catch (e) {
       logApiPrint("CreateService.postApi<${T.toString()}>: jsonDecode error\n${e.toString()}", tag: "EXP");
-      return defaultErrorMap();
+      return ApiResponseError();
     }
 
     // process response
@@ -88,19 +89,19 @@ class DjangoCreateService<T> {
       if (onSuccess != null) {
         onSuccess();
       }
-      return defaultSuccessMap(message: decoded['success']);
+      return ApiResponseSuccess(message: decoded['success']);
     } else if (response.statusCode == 401) {
       // 401 -> unauthorized
       if (onError != null) {
         onError();
       }
-      return defaultErrorMap(message: decoded['detail']);
+      return ApiResponseError(message: decoded['detail']);
     } else {
       // 400, 500 and others -> error
       if (onError != null) {
         onError();
       }
-      return defaultErrorMap(message: decoded['error']);
+      return ApiResponseError(message: decoded['error']);
     }
   }
 }
