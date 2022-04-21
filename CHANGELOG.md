@@ -61,6 +61,8 @@ change response types
 - copy typescript format?
 
 
+
+
 Tests!
 - service tests
 
@@ -68,10 +70,28 @@ improve doc strings
 - move under function header?
 
 
+TODO
+- validate create functions?
+
+
 are 'fromJson' optional?
 
-### [0.0.3] - 2022-MM-DD
+### [0.0.4] - 2022-MM-DD
 - TESTS
+
+---
+
+make response maps a type
+- ApiResponseSuccess
+- ApiResponseError
+- ApiResponse (base)
+- update danielnazarian.com to use new types
+
+
+### [0.0.3] - 2022-04-DD
+- API handler update/fixes
+- Doc improvements
+- Logging for HTTP requests is optional
 
 
 

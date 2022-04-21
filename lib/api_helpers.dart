@@ -24,7 +24,6 @@ logApiPrint(
 }
 
 
-
 ///
 /// API HEADER
 ///
@@ -76,6 +75,7 @@ String bodyGeneric({required Map<String, dynamic> map}) {
 /// @[PARAM]
 /// String [message]          - the error/detail message itself
 /// Map [extras]              - map to add to default options, this is how you add extra data i.e., the object retrieved in the API call
+///
 /// @[RETURN]
 /// Map<String, dynamic>    - standardized response map
 /// - String [message]        - error/success message given

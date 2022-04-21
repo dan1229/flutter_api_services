@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_api_services/api_helpers.dart';
 import 'package:flutter_api_services/templates/django/json/django_paginated_api_json.dart';
+import 'package:flutter_api_services/templates/django/json/django_results_api_json.dart';
 import 'package:http/http.dart' as http;
 
 /// ===============================================================================/
@@ -29,6 +30,7 @@ class DjangoResultsService<T> {
   int? count;
   String? next;
   String? previous;
+  String? message;
   List<T>? list = <T>[];
   T? resultDetails;
 
@@ -69,6 +71,7 @@ class DjangoResultsService<T> {
   /// String? search          - Optional keyword to search by
   /// Function? onSuccess     - Optional callback function on successful API call
   /// Function? onError       - Optional callback function on unsuccessful API call
+  ///
   /// @[RETURN]
   /// Map<String, dynamic>    - map containing information about response
   /// class fields should be updated to reflect API response/results
@@ -117,10 +120,11 @@ class DjangoResultsService<T> {
       previous = res.previous;
       count = res.count;
       list = res.results;
+      message = res.message;
       if (onSuccess != null) {
         onSuccess();
       }
-      return defaultSuccessMap(message: "Retrieved ${T.toString()}(s) list.", extras: <String, dynamic>{"count": count});
+      return defaultSuccessMap(message: message, extras: <String, dynamic>{"count": count});
     } else if (response.statusCode == 401) {
       // 401 -> unauthorized
       if (onError != null) {
@@ -132,7 +136,7 @@ class DjangoResultsService<T> {
       if (onError != null) {
         onError();
       }
-      return defaultErrorMap(message: decoded['error']);
+      return defaultErrorMap(message: decoded['message']);
     }
   }
 
@@ -255,6 +259,7 @@ class DjangoResultsService<T> {
   /// String id             - id of object to lookup
   /// Function onSuccess    - Optional callback function on successful API call
   /// Function onError      - Optional callback function on unsuccessful API call
+  ///
   /// @[RETURN]
   /// Map<String, dynamic>  - map containing information about response
   ///
@@ -290,13 +295,15 @@ class DjangoResultsService<T> {
 
     // process response
     updating = false;
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 || response.statusCode == 201) {
       // 200 -> valid
-      resultDetails = fromJson(decoded);
+      DjangoResultsApiJson<T> res = DjangoResultsApiJson<T>.fromJson(json: decoded, fromJson: fromJson);
+      resultDetails = res.results;
+      message = res.message;
       if (onSuccess != null) {
         onSuccess();
       }
-      return defaultSuccessMap(message: "Updated ${T.toString()}(s) list.", extras: <String, dynamic>{'result': resultDetails, "count": count});
+      return defaultSuccessMap(message: message, extras: <String, dynamic>{'result': resultDetails});
     } else if (response.statusCode == 401) {
       // 401 -> unauthorized
       if (onError != null) {
@@ -308,7 +315,7 @@ class DjangoResultsService<T> {
       if (onError != null) {
         onError();
       }
-      return defaultErrorMap(message: decoded['error']);
+      return defaultErrorMap(message: decoded['message']);
     }
   }
 }

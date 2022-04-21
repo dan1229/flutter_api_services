@@ -10,6 +10,7 @@ class DjangoPaginatedApiJson<T> {
   int? count;
   String? next;
   String? previous;
+  String? message;
   List<T>? results;
 
   DjangoPaginatedApiJson({
@@ -17,6 +18,7 @@ class DjangoPaginatedApiJson<T> {
     this.next,
     this.previous,
     this.results,
+    this.message,
   });
 
   /// ===================================/
@@ -27,6 +29,7 @@ class DjangoPaginatedApiJson<T> {
     count: json["count"],
     next: json["next"],
     previous: json["previous"],
+    message: json["message"],
     results: json["results"] == null ? null : List<T>.from(json["results"].map((dynamic x) => fromJson(x))),
   );
 }

@@ -44,6 +44,7 @@ class DjangoCreateService<T> {
   /// bool authenticated          - Whether or not to authenticate request
   /// Function? onSuccess         - Optional callback function on successful API call
   /// Function? onError           - Optional callback function on unsuccessful API call
+  ///
   /// @[RETURN]
   /// Map<String, dynamic>    - map containing information about response
   /// class fields should be updated to reflect API response/results

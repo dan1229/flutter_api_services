@@ -44,9 +44,9 @@ class DjangoAuthService {
         case 200: // success
           return defaultSuccessMap(message: "Successfully logged in.", extras: <String, dynamic>{'token': decoded['token'], 'decoded': decoded});
         case 400: // bad request
-          return defaultErrorMap(message: decoded['error']);
+          return defaultErrorMap(message: decoded['message']);
         case 500: // server error
-          return defaultErrorMap(message: decoded['error']);
+          return defaultErrorMap(message: decoded['message']);
         default: // who knows
           return defaultErrorMap();
       }
@@ -85,9 +85,9 @@ class DjangoAuthService {
 
       switch (response.statusCode) {
         case 200: // success
-          return defaultSuccessMap(message: "Successfully registered.", extras: <String, dynamic>{'token': decoded['token'], 'decoded': decoded});
+          return defaultSuccessMap(message: decoded['message'], extras: <String, dynamic>{'token': decoded['token'], 'decoded': decoded});
         case 201: // success
-          return defaultSuccessMap(message: "Successfully registered.", extras: <String, dynamic>{'token': decoded['token'], 'decoded': decoded});
+          return defaultSuccessMap(message: decoded['message'], extras: <String, dynamic>{'token': decoded['token'], 'decoded': decoded});
         case 400: // bad request
           return defaultErrorMap(message: getErrorMessage(decoded));
         case 500: // server error
@@ -108,6 +108,8 @@ class DjangoAuthService {
   String? getErrorMessage(Map<String, dynamic> decoded) {
     if (decoded['error'] != null) {
       return decoded['error'];
+    } else if (decoded['message'] != null) {
+      return decoded['message'];
     } else if (decoded['email'] != null) {
       return decoded['email'];
     } else if (decoded['non_field_errors'] != null) {
