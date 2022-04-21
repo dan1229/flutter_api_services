@@ -294,14 +294,12 @@ class DjangoResultsService<T> {
     updating = false;
     if (response.statusCode == 200 || response.statusCode == 201) {
       // 200 -> valid
+      try {  // decode result itself
+        resultDetails = fromJson(decoded['results']);
+      } catch(e) {
+        logApiPrint("ResultsService.callApiDetails<${T.toString()}>: fromJson error\n${e.toString()}", tag: "EXP");
+      }
 
-      // try {  // decode result itself
-      //   resultDetails = fromJson(jsonDecode(decoded['results']));
-      // } catch(e) {
-      //   logApiPrint("ResultsService.callApiDetails<${T.toString()}>: fromJson error\n${e.toString()}", tag: "EXP");
-      // }
-
-      resultDetails = decoded['results'];
       print(resultDetails.runtimeType);
       print("RESULTS af: ${resultDetails}");
       if (onSuccess != null) {

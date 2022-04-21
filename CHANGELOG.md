@@ -61,9 +61,6 @@ change response types
 - copy typescript format?
 
 
-make logging optional
-- default to on
-- add param or something
 
 
 Tests!
@@ -96,6 +93,7 @@ TODO
 ### [0.0.3] - 2022-04-DD
 - API handler update/fixes
 - Doc improvements
+- Logging for HTTP requests is optional
 
 
 
