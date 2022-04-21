@@ -299,9 +299,6 @@ class DjangoResultsService<T> {
       } catch(e) {
         logApiPrint("ResultsService.callApiDetails<${T.toString()}>: fromJson error\n${e.toString()}", tag: "EXP");
       }
-
-      print(resultDetails.runtimeType);
-      print("RESULTS af: ${resultDetails}");
       if (onSuccess != null) {
         onSuccess();
       }
