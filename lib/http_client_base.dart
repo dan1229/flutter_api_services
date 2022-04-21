@@ -23,7 +23,9 @@ class HttpClientBase extends BaseClient {
   @override
   Future<StreamedResponse> send(BaseRequest request) {
     _logRequest(request);
-    return delegate.send(request);
+    return delegate.send(request).timeout(const Duration(seconds: 10), onTimeout: () {
+      throw Exception("Timeout error.");
+    });
   }
 
   @override

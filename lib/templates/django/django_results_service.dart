@@ -132,7 +132,7 @@ class DjangoResultsService<T> {
       if (onError != null) {
         onError();
       }
-      return defaultErrorMap(message: decoded['error']);
+      return defaultErrorMap(message: decoded['message']);
     }
   }
 
@@ -308,7 +308,7 @@ class DjangoResultsService<T> {
       if (onError != null) {
         onError();
       }
-      return defaultErrorMap(message: decoded['error']);
+      return defaultErrorMap(message: decoded['message']);
     }
   }
 }
