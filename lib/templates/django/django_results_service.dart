@@ -294,16 +294,18 @@ class DjangoResultsService<T> {
     updating = false;
     if (response.statusCode == 200 || response.statusCode == 201) {
       // 200 -> valid
-      try {
-        resultDetails = fromJson(decoded['results']);
+
+      try {  // decode result itself
+        resultDetails = fromJson(jsonDecode(decoded['results']));
       } catch(e) {
-        print(e);
+        logApiPrint("ResultsService.callApiDetails<${T.toString()}>: fromJson error\n${e.toString()}", tag: "EXP");
       }
+
       print("RESULTS af: ${resultDetails}");
       if (onSuccess != null) {
         onSuccess();
       }
-      return defaultSuccessMap(message: decoded['message'], extras: <String, dynamic>{'result': resultDetails, "count": count});
+      return defaultSuccessMap(message: decoded['message'], extras: <String, dynamic>{'result': resultDetails});
     } else if (response.statusCode == 401) {
       // 401 -> unauthorized
       if (onError != null) {
