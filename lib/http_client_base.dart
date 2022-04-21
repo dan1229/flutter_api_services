@@ -15,13 +15,16 @@ import 'package:http/http.dart';
 /// much easier down the line.
 ///
 class HttpClientBase extends BaseClient {
-  HttpClientBase(this.delegate);
+  HttpClientBase(this.delegate, this.logRequests);
 
   final Client delegate;
+  bool logRequests = true;
 
   @override
   Future<StreamedResponse> send(BaseRequest request) {
-    _logRequest(request);
+    if (logRequests) {
+      _logRequest(request);
+    }
     return delegate.send(request).timeout(const Duration(seconds: 10), onTimeout: () {
       throw Exception("Timeout error.");
     });
