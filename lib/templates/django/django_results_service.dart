@@ -69,6 +69,7 @@ class DjangoResultsService<T> {
   /// String? search          - Optional keyword to search by
   /// Function? onSuccess     - Optional callback function on successful API call
   /// Function? onError       - Optional callback function on unsuccessful API call
+  ///
   /// @[RETURN]
   /// Map<String, dynamic>    - map containing information about response
   /// class fields should be updated to reflect API response/results
@@ -255,6 +256,7 @@ class DjangoResultsService<T> {
   /// String id             - id of object to lookup
   /// Function onSuccess    - Optional callback function on successful API call
   /// Function onError      - Optional callback function on unsuccessful API call
+  ///
   /// @[RETURN]
   /// Map<String, dynamic>  - map containing information about response
   ///
