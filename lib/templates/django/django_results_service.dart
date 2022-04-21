@@ -121,7 +121,7 @@ class DjangoResultsService<T> {
       if (onSuccess != null) {
         onSuccess();
       }
-      return defaultSuccessMap(message: "Retrieved ${T.toString()}(s) list.", extras: <String, dynamic>{"count": count});
+      return defaultSuccessMap(message: decoded['message'], extras: <String, dynamic>{"count": count});
     } else if (response.statusCode == 401) {
       // 401 -> unauthorized
       if (onError != null) {
@@ -294,10 +294,10 @@ class DjangoResultsService<T> {
     updating = false;
     if (response.statusCode == 200 || response.statusCode == 201) {
       // 200 -> valid
-      resultDetails = fromJson(decoded['results']);
-      if (onSuccess != null) {
-        onSuccess();
-      }
+      // resultDetails = fromJson(decoded['results']);
+      // if (onSuccess != null) {
+      //   onSuccess();
+      // }
       return defaultSuccessMap(message: decoded['message'], extras: <String, dynamic>{'result': resultDetails, "count": count});
     } else if (response.statusCode == 401) {
       // 401 -> unauthorized
