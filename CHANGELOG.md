@@ -83,8 +83,8 @@ are 'fromJson' optional?
 TODO
 - validate auth functions
 - validate create functions?
-
-docs
+- validate timeout actually works
+- docs - readme
 
 
 ### [0.0.3] - 2022-04-DD
