@@ -70,6 +70,10 @@ improve doc strings
 - move under function header?
 
 
+TODO
+- validate create functions?
+
+
 are 'fromJson' optional?
 
 ### [0.0.4] - 2022-MM-DD
@@ -82,12 +86,6 @@ make response maps a type
 - ApiResponseError
 - ApiResponse (base)
 - update danielnazarian.com to use new types
-
-TODO
-- validate auth functions
-- validate create functions?
-- validate timeout actually works
-- docs - readme
 
 
 ### [0.0.3] - 2022-04-DD

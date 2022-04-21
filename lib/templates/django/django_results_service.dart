@@ -30,6 +30,7 @@ class DjangoResultsService<T> {
   int? count;
   String? next;
   String? previous;
+  String? message;
   List<T>? list = <T>[];
   T? resultDetails;
 
@@ -119,10 +120,11 @@ class DjangoResultsService<T> {
       previous = res.previous;
       count = res.count;
       list = res.results;
+      message = res.message;
       if (onSuccess != null) {
         onSuccess();
       }
-      return defaultSuccessMap(message: decoded['message'], extras: <String, dynamic>{"count": count});
+      return defaultSuccessMap(message: message, extras: <String, dynamic>{"count": count});
     } else if (response.statusCode == 401) {
       // 401 -> unauthorized
       if (onError != null) {
@@ -297,15 +299,11 @@ class DjangoResultsService<T> {
       // 200 -> valid
       DjangoResultsApiJson<T> res = DjangoResultsApiJson<T>.fromJson(json: decoded, fromJson: fromJson);
       resultDetails = res.results;
-      // try {  // decode result itself
-      //   resultDetails = fromJson(decoded['results']);
-      // } catch(e) {
-      //   logApiPrint("ResultsService.callApiDetails<${T.toString()}>: fromJson error\n${e.toString()}", tag: "EXP");
-      // }
+      message = res.message;
       if (onSuccess != null) {
         onSuccess();
       }
-      return defaultSuccessMap(message: res.message, extras: <String, dynamic>{'result': resultDetails});
+      return defaultSuccessMap(message: message, extras: <String, dynamic>{'result': resultDetails});
     } else if (response.statusCode == 401) {
       // 401 -> unauthorized
       if (onError != null) {

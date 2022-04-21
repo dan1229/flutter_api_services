@@ -21,13 +21,15 @@ declaration.
 ### Classes Available
 TODO
 - Django Auth Service
-  - a
+  - Login/Signup
 - Django Create Service
-  - a
+  - POST
 - Django Results Service
-  - a
+  - GET - List
+  - GET - Retrieve
+  - GET - Next/Prev
 - API Helpers
-  - a
+  - TODO
 - HTTP Client
 
 ## Getting started
