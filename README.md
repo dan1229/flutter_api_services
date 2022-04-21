@@ -18,6 +18,18 @@ Support common HTTP REST methods, authentication, serialization, error handling 
 stability and reduce boilerplate. Declare a hardened and efficient API in as little as one simple
 declaration.
 
+### Classes Available
+TODO
+- Django Auth Service
+  - a
+- Django Create Service
+  - a
+- Django Results Service
+  - a
+- API Helpers
+  - a
+- HTTP Client
+
 ## Getting started
 
 This package **is not** on pub.dev so to use the package declare it like so in your `pubspec.yaml`
