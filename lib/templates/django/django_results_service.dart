@@ -272,7 +272,6 @@ class DjangoResultsService<T> {
 
     // send HTTP request to endpoint
     Uri uri = uriApiBase.replace(path: uriApiBase.path + "$id/");
-    logApiPrint("1");
     http.Response response;
     try {
       response = await client.get(uri, headers: headers);
@@ -283,7 +282,6 @@ class DjangoResultsService<T> {
     }
 
     // deserialize json
-    logApiPrint("2");
     Map<String, dynamic> decoded;
     try {
       decoded = jsonDecode(response.body);
@@ -293,11 +291,11 @@ class DjangoResultsService<T> {
     }
 
     // process response
-    logApiPrint("3");
     updating = false;
     if (response.statusCode == 200) {
       // 200 -> valid
       resultDetails = fromJson(decoded['results']);
+      logApiPrint("RESULTS: $resultDetails");
       if (onSuccess != null) {
         onSuccess();
       }
