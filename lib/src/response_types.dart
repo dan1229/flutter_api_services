@@ -1,18 +1,15 @@
 class ApiResponse {
   String message;
   bool error;
+  dynamic results;
 
-  ApiResponse({this.message = 'Default API response.', this.error = false});
+  ApiResponse({this.message = 'Default API response.', this.error = false, this.results});
 }
 
 class ApiResponseSuccess extends ApiResponse {
-  dynamic results;
-
-  ApiResponseSuccess({String message = "Successful request.", bool error = false, this.results}) : super(message: message, error: error);
+  ApiResponseSuccess({String message = "Successful request.", bool error = false, dynamic results}) : super(message: message, error: error, results: results);
 }
 
 class ApiResponseError extends ApiResponse {
-  dynamic results;
-
-  ApiResponseError({String message="Error. Please try again later.", bool error=true, this.results}) : super(message: message, error: error);
+  ApiResponseError({String message="Error. Please try again later.", bool error=true, dynamic results}) : super(message: message, error: error, results: results);
 }
