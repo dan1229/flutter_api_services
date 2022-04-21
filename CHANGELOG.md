@@ -55,12 +55,8 @@ create api service
 
 ------
 
-change response types
-- responseMapSuccess - create explicit class/response
-- same with errors
-- copy typescript format?
-
-
+docs
+- examples folder?
 
 
 Tests!
@@ -81,17 +77,11 @@ are 'fromJson' optional?
 
 ---
 
-make response maps a type
-- ApiResponseSuccess
-- ApiResponseError
-- ApiResponse (base)
-- update danielnazarian.com to use new types
-
-
 ### [0.0.3] - 2022-04-DD
 - API handler update/fixes
 - Doc improvements
 - Logging for HTTP requests is optional
+- Response Type classes!
 
 
 
