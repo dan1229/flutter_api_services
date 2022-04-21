@@ -1,8 +1,8 @@
 
 import 'dart:convert';
 
-import 'package:flutter_api_services/api_helpers.dart';
-import 'package:flutter_api_services/response_types.dart';
+import 'package:flutter_api_services/src/api_helpers.dart';
+import 'package:flutter_api_services/src/response_types.dart';
 import 'package:http/http.dart';
 
 // ===============================================================================/

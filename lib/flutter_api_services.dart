@@ -1,7 +1,7 @@
 library flutter_api_services;
 
-export 'http_client_base.dart' show HttpClientBase;
-export 'response_types.dart' show ApiResponse, ApiResponseSuccess, ApiResponseError;
+export 'src/http_client_base.dart' show HttpClientBase;
+export 'src/response_types.dart' show ApiResponse, ApiResponseSuccess, ApiResponseError;
 // Django REST Services
 export 'templates/django/django_auth_service.dart' show DjangoAuthService;
 export 'templates/django/django_results_service.dart' show DjangoResultsService;

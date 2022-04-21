@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:flutter_api_services/api_helpers.dart';
-import 'package:flutter_api_services/response_types.dart';
+import 'package:flutter_api_services/src/api_helpers.dart';
+import 'package:flutter_api_services/src/response_types.dart';
 import 'package:flutter_api_services/templates/django/json/django_paginated_api_json.dart';
 import 'package:flutter_api_services/templates/django/json/django_results_api_json.dart';
 import 'package:http/http.dart' as http;

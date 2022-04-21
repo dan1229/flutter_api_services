@@ -1,5 +1,5 @@
 
-import 'package:flutter_api_services/api_helpers.dart';
+import 'package:flutter_api_services/src/api_helpers.dart';
 import 'package:http/http.dart';
 
 /// ==================================================================================/
