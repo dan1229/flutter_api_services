@@ -78,7 +78,13 @@ are 'fromJson' optional?
 ### [0.0.4] - 2022-MM-DD
 - TESTS
 
+---
 
+make response maps a type
+- ApiResponseSuccess
+- ApiResponseError
+- ApiResponse (base)
+- update danielnazarian.com to use new types
 
 TODO
 - validate auth functions

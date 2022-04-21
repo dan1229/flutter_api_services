@@ -294,10 +294,12 @@ class DjangoResultsService<T> {
     updating = false;
     if (response.statusCode == 200 || response.statusCode == 201) {
       // 200 -> valid
-      // resultDetails = fromJson(decoded['results']);
-      // if (onSuccess != null) {
-      //   onSuccess();
-      // }
+      print("RESULTS b4: ${resultDetails}");
+      resultDetails = fromJson(decoded['results']);
+      print("RESULTS af: ${resultDetails}");
+      if (onSuccess != null) {
+        onSuccess();
+      }
       return defaultSuccessMap(message: decoded['message'], extras: <String, dynamic>{'result': resultDetails, "count": count});
     } else if (response.statusCode == 401) {
       // 401 -> unauthorized
