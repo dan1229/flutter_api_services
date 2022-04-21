@@ -292,6 +292,7 @@ class DjangoResultsService<T> {
 
     // process response
     updating = false;
+    print("STATUS ${response.statusCode}");
     if (response.statusCode == 200) {
       // 200 -> valid
       resultDetails = fromJson(decoded['results']);
