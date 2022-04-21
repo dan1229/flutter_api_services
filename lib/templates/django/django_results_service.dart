@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_api_services/api_helpers.dart';
 import 'package:flutter_api_services/templates/django/json/django_paginated_api_json.dart';
+import 'package:flutter_api_services/templates/django/json/django_results_api_json.dart';
 import 'package:http/http.dart' as http;
 
 /// ===============================================================================/
@@ -294,15 +295,17 @@ class DjangoResultsService<T> {
     updating = false;
     if (response.statusCode == 200 || response.statusCode == 201) {
       // 200 -> valid
-      try {  // decode result itself
-        resultDetails = fromJson(decoded['results']);
-      } catch(e) {
-        logApiPrint("ResultsService.callApiDetails<${T.toString()}>: fromJson error\n${e.toString()}", tag: "EXP");
-      }
+      DjangoResultsApiJson<T> res = DjangoResultsApiJson<T>.fromJson(json: decoded, fromJson: fromJson);
+      resultDetails = res.results;
+      // try {  // decode result itself
+      //   resultDetails = fromJson(decoded['results']);
+      // } catch(e) {
+      //   logApiPrint("ResultsService.callApiDetails<${T.toString()}>: fromJson error\n${e.toString()}", tag: "EXP");
+      // }
       if (onSuccess != null) {
         onSuccess();
       }
-      return defaultSuccessMap(message: decoded['message'], extras: <String, dynamic>{'result': resultDetails});
+      return defaultSuccessMap(message: res.message, extras: <String, dynamic>{'result': resultDetails});
     } else if (response.statusCode == 401) {
       // 401 -> unauthorized
       if (onError != null) {
