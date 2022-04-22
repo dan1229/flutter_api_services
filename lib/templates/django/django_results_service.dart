@@ -191,7 +191,7 @@ class DjangoResultsService<T> {
           // replace results
           list = res.results;
         }
-        return ApiResponseSuccess(message: "Updated ${T.toString()}(s) list.", results: <String, dynamic>{"count": count});
+        return ApiResponseSuccess(message: "Updated ${T.toString()}(s) list.", results: list);
       }
     }
     // no next - error
@@ -241,7 +241,7 @@ class DjangoResultsService<T> {
         previous = res.previous;
         count = res.count;
         list = res.results;
-        return ApiResponseSuccess(message: "Updated ${T.toString()}(s) list.", results: <String, dynamic>{"count": count});
+        return ApiResponseSuccess(message: "Updated ${T.toString()}(s) list.", results: list);
       }
     }
     // no prev - error
