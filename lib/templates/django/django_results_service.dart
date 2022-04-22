@@ -120,7 +120,7 @@ class DjangoResultsService<T> {
     if (response.statusCode == 200) {
       // 200 -> valid
       bool newList = false;
-      if (count == 0) {
+      if (count == null) {
         newList = true;
       }
       DjangoPaginatedApiJson<T> res = DjangoPaginatedApiJson<T>.fromJson(json: decoded, fromJson: fromJson);
@@ -145,9 +145,6 @@ class DjangoResultsService<T> {
       }
 
       // if we have a new list, figure out the total pages
-      print(newList);
-      print(length);
-      print(count);
       if (newList && length > 0 && count != null) {
         pageTotal = count! ~/ length;  // count is the total, divided (round down) by the current list length
         int remainder = count! % length;
