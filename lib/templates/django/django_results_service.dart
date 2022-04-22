@@ -130,8 +130,9 @@ class DjangoResultsService<T> {
       list = res.results;
       message = res.message;
 
-      // get page number from next/prev
+      // get current page number from next/prev
       String pageNum = '1';
+      print(next != null);
       if (next != null) {
         Uri uri = Uri.dataFromString(next!);
         pageNum = uri.queryParameters['page'] ?? '1';
