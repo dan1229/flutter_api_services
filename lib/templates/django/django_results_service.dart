@@ -125,7 +125,6 @@ class DjangoResultsService<T> {
       }
       DjangoPaginatedApiJson<T> res = DjangoPaginatedApiJson<T>.fromJson(json: decoded, fromJson: fromJson);
       next = res.next;
-      // TODO get pageCurrent from next/prev url
       previous = res.previous;
       count = res.count;
       list = res.results;
@@ -146,13 +145,16 @@ class DjangoResultsService<T> {
       }
 
       // if we have a new list, figure out the total pages
-      // if (newList && length > 0 && count != null) {
-      pageTotal = count! ~/ length;  // count is the total, divided (round down) by the current list length
-      int remainder = count! % length;
-      if (remainder != 0) {
-        pageTotal++;
+      print(newList);
+      print(length);
+      print(count);
+      if (newList && length > 0 && count != null) {
+        pageTotal = count! ~/ length;  // count is the total, divided (round down) by the current list length
+        int remainder = count! % length;
+        if (remainder != 0) {
+          pageTotal++;
+        }
       }
-      // }
 
       if (onSuccess != null) {
         onSuccess();
