@@ -27,9 +27,8 @@ declaration.
   - GET - List
   - GET - Retrieve
   - GET - Next/Prev
-- API Helpers
-  - TODO
 - HTTP Client
+- APIResponse
 
 ## Getting started
 
