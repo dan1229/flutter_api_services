@@ -143,7 +143,8 @@ class DjangoResultsService<T> {
         pageCurrent = int.parse(pageNum) + 1;
       } else {
         pageCurrent = int.parse(pageNum);
-      }\
+      }
+
       // if we have a new list, figure out the total pages
       if (newList && length > 0 && count != null) {
         pageTotal = count! ~/ length;  // count is the total, divided (round down) by the current list length
