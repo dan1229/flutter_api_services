@@ -35,6 +35,10 @@ class DjangoResultsService<T> {
   List<T>? list = <T>[];
   T? resultDetails;
 
+  // pagination properties
+  int pageCurrent = 0;
+  int pageMax = 0;
+
   // properties - custom
   bool updating = false;
 
@@ -117,6 +121,7 @@ class DjangoResultsService<T> {
       // 200 -> valid
       DjangoPaginatedApiJson<T> res = DjangoPaginatedApiJson<T>.fromJson(json: decoded, fromJson: fromJson);
       next = res.next;
+      // TODO get pageCurrent from next/prev url
       previous = res.previous;
       count = res.count;
       list = res.results;
