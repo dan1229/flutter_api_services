@@ -26,8 +26,9 @@ class DjangoAuthService {
   /// @[PARAM]
   /// String email                     - email to login with
   /// String password                  - password to login with
+  ///
   /// @[RETURN]
-  /// Map<String, dynamic>             - map containing response info/results
+  /// ApiResponse                      - error or success based on result(s)
   ///
   Future<ApiResponse> postLoginApi({required String email, required String password}) async {
     Uri uri = _uriLogin();
@@ -69,8 +70,9 @@ class DjangoAuthService {
   /// @[PARAM]
   /// String email                     - email to login with
   /// String password                  - password to login with
+  ///
   /// @[RETURN]
-  /// Map<String, dynamic>             - map containing response info/results
+  /// ApiResponse                      - error or success based on result(s)
   ///
   Future<ApiResponse> postSignupApi({required String email, required String password}) async {
     Uri uri = _uriSignup();

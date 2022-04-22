@@ -47,8 +47,7 @@ class DjangoCreateService<T> {
   /// Function? onError           - Optional callback function on unsuccessful API call
   ///
   /// @[RETURN]
-  /// Map<String, dynamic>    - map containing information about response
-  /// class fields should be updated to reflect API response/results
+  /// ApiResponse           - error or success based on result(s)
   ///
   Future<ApiResponse> postApi(
       {required Map<String, dynamic> body, bool authenticated = false, Function? onSuccess, Function? onError}) async {
