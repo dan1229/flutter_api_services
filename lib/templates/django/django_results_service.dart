@@ -136,12 +136,6 @@ class DjangoResultsService<T> {
         Uri uri = Uri.dataFromString(next!);
         pageNum = uri.queryParameters['page'] ?? '1';
         pageCurrent = int.parse(pageNum) - 1;
-      } else if (previous != null) {
-        Uri uri = Uri.dataFromString(previous!);
-        pageNum = uri.queryParameters['page'] ?? '1';
-        pageCurrent = int.parse(pageNum) + 1;
-      } else {
-        pageCurrent = int.parse(pageNum);
       }
 
       // if we have a new list, figure out the total pages
