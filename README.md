@@ -61,7 +61,7 @@ class PostsApi extends DjangoResultsService<Post> {
     required Client client,
   }) : super(
       client: client,
-      uriApiBase: Uri.parse("https://danielnazarian.com/api/posts/"),
+      uriApiBase: Uri.parse("https://example.com/api/posts/"),
       fromJson: (Map<String, dynamic> json) => Post.fromJson(json));
 }
 ```
@@ -77,11 +77,11 @@ class MessageApi extends CreateService<Message> {
   MessageApi({
     required Client client,
   }) : super(client: client,
-      uriApiBase: Uri.parse("https://danielnazarian.com/api/messages/"),
+      uriApiBase: Uri.parse("https://example.com/api/messages/"),
       fromJson: (Map<String, dynamic> json) => Message.fromJson(json));
 
 
-  Future<Map<String, dynamic>> sendMessage({required String message}) {
+  Future<ApiResponse> sendMessage({required String message}) {
     return super.postApi(body: <String, dynamic>{"message": message});
   }
 }
