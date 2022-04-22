@@ -65,6 +65,24 @@ class DjangoResultsService<T> {
     return list?.length ?? 0;
   }
 
+  void calculatePageCurrent() {
+    if (next != null) {
+      Uri uri = Uri.dataFromString(next!);
+      String pageNum = uri.queryParameters['page'] ?? '1';
+      pageCurrent = int.parse(pageNum) - 1;
+    }
+  }
+
+  void calculatePageTotal() {
+    if (length > 0 && count != null) {
+      pageTotal = count! ~/ length;  // count is the total, divided (round down) by the current list length
+      int remainder = count! % length;
+      if (remainder != 0) {
+        pageTotal++;
+      }
+    }
+  }
+
   /// =============================================================================/
   /// GET API LIST ================================================================/
   /// =============================================================================/
@@ -119,10 +137,6 @@ class DjangoResultsService<T> {
     updating = false;
     if (response.statusCode == 200) {
       // 200 -> valid
-      bool newList = false;
-      if (count == null) {
-        newList = true;
-      }
       DjangoPaginatedApiJson<T> res = DjangoPaginatedApiJson<T>.fromJson(json: decoded, fromJson: fromJson);
       next = res.next;
       previous = res.previous;
@@ -130,23 +144,9 @@ class DjangoResultsService<T> {
       list = res.results;
       message = res.message;
 
-      // get current page number from next/prev
-      if (next != null) {
-        Uri uri = Uri.dataFromString(next!);
-        print(uri);
-        String pageNum = uri.queryParameters['page'] ?? '1';
-        pageCurrent = int.parse(pageNum) - 1;
-        print(pageCurrent);
-      }
-
-      // if we have a new list, figure out the total pages
-      if (newList && length > 0 && count != null) {
-        pageTotal = count! ~/ length;  // count is the total, divided (round down) by the current list length
-        int remainder = count! % length;
-        if (remainder != 0) {
-          pageTotal++;
-        }
-      }
+      // calculate page info
+      calculatePageCurrent();
+      calculatePageTotal();
 
       if (onSuccess != null) {
         onSuccess();
@@ -212,6 +212,7 @@ class DjangoResultsService<T> {
         next = res.next;
         previous = res.previous;
         count = res.count;
+        calculatePageCurrent();
         if (addResults) {
           list = List<T>.from(list ?? <T>[])..addAll(res.results ?? <T>[]);
         } else {
@@ -268,6 +269,7 @@ class DjangoResultsService<T> {
         previous = res.previous;
         count = res.count;
         list = res.results;
+        calculatePageCurrent();
         return ApiResponseSuccess(message: "Updated ${T.toString()}(s) list.", results: list);
       }
     }
@@ -346,4 +348,6 @@ class DjangoResultsService<T> {
       return ApiResponseError(message: decoded['message']);
     }
   }
+
+
 }
