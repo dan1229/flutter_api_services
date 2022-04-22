@@ -74,8 +74,7 @@ class DjangoResultsService<T> {
   /// Function? onError       - Optional callback function on unsuccessful API call
   ///
   /// @[RETURN]
-  /// Map<String, dynamic>    - map containing information about response
-  /// class fields should be updated to reflect API response/results
+  /// ApiResponse           - error or success based on result(s)
   ///
   Future<ApiResponse> getApiList({String? search, Function? onSuccess, Function? onError}) async {
     updating = true;
@@ -148,7 +147,7 @@ class DjangoResultsService<T> {
   /// bool addResults       - add results to existing list, default is to replace
   ///
   /// @[RETURN]
-  /// Map<String, dynamic>  - map containing information about response
+  /// ApiResponse           - error or success based on result(s)
   ///
   Future<ApiResponse> getNext({bool addResults = false}) async {
     if (next != null) {
@@ -169,6 +168,7 @@ class DjangoResultsService<T> {
         logApiPrint("ResultsService.callNext<${T.toString()}>: HTTP error\n${e.toString()}", tag: "EXP");
         return ApiResponseError();
       }
+
       // Successful HTTP request
       if (response.statusCode == 200) {
         // deserialize json
@@ -202,7 +202,7 @@ class DjangoResultsService<T> {
   /// GET PREV
   ///
   /// @[RETURN]
-  /// Map<String, dynamic>  - map containing information about response
+  /// ApiResponse           - error or success based on result(s)
   ///
   Future<ApiResponse> getPrevious() async {
     if (previous != null) {
@@ -262,7 +262,7 @@ class DjangoResultsService<T> {
   /// Function onError      - Optional callback function on unsuccessful API call
   ///
   /// @[RETURN]
-  /// Map<String, dynamic>  - map containing information about response
+  /// ApiResponse           - error or success based on result(s)
   ///
   Future<ApiResponse> getApiDetails({required String id, Function? onSuccess, Function? onError}) async {
     updating = true;
