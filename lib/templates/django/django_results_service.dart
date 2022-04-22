@@ -137,7 +137,7 @@ class DjangoResultsService<T> {
         Uri uri = Uri.dataFromString(next!);
         pageNum = uri.queryParameters['page'] ?? '1';
         print(pageNum);
-        pageCurrent = int.parse(pageNum) - 1;
+        pageCurrent = int.parse(pageNum) ;
         print(pageCurrent);
       }
 
