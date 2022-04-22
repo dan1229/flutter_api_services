@@ -1,6 +1,6 @@
 name: flutter_api_services
 description: Templates and helper classes for Flutter HTTP/API services.
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/dan1229/flutter_api_services.git
 
 environment:
