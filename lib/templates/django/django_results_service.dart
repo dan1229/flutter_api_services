@@ -71,6 +71,11 @@ class DjangoResultsService<T> {
       String pageNum = uri.queryParameters['page'] ?? '1';
       pageCurrent = int.parse(pageNum) - 1;
     }
+    else if (previous != null) {
+      Uri uri = Uri.dataFromString(previous!);
+      String pageNum = uri.queryParameters['page'] ?? '1';
+      pageCurrent = int.parse(pageNum) + 1;
+    }
   }
 
   void calculatePageTotal() {
