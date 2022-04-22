@@ -11,6 +11,7 @@ Services for HTTP services for Flutter/Dart. Includes templates and support
 Currently supporting:
 
 - Django REST
+- Django Graph QL (coming soon)
 
 ## Features
 
