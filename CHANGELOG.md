@@ -89,6 +89,7 @@ are 'fromJson' optional?
 
 ### [0.0.4] - 2022-04-DD
 - Next/Prev pagination function fixes
+- Full pagination support
 
 -------------------------------------------------------
 
