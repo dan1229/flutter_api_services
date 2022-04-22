@@ -37,7 +37,7 @@ class DjangoResultsService<T> {
 
   // pagination properties
   int pageCurrent = 1;  // NOTE: page 1 is the start!!!
-  int pageTotal = 0;
+  int pageTotal = 1;
 
   // properties - custom
   bool updating = false;
@@ -136,16 +136,14 @@ class DjangoResultsService<T> {
       if (next != null) {
         Uri uri = Uri.dataFromString(next!);
         pageNum = uri.queryParameters['page'] ?? '1';
+        pageCurrent = int.parse(pageNum) - 1;
       } else if (previous != null) {
         Uri uri = Uri.dataFromString(previous!);
         pageNum = uri.queryParameters['page'] ?? '1';
-      }
-      try {
+        pageCurrent = int.parse(pageNum) + 1;
+      } else {
         pageCurrent = int.parse(pageNum);
-      } catch(e) {
-        pageCurrent = 1;
-      }
-
+      }\
       // if we have a new list, figure out the total pages
       if (newList && length > 0 && count != null) {
         pageTotal = count! ~/ length;  // count is the total, divided (round down) by the current list length
