@@ -131,13 +131,11 @@ class DjangoResultsService<T> {
       message = res.message;
 
       // get current page number from next/prev
-      String pageNum = '1';
-      print(next != null);
       if (next != null) {
         Uri uri = Uri.dataFromString(next!);
-        pageNum = uri.queryParameters['page'] ?? '1';
-        print(pageNum);
-        pageCurrent = int.parse(pageNum) ;
+        print(uri);
+        String pageNum = uri.queryParameters['page'] ?? '1';
+        pageCurrent = int.parse(pageNum) - 1;
         print(pageCurrent);
       }
 
