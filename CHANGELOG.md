@@ -84,8 +84,11 @@ TODO
 
 are 'fromJson' optional?
 
-### [0.0.4] - 2022-MM-DD
+### [0.0.5] - 2022-MM-DD
 - TESTS
+
+### [0.0.4] - 2022-04-DD
+- Next/Prev pagination function fixes
 
 -------------------------------------------------------
 
