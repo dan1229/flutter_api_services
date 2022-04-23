@@ -20,14 +20,15 @@ stability and reduce boilerplate. Declare a hardened and efficient API in as lit
 declaration.
 
 ### Classes Available
+
 - Django Auth Service
-  - Login/Signup
+    - Login/Signup
 - Django Create Service
-  - POST
+    - POST
 - Django Results Service
-  - GET - List
-  - GET - Retrieve
-  - GET - Next/Prev
+    - GET - List
+    - GET - Retrieve
+    - GET - Next/Prev
 - HTTP Client
 - APIResponse
 
@@ -46,9 +47,9 @@ Then run `flutter pub get` to download and install it. Then, you're ready to get
 
 ### Versioning
 
-Versioning for Git packages in Flutter isn't exactly the best - to work around this, each 'official' release will need to be made into a branch on GitHub, then you can reference that branch. As of this writing the format for these branchers is:
+Versioning for Git packages in Flutter isn't exactly the best - to work around this, each official
+release will need to be made into a branch on GitHub, then you can reference that branch. The format for these branches is:
 `version/X.X.X`
-
 
 ## Usage
 
@@ -66,7 +67,8 @@ class PostsApi extends DjangoResultsService<Post> {
 }
 ```
 
-Now, instances of `PostApi` will have access to all the methods and functionality of `DjangoResultsService` including `list`, `retrieve`, `next`, `prev`, etc.
+Now, instances of `PostApi` will have access to all the methods and functionality
+of `DjangoResultsService` including `list`, `retrieve`, `next`, `prev`, etc.
 
 To create a `DjangoCreateService` API for example you might do something like the following:
 
@@ -88,9 +90,9 @@ class MessageApi extends CreateService<Message> {
 ```
 
 TODO
+
 - `examples` folder
     - just show each template
-
 
 -------------------------------------------------------
 
