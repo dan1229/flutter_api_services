@@ -88,7 +88,8 @@ class DjangoResultsService<T> {
     }
   }
 
-  Uri uriSearch({required Uri uri, String? search}) {
+  Uri uriSearch({String? search}) {
+    Uri uri = uriApiBase;
     if (search != null) {
       uri = Uri.parse(uri.toString() + "?search=$search");
     }
@@ -121,8 +122,7 @@ class DjangoResultsService<T> {
     }
 
     // generate uri
-    Uri uri = uriApiBase;
-    uri = uriSearch(uri: uri, search: search);
+    Uri uri = uriSearch(search: search);
 
     // send HTTP request to endpoint
     http.Response response;
