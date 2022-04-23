@@ -31,7 +31,7 @@ class DjangoAuthService {
   /// ApiResponse                      - error or success based on result(s)
   ///
   Future<ApiResponse> postLoginApi({required String email, required String password}) async {
-    Uri uri = _uriLogin();
+    Uri uri = uriLogin();
     Map<String, String> headers = headerNoAuth();
     String body = bodyGeneric(map: <String, String>{
       'email': email,
@@ -58,7 +58,7 @@ class DjangoAuthService {
     }
   }
 
-  Uri _uriLogin() {
+  Uri uriLogin() {
     return Uri.parse("$uriApiBase/login/");
   }
 
@@ -75,7 +75,7 @@ class DjangoAuthService {
   /// ApiResponse                      - error or success based on result(s)
   ///
   Future<ApiResponse> postSignupApi({required String email, required String password}) async {
-    Uri uri = _uriSignup();
+    Uri uri = uriSignup();
     Map<String, String> headers = headerNoAuth();
     String body = bodyGeneric(map: <String, String>{
       'email': email,
@@ -104,7 +104,7 @@ class DjangoAuthService {
     }
   }
 
-  Uri _uriSignup() {
+  Uri uriSignup() {
     return Uri.parse("$uriApiBase/signup/");
   }
 
