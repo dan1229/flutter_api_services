@@ -10,7 +10,7 @@ class DjangoPaginatedApiJson<T> {
   int? count;
   String? next;
   String? previous;
-  String? message;
+  String message;
   List<T>? results;
 
   DjangoPaginatedApiJson({
@@ -18,7 +18,7 @@ class DjangoPaginatedApiJson<T> {
     this.next,
     this.previous,
     this.results,
-    this.message,
+    required this.message,
   });
 
   /// ===================================/
