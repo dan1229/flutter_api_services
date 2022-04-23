@@ -44,11 +44,11 @@ class DjangoAuthService {
 
       switch (response.statusCode) {
         case 200: // success
-          return ApiResponseSuccess(message: "Successfully logged in.", results: <String, dynamic>{'token': decoded['token'], 'decoded': decoded});
+          return ApiResponseSuccess(message: decoded['message'], results: <String, dynamic>{'token': decoded['token'], 'decoded': decoded});
         case 400: // bad request
           return ApiResponseError(message: decoded['message']);
         case 500: // server error
-          return ApiResponseError(message: decoded['message']);
+          return ApiResponseError();
         default: // who knows
           return ApiResponseError();
       }
@@ -92,9 +92,9 @@ class DjangoAuthService {
         case 201: // success
           return ApiResponseSuccess(message: decoded['message'], results: <String, dynamic>{'token': decoded['token'], 'decoded': decoded});
         case 400: // bad request
-          return ApiResponseError(message: getErrorMessage(decoded));
+          return ApiResponseError(message: decoded['message']);
         case 500: // server error
-          return ApiResponseError(message: getErrorMessage(decoded));
+          return ApiResponseError();
         default: // who knows
           return ApiResponseError();
       }
