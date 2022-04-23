@@ -24,10 +24,6 @@ class DjangoCreateService<T> {
   final String? token; // Optional, if API requires auth
   final Function? fromJson; // This is the fromJson constructor on the model (T). Dart doesn't support generic constructors sadly (yet?)
 
-  // properties - custom
-  // TODO how to have this with const constructor?
-  // bool updating = false;
-
   const DjangoCreateService({
     required this.client,
     required this.uriApiBase,

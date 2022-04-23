@@ -87,6 +87,10 @@ improve doc strings
 
 code coverage
 
+coverage
+- coverage ignore
+- // coverage:ignore-file
+
 ------
 
 #### tests
