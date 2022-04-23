@@ -337,7 +337,7 @@ class DjangoResultsService<T> {
     updating = false;
     if (response.statusCode == 200 || response.statusCode == 201) {
       // 200 -> valid
-      DjangoResultsApiJson<T> res = DjangoResultsApiJson<T>.fromJson(json: decoded, fromJson: fromJson);
+      DjangoResultsApiJson res = DjangoResultsApiJson.fromJson(json: decoded, fromJson: fromJson);
       resultDetails = res.results;
       message = res.message;
       if (onSuccess != null) {
