@@ -30,6 +30,6 @@ class DjangoPaginatedApiJson<T> {
     next: json["next"],
     previous: json["previous"],
     message: json["message"],
-    results: json["results"] == null ? null : List<T>.from(json["results"].map((Map<String, dynamic> x) => fromJson(x))),
+    results: json["results"] == null ? null : List<T>.from(json["results"].map((dynamic x) => fromJson(x))),
   );
 }
