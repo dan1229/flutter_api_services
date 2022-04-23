@@ -84,9 +84,6 @@ improve doc strings
 
 #### ci/cd
 
-badges
-- flutter/dart
-- workflows?
 
 code coverage
 
@@ -100,9 +97,15 @@ TODO
 
 #### TODO now
 
+badges
+- flutter/dart
+- workflows?
+
+
 cd
 - create 'verison/X.X.X' branch for versioning
 - create release in github
+
 
 ci
 - run tests
@@ -116,7 +119,11 @@ Tests!
 ### [0.1.0] - 2022-04-DD
 - Auth API cleanup
 - Response Type standardization
-- TESTS
+- GitHub Actions (CI/CD)
+- TESTS and INFRASTRUCTURE
+  - Auth API
+  - Results API
+  - Create API
 
 -------------------------------------------------------
 
