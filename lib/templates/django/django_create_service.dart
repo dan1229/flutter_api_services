@@ -81,12 +81,16 @@ class DjangoCreateService<T> {
     }
 
     // process response
+    String message = 'login error.';
+    if (decoded.containsKey('message')) {
+      message = decoded['message'];
+    }
     if (response.statusCode == 200) {
       // 200 -> valid
       if (onSuccess != null) {
         onSuccess();
       }
-      return ApiResponseSuccess(message: decoded['success']);
+      return ApiResponseSuccess(message: message);
     } else if (response.statusCode == 401) {
       // 401 -> unauthorized
       if (onError != null) {
@@ -98,7 +102,7 @@ class DjangoCreateService<T> {
       if (onError != null) {
         onError();
       }
-      return ApiResponseError(message: decoded['error']);
+      return ApiResponseError(message: message);
     }
   }
 }
