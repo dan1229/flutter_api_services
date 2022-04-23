@@ -145,6 +145,8 @@ class DjangoResultsService<T> {
       count = res.count;
       list = res.results;
 
+      print(res);
+      print(list);
       // calculate page info
       calculatePageCurrent();
       calculatePageTotal();
