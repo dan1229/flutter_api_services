@@ -6,7 +6,7 @@ class ApiResponse {
   ApiResponse({this.message = 'Default API response.', this.error = false, this.results});
 
   Map<String, dynamic> toMap() {
-    return {
+    return <String, dynamic> {
       'message': message,
       'error': error,
       'results': results,
