@@ -11,6 +11,13 @@ class ApiResponse {
       'results': results,
     };
   }
+
+  List<T> list<T>() {
+    return results!['list'] as List<T>;
+  }
+  T details<T>() {
+    return results!['details'] as T;
+  }
 }
 
 class ApiResponseSuccess extends ApiResponse {
