@@ -19,15 +19,16 @@ import 'package:http/http.dart' as http;
 ///
 class DjangoCreateService<T> {
   // input
-  http.Client client;
-  Uri uriApiBase; // NOTE: this almost definitely should end in a '/'
-  String? token; // Optional, if API requires auth
-  Function? fromJson; // This is the fromJson constructor on the model (T). Dart doesn't support generic constructors sadly (yet?)
+  final http.Client client;
+  final Uri uriApiBase; // NOTE: this almost definitely should end in a '/'
+  final String? token; // Optional, if API requires auth
+  final Function? fromJson; // This is the fromJson constructor on the model (T). Dart doesn't support generic constructors sadly (yet?)
 
   // properties - custom
-  bool updating = false;
+  // TODO how to have this with const constructor?
+  // bool updating = false;
 
-  DjangoCreateService({
+  const DjangoCreateService({
     required this.client,
     required this.uriApiBase,
     this.fromJson,
@@ -51,7 +52,6 @@ class DjangoCreateService<T> {
   ///
   Future<ApiResponse> postApi(
       {required Map<String, dynamic> body, bool authenticated = false, Function? onSuccess, Function? onError}) async {
-    updating = true;
 
     // handle auth
     Map<String, String> headers;
@@ -67,7 +67,6 @@ class DjangoCreateService<T> {
     try {
       response = await client.post(uriApiBase, headers: headers, body: bodyStr);
     } catch (e) {
-      updating = false;
       logApiPrint("CreateService.postApi<${T.toString()}>: HTTP error\n${e.toString()}", tag: "EXP");
       return ApiResponseError();
     }
@@ -82,7 +81,6 @@ class DjangoCreateService<T> {
     }
 
     // process response
-    updating = false;
     if (response.statusCode == 200) {
       // 200 -> valid
       if (onSuccess != null) {

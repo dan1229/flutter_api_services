@@ -13,7 +13,7 @@ class DjangoAuthService {
   final Client client;
   final Uri uriApiBase;
 
-  DjangoAuthService({
+  const DjangoAuthService({
     required this.client,
     required this.uriApiBase,
   });
