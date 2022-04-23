@@ -50,10 +50,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 -------------------------------------------------------
-### TODO
+### TODO later
+
+#### misc / later
 
 graphql?
 
+other backends?
+- rust?
+- node?
+
+------
+
+#### create api service
+
+validate service works as is?
+
+new methods
+- add patch
+- add delete
+
+------
+
+#### docs
+
+examples folder?
+
+
+improve doc strings
+- move under function header?
+
+------
+
+#### ci/cd
 
 badges
 - flutter/dart
@@ -61,39 +90,30 @@ badges
 
 code coverage
 
-ci/cd?
+------
+
+#### tests
+
+TODO
 
 ------
 
-create api service
-- add patch
-- add delete
+#### TODO now
 
-------
-
-gh actions
+gh actions (ci/cd)
 - create release in github
 - create 'verison/X.X.X' branch for versioning
-
-
-docs
-- examples folder?
 
 
 Tests!
 - service tests
 
-improve doc strings
-- move under function header?
-
-
-TODO
-- validate create functions?
-
 
 are 'fromJson' optional?
 
 ### [0.0.6] - 2022-MM-DD
+- Auth API cleanup
+- Response Type standardization
 - TESTS
 
 -------------------------------------------------------
