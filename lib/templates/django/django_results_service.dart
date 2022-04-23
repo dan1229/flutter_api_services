@@ -147,6 +147,8 @@ class DjangoResultsService<T> {
     updating = false;
     if (response.statusCode == 200) {
       // 200 -> valid
+      print(decoded.runtimeType);
+      print(decoded);
       DjangoPaginatedApiJson<T> res = DjangoPaginatedApiJson<T>.fromJson(json: decoded, fromJson: fromJson);
       next = res.next;
       previous = res.previous;
