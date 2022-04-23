@@ -1,7 +1,7 @@
-class ApiResponse<T> {
+class ApiResponse {
   String message;
   bool error;
-  List<T>? results;
+  Map<String, dynamic>? results;
 
   ApiResponse({this.message = 'Default API response.', this.error = false, this.results});
 
@@ -13,10 +13,10 @@ class ApiResponse<T> {
   }
 }
 
-class ApiResponseSuccess<T> extends ApiResponse<T> {
-  ApiResponseSuccess({String message="Successful request.", bool error = false, List<T>? results}) : super(message: message, error: error, results: results);
+class ApiResponseSuccess extends ApiResponse {
+  ApiResponseSuccess({String message="Successful request.", bool error = false, Map<String, dynamic>? results}) : super(message: message, error: error, results: results);
 }
 
-class ApiResponseError<T> extends ApiResponse<T> {
-  ApiResponseError({String message="Error. Please try again later.", bool error=true, List<T>? results}) : super(message: message, error: error, results: results);
+class ApiResponseError extends ApiResponse {
+  ApiResponseError({String message="Error. Please try again later.", bool error=true, Map<String, dynamic>? results}) : super(message: message, error: error, results: results);
 }

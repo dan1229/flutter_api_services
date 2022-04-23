@@ -163,7 +163,7 @@ class DjangoResultsService<T> {
       if (onSuccess != null) {
         onSuccess();
       }
-      return ApiResponseSuccess(message: message ?? "Success", results: list);
+      return ApiResponseSuccess(message: message ?? "Success", results: <String, dynamic> {"list": list});
     } else if (response.statusCode == 401) {
       // 401 -> unauthorized
       if (onError != null) {
@@ -231,7 +231,7 @@ class DjangoResultsService<T> {
           // replace results
           list = res.results;
         }
-        return ApiResponseSuccess(message: "Updated ${T.toString()}(s) list.", results: list);
+        return ApiResponseSuccess(message: "Updated ${T.toString()}(s) list.", results: <String, dynamic> {"list": list});
       }
     }
     // no next - error
@@ -282,7 +282,7 @@ class DjangoResultsService<T> {
         count = res.count;
         list = res.results;
         calculatePageCurrent();
-        return ApiResponseSuccess(message: "Updated ${T.toString()}(s) list.", results: list);
+        return ApiResponseSuccess(message: "Updated ${T.toString()}(s) list.", results: <String, dynamic> {"list": list});
       }
     }
     // no prev - error
@@ -345,7 +345,7 @@ class DjangoResultsService<T> {
       if (onSuccess != null) {
         onSuccess();
       }
-      return ApiResponseSuccess(message: message ?? "Success.", results: [resultDetails, ]);
+      return ApiResponseSuccess(message: message ?? "Success.", results: <String, dynamic> {"details": resultDetails});
     } else if (response.statusCode == 401) {
       // 401 -> unauthorized
       if (onError != null) {
