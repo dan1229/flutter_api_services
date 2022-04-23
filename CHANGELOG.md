@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Released]
 
+### [0.0.5] - 2022-04-23
+- More public functions
+
+
 ### [0.0.4] - 2022-04-21
 - Next/Prev pagination function fixes
 - Full pagination support
@@ -91,9 +95,6 @@ are 'fromJson' optional?
 
 ### [0.0.6] - 2022-MM-DD
 - TESTS
-
-### [0.0.5] - 2022-04-23
-- More public functions
 
 -------------------------------------------------------
 
