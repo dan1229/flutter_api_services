@@ -8,7 +8,6 @@ class ApiResponse {
   Map<String, dynamic> toMap() {
     return <String, dynamic> {
       'message': message,
-      'error': error,
       'results': results,
     };
   }
