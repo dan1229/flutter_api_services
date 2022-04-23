@@ -345,7 +345,7 @@ class DjangoResultsService<T> {
       if (onSuccess != null) {
         onSuccess();
       }
-      return ApiResponseSuccess(message: message ?? "Success.", results: resultDetails);
+      return ApiResponseSuccess(message: message ?? "Success.", results: [resultDetails, ]);
     } else if (response.statusCode == 401) {
       // 401 -> unauthorized
       if (onError != null) {
