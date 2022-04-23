@@ -44,7 +44,7 @@ class DjangoAuthService {
 
       switch (response.statusCode) {
         case 200: // success
-          return ApiResponseSuccess(message: decoded['message'], results: <String, dynamic>{'token': decoded['token'], 'decoded': decoded});
+          return ApiResponseSuccess(message: decoded['message'], results: <String, dynamic>{'user': decoded['results']});
         case 400: // bad request
           return ApiResponseError(message: decoded['message']);
         case 500: // server error
@@ -88,9 +88,9 @@ class DjangoAuthService {
 
       switch (response.statusCode) {
         case 200: // success
-          return ApiResponseSuccess(message: decoded['message'], results: <String, dynamic>{'token': decoded['token'], 'decoded': decoded});
+          return ApiResponseSuccess(message: decoded['message'], results: <String, dynamic>{'user': decoded['results']});
         case 201: // success
-          return ApiResponseSuccess(message: decoded['message'], results: <String, dynamic>{'token': decoded['token'], 'decoded': decoded});
+          return ApiResponseSuccess(message: decoded['message'], results: <String, dynamic>{'user': decoded['results']});
         case 400: // bad request
           return ApiResponseError(message: decoded['message']);
         case 500: // server error
