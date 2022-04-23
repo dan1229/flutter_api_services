@@ -15,7 +15,7 @@ class ApiResponse {
 }
 
 class ApiResponseSuccess extends ApiResponse {
-  ApiResponseSuccess({String message = "Successful request.", bool error = false, dynamic results}) : super(message: message, error: error, results: results);
+  ApiResponseSuccess({String message="Successful request.", bool error = false, dynamic results}) : super(message: message, error: error, results: results);
 }
 
 class ApiResponseError extends ApiResponse {

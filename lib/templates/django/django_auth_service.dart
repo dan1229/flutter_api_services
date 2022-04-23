@@ -42,15 +42,19 @@ class DjangoAuthService {
       Response response = await client.post(uri, headers: headers, body: body);
       Map<String, dynamic> decoded = jsonDecode(response.body);
 
+      String message = 'login error.';
+      if (decoded.containsKey('message')) {
+        message = decoded['message'];
+      }
       switch (response.statusCode) {
         case 200: // success
-          return ApiResponseSuccess(message: decoded['message'], results: decoded['results']);
+          return ApiResponseSuccess(message: message, results: decoded['results']);
         case 400: // bad request
-          return ApiResponseError(message: decoded['message']);
+          return ApiResponseError(message: message);
         case 500: // server error
-          return ApiResponseError();
+          return ApiResponseError(message: message);
         default: // who knows
-          return ApiResponseError();
+          return ApiResponseError(message: message);
       }
     } catch (e) {
       logApiPrint("AuthService.postLoginApi: error\n${e.toString()}", tag: "EXP");
@@ -86,17 +90,21 @@ class DjangoAuthService {
       Response response = await client.post(uri, headers: headers, body: body);
       Map<String, dynamic> decoded = jsonDecode(response.body);
 
+      String message = 'signup error.';
+      if (decoded.containsKey('message')) {
+        message = decoded['message'];
+      }
       switch (response.statusCode) {
-        case 200: // success
-          return ApiResponseSuccess(message: decoded['message'], results: decoded['results']);
         case 201: // success
-          return ApiResponseSuccess(message: decoded['message'], results: decoded['results']);
+          return ApiResponseSuccess(message: message, results: decoded['results']);
+        case 200: // success
+          return ApiResponseSuccess(message: message, results: decoded['results']);
         case 400: // bad request
-          return ApiResponseError(message: decoded['message']);
+          return ApiResponseError(message: message);
         case 500: // server error
-          return ApiResponseError();
+          return ApiResponseError(message: message);
         default: // who knows
-          return ApiResponseError();
+          return ApiResponseError(message: message);
       }
     } catch (e) {
       logApiPrint("AuthService.postSignupApi: error\n${e.toString()}", tag: "EXP");
