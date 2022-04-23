@@ -4,6 +4,14 @@ class ApiResponse {
   dynamic results;
 
   ApiResponse({this.message = 'Default API response.', this.error = false, this.results});
+
+  Map<String, dynamic> toMap() {
+    return {
+      'message': message,
+      'error': error,
+      'results': results,
+    };
+  }
 }
 
 class ApiResponseSuccess extends ApiResponse {
