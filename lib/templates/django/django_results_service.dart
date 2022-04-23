@@ -23,7 +23,7 @@ import 'package:http/http.dart' as http;
 class DjangoResultsService<T> {
   // input
   final http.Client client;
-  final Function fromJson; // This is the fromJson constructor on the model (T). Dart doesn't support generic constructors sadly (yet?)
+  final Function? fromJson; // This is the fromJson constructor on the model (T). Dart doesn't support generic constructors sadly (yet?)
   final Uri uriApiBase; // NOTE: this almost definitely should end in a '/'
   final String? token; // Optional, if API requires auth
 
@@ -45,7 +45,7 @@ class DjangoResultsService<T> {
   DjangoResultsService({
     required this.client,
     required this.uriApiBase,
-    required this.fromJson,
+    this.fromJson,
     this.token,
     this.count,
     this.next,

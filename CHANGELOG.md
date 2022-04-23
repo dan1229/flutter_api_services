@@ -111,7 +111,7 @@ Tests!
 
 are 'fromJson' optional?
 
-### [0.0.6] - 2022-MM-DD
+### [0.1.0] - 2022-04-DD
 - Auth API cleanup
 - Response Type standardization
 - TESTS
