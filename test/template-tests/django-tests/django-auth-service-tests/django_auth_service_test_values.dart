@@ -4,10 +4,10 @@ import 'package:flutter_api_services/flutter_api_services.dart';
 import 'package:http/src/response.dart';
 
 // ====================================================
-// AUTH API TEST VALUES ===============================
+// DJANGO AUTH SERVICE TEST VALUES ====================
 // ====================================================
 
-class AuthApiTestValues {
+class DjangoAuthServiceTestValues {
   // emails
   final String emailValid = 'example@example.com';
   final String emailInvalid = 'invalid';

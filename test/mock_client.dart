@@ -6,10 +6,10 @@ import 'package:flutter_api_services/flutter_api_services.dart';
 import 'package:http/http.dart';
 import 'package:http/testing.dart';
 
-import 'service-tests/rest-api-tests/auth-api-tests/auth_api_test_values.dart';
 import 'service-tests/rest-api-tests/email-api-tests/email_api_test_values.dart';
 import 'service-tests/rest-api-tests/posts-api-tests/posts_api_test.dart';
 import 'service-tests/rest-api-tests/posts-api-tests/posts_api_test_values.dart';
+import 'template-tests/django-tests/django-auth-service-tests/django_auth_service_test.dart';
 
 // function to get test resource file/json and return as string
 String getTestResource(String path) {
@@ -20,9 +20,6 @@ String getTestResource(String path) {
 //
 // api setup
 //
-// auth api
-AuthApi authApi = AuthApi(client: Client());
-AuthApiTestValues authApiTestValues = AuthApiTestValues();
 
 // posts api
 DjangoResultsService postsApi = DjangoResultsService(client: Client());
@@ -90,38 +87,38 @@ MockClient mockClient = MockClient((Request request) async {
   // AUTH
   //
   // login
-  if (url == authApi.uriLogin().toString().toLowerCase()) {
-    Response response = authApiTestValues.responseLogin500Error();
+  if (url == djangoAuthService.uriLogin().toString().toLowerCase()) {
+    Response response = djangoAuthServiceTestValues.responseLogin500Error();
     Map<String, dynamic> jsonBody = json.decode(request.body);
-    if (const MapEquality<String, dynamic>().equals(jsonBody, authApiTestValues.requestLoginValid())) {
+    if (const MapEquality<String, dynamic>().equals(jsonBody, djangoAuthServiceTestValues.requestLoginValid())) {
       // valid login
-      response = authApiTestValues.responseLoginValid();
+      response = djangoAuthServiceTestValues.responseLoginValid();
     }
-    if (const MapEquality<String, dynamic>().equals(jsonBody, authApiTestValues.requestLoginInvalid())) {
+    if (const MapEquality<String, dynamic>().equals(jsonBody, djangoAuthServiceTestValues.requestLoginInvalid())) {
       // invalid login
-      response = authApiTestValues.responseLoginInvalid();
+      response = djangoAuthServiceTestValues.responseLoginInvalid();
     }
-    if (const MapEquality<String, dynamic>().equals(jsonBody, authApiTestValues.requestLogin500Error())) {
+    if (const MapEquality<String, dynamic>().equals(jsonBody, djangoAuthServiceTestValues.requestLogin500Error())) {
       // 500 error
-      response = authApiTestValues.responseLogin500Error();
+      response = djangoAuthServiceTestValues.responseLogin500Error();
     }
     return response;
   }
   // signup
-  if (url == authApi.uriSignup().toString().toLowerCase()) {
-    Response response = authApiTestValues.responseSignup500Error();
+  if (url == djangoAuthService.uriSignup().toString().toLowerCase()) {
+    Response response = djangoAuthServiceTestValues.responseSignup500Error();
     Map<String, dynamic> jsonBody = json.decode(request.body);
-    if (const MapEquality<String, dynamic>().equals(jsonBody, authApiTestValues.requestSignupValid())) {
+    if (const MapEquality<String, dynamic>().equals(jsonBody, djangoAuthServiceTestValues.requestSignupValid())) {
       // valid signup
-      response = authApiTestValues.responseSignupValid();
+      response = djangoAuthServiceTestValues.responseSignupValid();
     }
-    if (const MapEquality<String, dynamic>().equals(jsonBody, authApiTestValues.requestSignupInvalid())) {
+    if (const MapEquality<String, dynamic>().equals(jsonBody, djangoAuthServiceTestValues.requestSignupInvalid())) {
       // invalid signup
-      response = authApiTestValues.responseSignupInvalid();
+      response = djangoAuthServiceTestValues.responseSignupInvalid();
     }
-    if (const MapEquality<String, dynamic>().equals(jsonBody, authApiTestValues.requestLogin500Error())) {
+    if (const MapEquality<String, dynamic>().equals(jsonBody, djangoAuthServiceTestValues.requestLogin500Error())) {
       // 500 error
-      response = authApiTestValues.responseSignup500Error();
+      response = djangoAuthServiceTestValues.responseSignup500Error();
     }
     return response;
   }
