@@ -31,17 +31,17 @@ class DjangoResultsServiceTestValues {
   // LIST - responses
   //
   Map<String, dynamic> responseDataListValid() {
-    return {
+    return <String, dynamic> {
       "count": 8,
       "next": nextResultsValid,
       "previous": prevResultsValid,
       "message": "Successfully retrieved results.",
-      "results": [
-        {
+      "results": <Map<String, dynamic>> [
+        <String, dynamic> {
           "message": "this is a list message 1",
           "subject": "this is a list subject 1"
         },
-        {
+        <String, dynamic> {
           "message": "this is a list message 2",
           "subject": "this is a list subject 2"
         },
@@ -98,12 +98,12 @@ class DjangoResultsServiceTestValues {
     "next": null,
     "previous": null,
     "message": "Successfully retrieved next results.",
-    "results": [
-      {
+    "results": <Map<String, dynamic>> [
+      <String, dynamic> {
         "message": "this is a next message 1",
         "subject": "this is a next subject 1"
       },
-      {
+      <String, dynamic> {
         "message": "this is a next message 2",
         "subject": "this is a next subject 2"
       },
@@ -132,16 +132,16 @@ class DjangoResultsServiceTestValues {
     "next": null,
     "previous": null,
     "message": "Successfully retrieved prev results.",
-    "results": [
-      {
+    "results": <Map<String, dynamic>> [
+      <String, dynamic> {
         "message": "this is a prev message 1",
         "subject": "this is a prev subject 1"
       },
-      {
+      <String, dynamic> {
         "message": "this is a prev message 2",
         "subject": "this is a prev subject 2"
       },
-      {
+      <String, dynamic> {
         "message": "this is a prev message 3",
         "subject": "this is a prev subject 3"
       },
