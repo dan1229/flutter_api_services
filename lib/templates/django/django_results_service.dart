@@ -92,6 +92,10 @@ class DjangoResultsService<T> {
     return uri;
   }
 
+  Uri uriDetails({required String id}) {
+    return uriApiBase.replace(path: uriApiBase.path + "$id/");
+  }
+
   /// =============================================================================/
   /// GET API LIST ================================================================/
   /// =============================================================================/
@@ -297,7 +301,7 @@ class DjangoResultsService<T> {
     }
 
     // send HTTP request to endpoint
-    Uri uri = uriApiBase.replace(path: uriApiBase.path + "$id/");
+    Uri uri = uriDetails(id: id);
     http.Response response;
     try {
       response = await client.get(uri, headers: headers);
@@ -338,5 +342,6 @@ class DjangoResultsService<T> {
       return ApiResponseError<T>(message: res.message);
     }
   }
+
 
 }
