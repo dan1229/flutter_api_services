@@ -79,6 +79,7 @@ examples folder?
 
 improve doc strings
 - move under function header?
+- add to params https://dart.dev/guides/language/effective-dart/documentation
 
 ------
 
@@ -96,6 +97,8 @@ coverage
 #### tests
 
 Improve!
+- add more asserts to existing check
+  - auth api should use '400' instead of 'invalid' test?
 - add checks for class props
   - results class
     - page count
@@ -118,10 +121,6 @@ cd
 ci
 - run tests
 - build?
-
-
-Tests!
-- service tests
 
 
 ### [0.1.0] - 2022-04-DD

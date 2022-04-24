@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter_api_services/src/api_helpers.dart';
 import 'package:flutter_api_services/src/response_types.dart';
+import 'package:flutter_api_services/templates/django/json/django_results_api_json.dart';
 import 'package:http/http.dart' as http;
 
 /// ===============================================================================/
@@ -17,17 +18,17 @@ import 'package:http/http.dart' as http;
 /// - patch API
 /// - delete API
 ///
-class DjangoCreateService<T> {
-  // input
+class DjangoCreateService {
+  /// Client to use. Use your regular one unless testing.
   final http.Client client;
-  final Uri uriApiBase; // NOTE: this almost definitely should end in a '/'
-  final String? token; // Optional, if API requires auth
-  final Function? fromJson; // This is the fromJson constructor on the model (T). Dart doesn't support generic constructors sadly (yet?)
+  /// Base URL for this API route. This almost definitely should end in a '/'.
+  final Uri uriApiBase;
+  /// Optional, if API requires auth.
+  final String? token;
 
   const DjangoCreateService({
     required this.client,
     required this.uriApiBase,
-    this.fromJson,
     this.token,
   });
 
@@ -46,7 +47,7 @@ class DjangoCreateService<T> {
   /// @[RETURN]
   /// ApiResponse           - error or success based on result(s)
   ///
-  Future<ApiResponse> postApi(
+  Future<ApiResponse<dynamic>> postApi(
       {required Map<String, dynamic> body, bool authenticated = false, Function? onSuccess, Function? onError}) async {
 
     // handle auth
@@ -63,8 +64,8 @@ class DjangoCreateService<T> {
     try {
       response = await client.post(uriApiBase, headers: headers, body: bodyStr);
     } catch (e) {
-      logApiPrint("CreateService.postApi<${T.toString()}>: HTTP error\n${e.toString()}", tag: "EXP");
-      return ApiResponseError();
+      logApiPrint("CreateService.postApi: HTTP error\n${e.toString()}", tag: "EXP");
+      return ApiResponseError<dynamic>();
     }
 
     // deserialize json
@@ -72,33 +73,30 @@ class DjangoCreateService<T> {
     try {
       decoded = jsonDecode(response.body);
     } catch (e) {
-      logApiPrint("CreateService.postApi<${T.toString()}>: jsonDecode error\n${e.toString()}", tag: "EXP");
-      return ApiResponseError();
+      logApiPrint("CreateService.postApi: jsonDecode error\n${e.toString()}", tag: "EXP");
+      return ApiResponseError<dynamic>();
     }
 
-    // process response
-    String message = 'login error.';
-    if (decoded.containsKey('message')) {
-      message = decoded['message'];
-    }
+    // process results
+    DjangoResultsApiJson res = DjangoResultsApiJson.fromJson(json: decoded);
     if (response.statusCode == 200) {
       // 200 -> valid
       if (onSuccess != null) {
         onSuccess();
       }
-      return ApiResponseSuccess(message: message);
+      return ApiResponseSuccess<dynamic>(message: res.message ?? "Successfully created.");
     } else if (response.statusCode == 401) {
       // 401 -> unauthorized
       if (onError != null) {
         onError();
       }
-      return ApiResponseError(message: decoded['detail']);
+      return ApiResponseError<dynamic>(message: decoded['detail']);
     } else {
       // 400, 500 and others -> error
       if (onError != null) {
         onError();
       }
-      return ApiResponseError(message: message);
+      return ApiResponseError<dynamic>(message: res.message ?? "Error. Please try again later.");
     }
   }
 }
