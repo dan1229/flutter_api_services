@@ -64,6 +64,7 @@ other backends?
 
 #### create api service
 
+validate service works as is?
 
 new methods
 - add patch
@@ -107,12 +108,6 @@ Improve!
 
 #### TODO now
 
-flutter analyze
-
-coverage
-- codecov
-- coverage badge
-
 badges
 - flutter/dart
 - workflows?
@@ -122,9 +117,6 @@ cd
 - create 'version/X.X.X' branch for versioning
 - create release in github
 
-
-ci
-- run tests
 
 
 ### [0.1.0] - 2022-04-DD
