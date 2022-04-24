@@ -95,7 +95,7 @@ class DjangoAuthServiceTestValues {
   //
   Map<String, dynamic> responseDataSignupValid = <String, dynamic>{
     "message": "Successful login",
-    "results": {
+    "results": <String, dynamic> {
       "id": "id",
       "email": "danielnazarian@outlook.com",
       "first_name": "Daniel",
