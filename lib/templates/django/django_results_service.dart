@@ -156,7 +156,7 @@ class DjangoResultsService<T> {
       if (onSuccess != null) {
         onSuccess();
       }
-      return ApiResponseSuccess<T>(message: res.message, list: list);
+      return ApiResponseSuccess<T>(message: res.message ?? "Successfully retrieved ${T.toString()}s", list: list);
     } else if (response.statusCode == 401) {
       // 401 -> unauthorized
       if (onError != null) {
@@ -168,7 +168,7 @@ class DjangoResultsService<T> {
       if (onError != null) {
         onError();
       }
-      return ApiResponseError<T>(message: res.message);
+      return ApiResponseError<T>(message: res.message ?? "Error. Please try again later.");
     }
   }
 
@@ -221,7 +221,7 @@ class DjangoResultsService<T> {
           // replace results
           list = res.results;
         }
-        return ApiResponseSuccess<T>(message: "Updated ${T.toString()}(s) list.", list: list);
+        return ApiResponseSuccess<T>(message: res.message ?? "Updated ${T.toString()}(s) list.", list: list);
       }
     }
     // no next - error
@@ -269,7 +269,7 @@ class DjangoResultsService<T> {
         count = res.count;
         list = res.results;
         calculatePageCurrent();
-        return ApiResponseSuccess<T>(message: "Updated ${T.toString()}(s) list.", list: list);
+        return ApiResponseSuccess<T>(message: res.message ?? "Updated ${T.toString()}(s) list.", list: list);
       }
     }
     // no prev - error
@@ -327,7 +327,7 @@ class DjangoResultsService<T> {
       if (onSuccess != null) {
         onSuccess();
       }
-      return ApiResponseSuccess<T>(message: res.message, details: resultDetails);
+      return ApiResponseSuccess<T>(message: res.message ?? "Successfully retrieved ${T.toString()} details.", details: resultDetails);
     } else if (response.statusCode == 401) {
       // 401 -> unauthorized
       if (onError != null) {
@@ -339,7 +339,7 @@ class DjangoResultsService<T> {
       if (onError != null) {
         onError();
       }
-      return ApiResponseError<T>(message: res.message);
+      return ApiResponseError<T>(message: res.message ?? "Error. Please try again later.");
     }
   }
 

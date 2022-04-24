@@ -46,13 +46,13 @@ class DjangoAuthService {
       DjangoResultsApiJson res = DjangoResultsApiJson.fromJson(json: decoded);
       switch (response.statusCode) {
         case 200: // success
-          return ApiResponseSuccess<dynamic>(message: res.message, details: res.results);
+          return ApiResponseSuccess<dynamic>(message: res.message ?? "Successfully logged in.", details: res.results);
         case 400: // bad request
-          return ApiResponseError<dynamic>(message: res.message);
+          return ApiResponseError<dynamic>(message: res.message ?? "Error logging in.");
         case 500: // server error
-          return ApiResponseError<dynamic>(message: res.message);
+          return ApiResponseError<dynamic>(message: res.message ?? "Error logging in.");
         default: // who knows
-          return ApiResponseError<dynamic>(message: res.message);
+          return ApiResponseError<dynamic>(message: res.message ?? "Error logging in.");
       }
     } catch (e) {
       logApiPrint("AuthService.postLoginApi: error\n${e.toString()}", tag: "EXP");
@@ -90,15 +90,15 @@ class DjangoAuthService {
       DjangoResultsApiJson res = DjangoResultsApiJson.fromJson(json: decoded);
       switch (response.statusCode) {
         case 201: // success
-          return ApiResponseSuccess<dynamic>(message: res.message, details: res.results);
+          return ApiResponseSuccess<dynamic>(message: res.message ?? "Successfully signed up.", details: res.results);
         case 200: // success
-          return ApiResponseSuccess<dynamic>(message: res.message, details: res.results);
+          return ApiResponseSuccess<dynamic>(message: res.message ?? "Successfully signed up.", details: res.results);
         case 400: // bad request
-          return ApiResponseError<dynamic>(message: res.message);
+          return ApiResponseError<dynamic>(message: res.message ?? "Error signing up.");
         case 500: // server error
-          return ApiResponseError<dynamic>(message: res.message);
+          return ApiResponseError<dynamic>(message: res.message ?? "Error signing up.");
         default: // who knows
-          return ApiResponseError<dynamic>(message: res.message);
+          return ApiResponseError<dynamic>(message: res.message ?? "Error signing up.");
       }
     } catch (e) {
       logApiPrint("AuthService.postSignupApi: error\n${e.toString()}", tag: "EXP");
