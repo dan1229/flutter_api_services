@@ -111,7 +111,6 @@ MockClient mockClient = MockClient((Request request) async {
   //
   // DJANGO CREATE SERVICE
   //
-  // email
   if (url == djangoCreateService.uriApiBase.toString().toLowerCase()) {
     Response response = djangoCreateServiceTestValues.responsePostValid();
     Map<String, dynamic> jsonBody = json.decode(request.body);
@@ -133,6 +132,6 @@ MockClient mockClient = MockClient((Request request) async {
   // DEFAULT
   //
   else {
-    return Response(json.encode(ApiResponseError().toMap()), 500);
+    return Response(json.encode(ApiResponseError<dynamic>().toMap()), 500);
   }
 });

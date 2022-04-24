@@ -21,11 +21,18 @@ import 'package:http/http.dart';
 /// - Details API
 ///
 class DjangoResultsService<T> {
-  // input
+  /// Client to use. Use your regular one unless testing.
   final Client client;
-  final Function fromJson; // This is the fromJson constructor on the model (T). Dart doesn't support generic constructors sadly (yet?)
-  final Uri uriApiBase; // NOTE: this almost definitely should end in a '/'
-  final String? token; // Optional, if API requires auth
+  /// This is the fromJson constructor on the model (T). Dart doesn't support generic constructors sadly (yet?)
+  /// This will probably look something like:
+  /// ```dart
+  /// (Map<String, dynamic> json) => ModelClass.fromJson(json)
+  /// ```
+  final Function fromJson;
+  /// Base URL for this API route. This almost definitely should end in a '/'.
+  final Uri uriApiBase;
+  /// Optional, if API requires auth.
+  final String? token;
 
   // properties - from API
   int? count;

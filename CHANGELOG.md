@@ -79,6 +79,7 @@ examples folder?
 
 improve doc strings
 - move under function header?
+- add to params https://dart.dev/guides/language/effective-dart/documentation
 
 ------
 
@@ -120,10 +121,6 @@ cd
 ci
 - run tests
 - build?
-
-
-Tests!
-- service tests
 
 
 ### [0.1.0] - 2022-04-DD

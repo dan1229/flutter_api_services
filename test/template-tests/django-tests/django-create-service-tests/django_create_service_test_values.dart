@@ -8,19 +8,6 @@ import 'package:http/src/response.dart';
 // ====================================================
 
 class DjangoCreateServiceTestValues {
-  // request bodies
-  Map<String, dynamic> requestBodyValid = <String, dynamic> {
-    'message': "This is a valid response."
-  };
-
-  Map<String, dynamic> requestBody400Error = <String, dynamic> {
-    'message': "This is a 400 response."
-  };
-
-  Map<String, dynamic> requestBody500Error = <String, dynamic> {
-    'message': "This is a 500 response."
-  };
-
   //
   // POST - requests
   //

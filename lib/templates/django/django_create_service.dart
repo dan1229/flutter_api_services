@@ -19,16 +19,16 @@ import 'package:http/http.dart' as http;
 /// - delete API
 ///
 class DjangoCreateService {
-  // input
+  /// Client to use. Use your regular one unless testing.
   final http.Client client;
-  final Uri uriApiBase; // NOTE: this almost definitely should end in a '/'
-  final String? token; // Optional, if API requires auth
-  final Function? fromJson; // This is the fromJson constructor on the model (T). Dart doesn't support generic constructors sadly (yet?)
+  /// Base URL for this API route. This almost definitely should end in a '/'.
+  final Uri uriApiBase;
+  /// Optional, if API requires auth.
+  final String? token;
 
   const DjangoCreateService({
     required this.client,
     required this.uriApiBase,
-    this.fromJson,
     this.token,
   });
 
