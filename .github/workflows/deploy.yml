@@ -10,10 +10,9 @@ on:
       version:
         required: true
         type: string
-        description: Version for this release
+        description: Version for this release. Format "X.X.X".
 
 jobs:
-
   # ================================================== #
   #
   # deploy
@@ -22,7 +21,13 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
     steps:
-      # TODO make branch
+      - name: Create release branch
+        uses: peterjgrainger/action-create-branch@v2.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          branch: version/${{ github.event.inputs.vesrion }}
+
 
       - name: Create release in GitHub
         uses: ncipollo/release-action@v1
