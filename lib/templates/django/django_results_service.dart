@@ -137,7 +137,6 @@ class DjangoResultsService<T> {
     }
 
     // process response
-    print(decoded);
     DjangoPaginatedApiJson<T> res = DjangoPaginatedApiJson<T>.fromJson(json: decoded, fromJson: fromJson);
     if (response.statusCode == 200) {
       // 200 -> valid
@@ -245,7 +244,7 @@ class DjangoResultsService<T> {
         response = await client.get(Uri.parse(previous!), headers: headers);
       } catch (e) {
         logApiPrint("ResultsService.callPrevious<${T.toString()}>: HTTP error\n${e.toString()}", tag: "EXP");
-        return ApiResponseError();
+        return ApiResponseError<T>();
       }
 
       // Successful HTTP request

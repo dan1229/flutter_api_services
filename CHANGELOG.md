@@ -107,7 +107,7 @@ badges
 
 
 cd
-- create 'verison/X.X.X' branch for versioning
+- create 'version/X.X.X' branch for versioning
 - create release in github
 
 
@@ -123,6 +123,7 @@ Tests!
 ### [0.1.0] - 2022-04-DD
 - Auth API cleanup
 - Response Type standardization
+  - Generic types
 - GitHub Actions (CI/CD)
 - TESTS and INFRASTRUCTURE
   - Auth API
