@@ -6,10 +6,10 @@ import 'package:flutter_api_services/flutter_api_services.dart';
 import 'package:http/http.dart';
 import 'package:http/testing.dart';
 
-import 'service-tests/rest-api-tests/email-api-tests/email_api_test_values.dart';
 import 'service-tests/rest-api-tests/posts-api-tests/posts_api_test.dart';
 import 'service-tests/rest-api-tests/posts-api-tests/posts_api_test_values.dart';
 import 'template-tests/django-tests/django-auth-service-tests/django_auth_service_test.dart';
+import 'template-tests/django-tests/django-create-service-tests/django_create_service_test.dart';
 
 // function to get test resource file/json and return as string
 String getTestResource(String path) {
@@ -24,10 +24,6 @@ String getTestResource(String path) {
 // posts api
 DjangoResultsService postsApi = DjangoResultsService(client: Client());
 PostsApiTestValues postApiTestValues = PostsApiTestValues();
-
-// email api
-EmailApi emailApi = EmailApi(client: Client());
-EmailApiTestValues emailApiTestValues = EmailApiTestValues();
 
 /// ==========================================================
 /// MOCK CLIENT ==============================================
@@ -126,24 +122,20 @@ MockClient mockClient = MockClient((Request request) async {
   // EMAIL
   //
   // email
-  if (url == emailApi.uriApiBase.toString().toLowerCase()) {
-    Response response = emailApiTestValues.responseSendEmailValid();
+  if (url == djangoCreateService.uriApiBase.toString().toLowerCase()) {
+    Response response = djangoCreateServiceTestValues.responsePostValid();
     Map<String, dynamic> jsonBody = json.decode(request.body);
-    if (const MapEquality<String, dynamic>().equals(jsonBody, emailApiTestValues.requestSendEmailValid())) {
+    if (const MapEquality<String, dynamic>().equals(jsonBody, djangoCreateServiceTestValues.requestPostValid())) {
       // valid email
-      response = emailApiTestValues.responseSendEmailValid();
+      response = djangoCreateServiceTestValues.responsePostValid();
     }
-    if (const MapEquality<String, dynamic>().equals(jsonBody, emailApiTestValues.requestSendEmailValidWithSubject())) {
-      // valid email and subject
-      response = emailApiTestValues.responseSendEmailValid();
-    }
-    if (const MapEquality<String, dynamic>().equals(jsonBody, emailApiTestValues.requestSendEmail400Error())) {
+    if (const MapEquality<String, dynamic>().equals(jsonBody, djangoCreateServiceTestValues.requestPost400Error())) {
       // invalid email
-      response = emailApiTestValues.responseSendEmail400Error();
+      response = djangoCreateServiceTestValues.responsePost400Error();
     }
-    if (const MapEquality<String, dynamic>().equals(jsonBody, emailApiTestValues.requestSendEmail500Error())) {
+    if (const MapEquality<String, dynamic>().equals(jsonBody, djangoCreateServiceTestValues.requestPost500Error())) {
       // 500 error
-      response = emailApiTestValues.responseSendEmail500Error();
+      response = djangoCreateServiceTestValues.responsePost500Error();
     }
     return response;
   }

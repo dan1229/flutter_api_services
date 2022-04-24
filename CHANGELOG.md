@@ -96,6 +96,8 @@ coverage
 #### tests
 
 Improve!
+- add more asserts to existing check
+  - auth api should use '400' instead of 'invalid' test?
 - add checks for class props
   - results class
     - page count

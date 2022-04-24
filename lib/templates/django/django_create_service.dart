@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter_api_services/src/api_helpers.dart';
 import 'package:flutter_api_services/src/response_types.dart';
+import 'package:flutter_api_services/templates/django/json/django_results_api_json.dart';
 import 'package:http/http.dart' as http;
 
 /// ===============================================================================/
@@ -46,7 +47,7 @@ class DjangoCreateService<T> {
   /// @[RETURN]
   /// ApiResponse           - error or success based on result(s)
   ///
-  Future<ApiResponse> postApi(
+  Future<ApiResponse<T>> postApi(
       {required Map<String, dynamic> body, bool authenticated = false, Function? onSuccess, Function? onError}) async {
 
     // handle auth
@@ -64,7 +65,7 @@ class DjangoCreateService<T> {
       response = await client.post(uriApiBase, headers: headers, body: bodyStr);
     } catch (e) {
       logApiPrint("CreateService.postApi<${T.toString()}>: HTTP error\n${e.toString()}", tag: "EXP");
-      return ApiResponseError();
+      return ApiResponseError<T>();
     }
 
     // deserialize json
@@ -73,32 +74,29 @@ class DjangoCreateService<T> {
       decoded = jsonDecode(response.body);
     } catch (e) {
       logApiPrint("CreateService.postApi<${T.toString()}>: jsonDecode error\n${e.toString()}", tag: "EXP");
-      return ApiResponseError();
+      return ApiResponseError<T>();
     }
 
-    // process response
-    String message = 'login error.';
-    if (decoded.containsKey('message')) {
-      message = decoded['message'];
-    }
+    // process results
+    DjangoResultsApiJson res = DjangoResultsApiJson.fromJson(json: decoded);
     if (response.statusCode == 200) {
       // 200 -> valid
       if (onSuccess != null) {
         onSuccess();
       }
-      return ApiResponseSuccess(message: message);
+      return ApiResponseSuccess<T>(message: res.message ?? "Successfully created.");
     } else if (response.statusCode == 401) {
       // 401 -> unauthorized
       if (onError != null) {
         onError();
       }
-      return ApiResponseError(message: decoded['detail']);
+      return ApiResponseError<T>(message: decoded['detail']);
     } else {
       // 400, 500 and others -> error
       if (onError != null) {
         onError();
       }
-      return ApiResponseError(message: message);
+      return ApiResponseError<T>(message: res.message ?? "Error. Please try again later.");
     }
   }
 }

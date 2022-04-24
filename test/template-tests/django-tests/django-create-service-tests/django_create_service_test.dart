@@ -1,49 +1,41 @@
-import 'package:danielnazarian_com/services/rest-apis/email_api.dart';
 import 'package:flutter_api_services/flutter_api_services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../mock_client.dart';
-import 'email_api_test_values.dart';
+import 'django_create_service_test_values.dart';
 
 // ===============================================================================
 // EMAIL API TEST ================================================================
 // ===============================================================================
 
-EmailApi api = EmailApi(client: mockClient);
-EmailApiTestValues emailApiTestValues = EmailApiTestValues();
-String apiName = "EmailApi";
+DjangoCreateService<dynamic> djangoCreateService = DjangoCreateService<dynamic>(client: mockClient, uriApiBase: Uri.parse("127.0.0.1:8000"));
+DjangoCreateServiceTestValues djangoCreateServiceTestValues = DjangoCreateServiceTestValues();
+String apiName = "DjangoCreateService";
 
 void main() {
   //
-  // POST EMAIL API TEST
+  // POST API TEST
   //
-  String tagGroup = "SEND EMAIL (POST) -";
+  String tagGroup = "POST -";
   group('$apiName - $tagGroup API test', () {
     test('$tagGroup valid', () async {
-      ApiResponse<dynamic> res = await api.sendEmail(message: emailApiTestValues.messageValid);
-      expect(res.message, emailApiTestValues.responseDataSendEmailValid.message);
-      expect(res.details, emailApiTestValues.responseDataSendEmailValid.details);
-      expect(res.error, false);
-    });
-
-    test('$tagGroup valid with subject', () async {
-      ApiResponse<dynamic> res = await api.sendEmail(message: emailApiTestValues.messageValid, subject: emailApiTestValues.subjectValid);
-      expect(res.message, emailApiTestValues.responseDataSendEmailValid.message);
-      expect(res.details, emailApiTestValues.responseDataSendEmailValid.details);
+      ApiResponse<dynamic> res = await djangoCreateService.postApi(body: djangoCreateServiceTestValues.requestBodyValid);
+      expect(res.message, djangoCreateServiceTestValues.responseDataPostValid.message);
+      expect(res.details, djangoCreateServiceTestValues.responseDataPostValid.details);
       expect(res.error, false);
     });
 
     test('$tagGroup 400 error', () async {
-      ApiResponse<dynamic> res = await api.sendEmail(message: emailApiTestValues.message400Error);
-      expect(res.message, emailApiTestValues.responseDataSendEmail400Error.message);
-      expect(res.details, emailApiTestValues.responseDataSendEmail400Error.details);
+      ApiResponse<dynamic> res = await djangoCreateService.postApi(body: djangoCreateServiceTestValues.requestBody400Error);
+      expect(res.message, djangoCreateServiceTestValues.responseDataPost400Error.message);
+      expect(res.details, djangoCreateServiceTestValues.responseDataPost400Error.details);
       expect(res.error, true);
     });
 
     test('$tagGroup 500 error', () async {
-      ApiResponse<dynamic> res = await api.sendEmail(message: emailApiTestValues.message500Error);
-      expect(res.message, emailApiTestValues.responseDataSendEmail500Error.message);
-      expect(res.details, emailApiTestValues.responseDataSendEmail500Error.details);
+      ApiResponse<dynamic> res = await djangoCreateService.postApi(body: djangoCreateServiceTestValues.requestBody500Error);
+      expect(res.message, djangoCreateServiceTestValues.responseDataPost500Error.message);
+      expect(res.details, djangoCreateServiceTestValues.responseDataPost500Error.details);
       expect(res.error, true);
     });
   });
