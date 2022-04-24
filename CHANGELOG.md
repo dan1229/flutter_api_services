@@ -54,21 +54,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 #### misc / later
 
-graphql?
 
 other backends?
 - rust?
 - node?
 
-------
 
-#### create api service
-
-validate service works as is?
-
-new methods
-- add patch
-- add delete
+graphql?
+- djagno graphene
+  - need to solidify backend implementation a bit more
+  
 
 ------
 
@@ -82,6 +77,17 @@ improve doc strings
 - add to params https://dart.dev/guides/language/effective-dart/documentation
 
 ------
+
+#### create api service
+
+validate service works as is?
+
+new methods
+- add patch
+- add delete
+
+------
+
 
 #### ci/cd
 
