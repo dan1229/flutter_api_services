@@ -1,15 +1,16 @@
-
 import 'package:flutter_api_services/flutter_api_services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../mock_client.dart';
+import '../../../test-models/test_model.dart';
 import 'django_results_service_test_values.dart';
 
 // ===============================================================================
 // DJANGO RESULTS SERVICE TEST ===================================================
 // ===============================================================================
 
-DjangoResultsService djangoResultsService = DjangoResultsService(client: mockClient, uriApiBase: "127.0.0.1:8000");
+DjangoResultsService<TestModel> djangoResultsService = DjangoResultsService<TestModel>(
+    client: mockClient, uriApiBase: Uri.parse("127.0.0.1:8000"), fromJson: (Map<String, dynamic> json) => TestModel.fromJson(json));
 DjangoResultsServiceTestValues djangoResultsServiceTestValues = DjangoResultsServiceTestValues();
 String apiName = "DjangoResultsService";
 
@@ -20,30 +21,29 @@ void main() {
   String tagGroup = "LIST (GET) -";
   group('$apiName - $tagGroup API test', () {
     test('$tagGroup valid', () async {
-      ApiResponse<Post> res = await api.getApiList();
-      expect(res.message, postsApiTestValues.responseDataListValid()['message']);
-      expect(res.list!.length, postsApiTestValues.responseDataListValid()['results'].length);
+      ApiResponse<TestModel> res = await djangoResultsService.getApiList();
+      expect(res.message, djangoResultsServiceTestValues.responseDataListValid()['message']);
+      expect(res.list!.length, djangoResultsServiceTestValues.responseDataListValid()['results'].length);
       expect(res.details, null);
       expect(res.error, false);
     });
 
     test('$tagGroup 400 error', () async {
-      ApiResponse<Post> res = await api.getApiList(search: postsApiTestValues.search400Error);
-      expect(res.message, postsApiTestValues.responseDataList400Error.message);
-      expect(res.list, postsApiTestValues.responseDataList400Error.list);
+      ApiResponse<TestModel> res = await djangoResultsService.getApiList(search: djangoResultsServiceTestValues.search400Error);
+      expect(res.message, djangoResultsServiceTestValues.responseDataList400Error.message);
+      expect(res.list, djangoResultsServiceTestValues.responseDataList400Error.list);
       expect(res.details, null);
       expect(res.error, true);
     });
 
     test('$tagGroup 500 error', () async {
-      ApiResponse<Post> res = await api.getApiList(search: postsApiTestValues.search500Error);
-      expect(res.message, postsApiTestValues.responseDataList500Error.message);
-      expect(res.list, postsApiTestValues.responseDataList500Error.list);
+      ApiResponse<TestModel> res = await djangoResultsService.getApiList(search: djangoResultsServiceTestValues.search500Error);
+      expect(res.message, djangoResultsServiceTestValues.responseDataList500Error.message);
+      expect(res.list, djangoResultsServiceTestValues.responseDataList500Error.list);
       expect(res.details, null);
       expect(res.error, true);
     });
   });
-
 
   //
   // RETRIEVE API TEST
@@ -51,25 +51,25 @@ void main() {
   tagGroup = "RETRIEVE (GET) -";
   group('$apiName - $tagGroup API test', () {
     test('$tagGroup valid', () async {
-      ApiResponse<Post> res = await api.getApiDetails(id: postsApiTestValues.idValid);
-      expect(res.message, postsApiTestValues.responseDataRetrieveValid['message']);
-      expect(res.details, postsApiTestValues.responseDataRetrieveValid['results']);
+      ApiResponse<TestModel> res = await djangoResultsService.getApiDetails(id: djangoResultsServiceTestValues.idValid);
+      expect(res.message, djangoResultsServiceTestValues.responseDataRetrieveValid['message']);
+      expect(res.details, djangoResultsServiceTestValues.responseDataRetrieveValid['results']);
       expect(res.list, null);
       expect(res.error, false);
     });
 
     test('$tagGroup 400 error', () async {
-      ApiResponse<Post> res = await api.getApiDetails(id: postsApiTestValues.id400Error);
-      expect(res.message, postsApiTestValues.responseDataRetrieve400Error.message);
-      expect(res.details, postsApiTestValues.responseDataRetrieve400Error.details);
+      ApiResponse<TestModel> res = await djangoResultsService.getApiDetails(id: djangoResultsServiceTestValues.id400Error);
+      expect(res.message, djangoResultsServiceTestValues.responseDataRetrieve400Error.message);
+      expect(res.details, djangoResultsServiceTestValues.responseDataRetrieve400Error.details);
       expect(res.list, null);
       expect(res.error, true);
     });
 
     test('$tagGroup 500 error', () async {
-      ApiResponse<Post> res = await api.getApiDetails(id: postsApiTestValues.id500Error);
-      expect(res.message, postsApiTestValues.responseDataRetrieve500Error.message);
-      expect(res.details, postsApiTestValues.responseDataRetrieve500Error.details);
+      ApiResponse<TestModel> res = await djangoResultsService.getApiDetails(id: djangoResultsServiceTestValues.id500Error);
+      expect(res.message, djangoResultsServiceTestValues.responseDataRetrieve500Error.message);
+      expect(res.details, djangoResultsServiceTestValues.responseDataRetrieve500Error.details);
       expect(res.list, null);
       expect(res.error, true);
     });
@@ -81,43 +81,43 @@ void main() {
   tagGroup = "NEXT (GET) -";
   group('$apiName - $tagGroup API test', () {
     test('$tagGroup valid', () async {
-      api.next = postsApiTestValues.nextResultsValid;
-      ApiResponse<Post> res = await api.getNext();
-      expect(res.message, postsApiTestValues.responseDataNextValid['message']);
+      djangoResultsService.next = djangoResultsServiceTestValues.nextResultsValid;
+      ApiResponse<TestModel> res = await djangoResultsService.getNext();
+      expect(res.message, djangoResultsServiceTestValues.responseDataNextValid['message']);
       expect(res.details, null);
-      expect(res.list!.length, postsApiTestValues.responseDataNextValid['results'].length);
+      expect(res.list!.length, djangoResultsServiceTestValues.responseDataNextValid['results'].length);
       expect(res.error, false);
     });
 
     test('$tagGroup valid with LIST call', () async {
-      ApiResponse<Post> res1 = await api.getApiList();
-      expect(res1.message, postsApiTestValues.responseDataListValid()['message']);
-      expect(res1.list!.length, postsApiTestValues.responseDataListValid()['results'].length);
+      ApiResponse<TestModel> res1 = await djangoResultsService.getApiList();
+      expect(res1.message, djangoResultsServiceTestValues.responseDataListValid()['message']);
+      expect(res1.list!.length, djangoResultsServiceTestValues.responseDataListValid()['results'].length);
       expect(res1.details, null);
       expect(res1.error, false);
 
-      ApiResponse<Post> res2 = await api.getNext();
-      expect(res2.message, postsApiTestValues.responseDataNextValid['message']);
+      ApiResponse<TestModel> res2 = await djangoResultsService.getNext();
+      expect(res2.message, djangoResultsServiceTestValues.responseDataNextValid['message']);
       expect(res2.details, null);
-      expect(res2.list!.length, postsApiTestValues.responseDataNextValid['results'].length);
+      expect(res2.list!.length, djangoResultsServiceTestValues.responseDataNextValid['results'].length);
       expect(res2.error, false);
     });
 
     test('$tagGroup 400 error', () async {
-      api.next = postsApiTestValues.nextResults400Error;
-      ApiResponse<Post> res = await api.getNext();
-      expect(res.message, postsApiTestValues.responseDataNext400Error.message);
+      djangoResultsService.next = djangoResultsServiceTestValues.nextResults400Error;
+      ApiResponse<TestModel> res = await djangoResultsService.getNext();
+      expect(res.message, djangoResultsServiceTestValues.responseDataNext400Error.message);
       expect(res.details, null);
-      expect(res.list, postsApiTestValues.responseDataNext400Error.list);
+      expect(res.list, djangoResultsServiceTestValues.responseDataNext400Error.list);
       expect(res.error, true);
     });
 
     test('$tagGroup 500 error', () async {
-      api.next = postsApiTestValues.nextResults500Error;
-      ApiResponse<Post> res = await api.getNext();
-      expect(res.message, postsApiTestValues.responseDataNext500Error.message);
+      djangoResultsService.next = djangoResultsServiceTestValues.nextResults500Error;
+      ApiResponse<TestModel> res = await djangoResultsService.getNext();
+      expect(res.message, djangoResultsServiceTestValues.responseDataNext500Error.message);
       expect(res.details, null);
-      expect(res.list, postsApiTestValues.responseDataNext500Error.list);
+      expect(res.list, djangoResultsServiceTestValues.responseDataNext500Error.list);
       expect(res.error, true);
     });
   });
@@ -128,45 +128,44 @@ void main() {
   tagGroup = "PREV (GET) -";
   group('$apiName - $tagGroup API test', () {
     test('$tagGroup valid', () async {
-      api.previous = postsApiTestValues.prevResultsValid;
-      ApiResponse<Post> res = await api.getPrevious();
-      expect(res.message, postsApiTestValues.responseDataPrevValid['message']);
+      djangoResultsService.previous = djangoResultsServiceTestValues.prevResultsValid;
+      ApiResponse<TestModel> res = await djangoResultsService.getPrevious();
+      expect(res.message, djangoResultsServiceTestValues.responseDataPrevValid['message']);
       expect(res.details, null);
-      expect(res.list!.length, postsApiTestValues.responseDataPrevValid['results'].length);
+      expect(res.list!.length, djangoResultsServiceTestValues.responseDataPrevValid['results'].length);
       expect(res.error, false);
     });
 
     test('$tagGroup valid with LIST call', () async {
-      ApiResponse<Post> res1 = await api.getApiList();
-      expect(res1.message, postsApiTestValues.responseDataListValid()['message']);
-      expect(res1.list!.length, postsApiTestValues.responseDataListValid()['results'].length);
+      ApiResponse<TestModel> res1 = await djangoResultsService.getApiList();
+      expect(res1.message, djangoResultsServiceTestValues.responseDataListValid()['message']);
+      expect(res1.list!.length, djangoResultsServiceTestValues.responseDataListValid()['results'].length);
       expect(res1.details, null);
       expect(res1.error, false);
 
-      ApiResponse<Post> res2 = await api.getPrevious();
-      expect(res2.message, postsApiTestValues.responseDataPrevValid['message']);
+      ApiResponse<TestModel> res2 = await djangoResultsService.getPrevious();
+      expect(res2.message, djangoResultsServiceTestValues.responseDataPrevValid['message']);
       expect(res2.details, null);
-      expect(res2.list!.length, postsApiTestValues.responseDataPrevValid['results'].length);
+      expect(res2.list!.length, djangoResultsServiceTestValues.responseDataPrevValid['results'].length);
       expect(res2.error, false);
     });
 
     test('$tagGroup 400 error', () async {
-      api.previous = postsApiTestValues.prevResults400Error;
-      ApiResponse<Post> res = await api.getPrevious();
-      expect(res.message, postsApiTestValues.responseDataPrev400Error.message);
+      djangoResultsService.previous = djangoResultsServiceTestValues.prevResults400Error;
+      ApiResponse<TestModel> res = await djangoResultsService.getPrevious();
+      expect(res.message, djangoResultsServiceTestValues.responseDataPrev400Error.message);
       expect(res.details, null);
-      expect(res.list, postsApiTestValues.responseDataPrev400Error.list);
+      expect(res.list, djangoResultsServiceTestValues.responseDataPrev400Error.list);
       expect(res.error, true);
     });
 
     test('$tagGroup 500 error', () async {
-      api.previous = postsApiTestValues.prevResults500Error;
-      ApiResponse<Post> res = await api.getPrevious();
-      expect(res.message, postsApiTestValues.responseDataPrev500Error.message);
+      djangoResultsService.previous = djangoResultsServiceTestValues.prevResults500Error;
+      ApiResponse<TestModel> res = await djangoResultsService.getPrevious();
+      expect(res.message, djangoResultsServiceTestValues.responseDataPrev500Error.message);
       expect(res.details, null);
-      expect(res.list, postsApiTestValues.responseDataPrev500Error.list);
+      expect(res.list, djangoResultsServiceTestValues.responseDataPrev500Error.list);
       expect(res.error, true);
     });
   });
-
 }
