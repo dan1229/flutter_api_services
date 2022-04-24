@@ -1,0 +1,40 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  # ================================================== #
+  #
+  # build web
+  #
+  build:
+    name: Build Web
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '2.10.0'
+          cache: true
+          cache-key: flutter1 # optional, change this to force refresh cache
+
+      - name: Clean Flutter environment
+        run: flutter clean
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Build project
+        run: flutter build web
+
+      - name: Upload production-ready build files
+        uses: actions/upload-artifact@v2
+        with:
+          name: production-files
+          path: ./build/web
