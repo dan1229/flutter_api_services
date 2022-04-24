@@ -1,0 +1,33 @@
+name: Deploy - Web Production
+
+on:
+  workflow_dispatch:
+    branches:
+      - 'master'
+    inputs:
+      # how to automate getting this?
+      # from commit message?
+      version:
+        required: true
+        type: string
+        description: Version for this release
+
+jobs:
+
+  # ================================================== #
+  #
+  # deploy
+  #
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+      # TODO make branch
+
+      - name: Create release in GitHub
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ github.event.inputs.vesrion }} # version manually input
+          token: ${{ secrets.GITHUB_TOKEN }}
+        # tie to branch
+        # add update commit as description
