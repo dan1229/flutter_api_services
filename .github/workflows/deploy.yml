@@ -19,7 +19,6 @@ jobs:
   #
   deploy:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
     steps:
       - name: Create release branch
         uses: peterjgrainger/action-create-branch@v2.0.1
