@@ -2,9 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
-import 'package:danielnazarian_com/services/rest-apis/auth_api.dart';
-import 'package:danielnazarian_com/services/rest-apis/email_api.dart';
-import 'package:danielnazarian_com/services/rest-apis/posts_api.dart';
 import 'package:flutter_api_services/flutter_api_services.dart';
 import 'package:http/http.dart';
 import 'package:http/testing.dart';
@@ -28,7 +25,7 @@ AuthApi authApi = AuthApi(client: Client());
 AuthApiTestValues authApiTestValues = AuthApiTestValues();
 
 // posts api
-PostsApi postsApi = PostsApi(client: Client());
+DjangoResultsService postsApi = DjangoResultsService(client: Client());
 PostsApiTestValues postApiTestValues = PostsApiTestValues();
 
 // email api
