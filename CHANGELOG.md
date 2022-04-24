@@ -54,27 +54,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 #### misc / later
 
+graphql?
 
 other backends?
 - rust?
 - node?
-
-
-graphql?
-- djagno graphene
-  - need to solidify backend implementation a bit more
-  
-
-------
-
-#### docs
-
-examples folder?
-
-
-improve doc strings
-- move under function header?
-- add to params https://dart.dev/guides/language/effective-dart/documentation
 
 ------
 
@@ -88,6 +72,16 @@ new methods
 
 ------
 
+#### docs
+
+examples folder?
+
+
+improve doc strings
+- move under function header?
+- add to params https://dart.dev/guides/language/effective-dart/documentation
+
+------
 
 #### ci/cd
 

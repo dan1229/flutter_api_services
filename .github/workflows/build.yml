@@ -1,17 +1,15 @@
 name: Build
 
 on:
-  push:
-    branches:
-      - '*'
+  push
 
 jobs:
   # ================================================== #
   #
-  # build web
+  # build
   #
   build:
-    name: Build Web
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -30,11 +28,11 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
-      - name: Build project
-        run: flutter build web
+      - name: Flutter analyze
+        run: flutter analyze --fatal-infos
 
-      - name: Upload production-ready build files
-        uses: actions/upload-artifact@v2
-        with:
-          name: production-files
-          path: ./build/web
+#      - name: Upload production-ready build files
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: production-files
+#          path: ./build/web
