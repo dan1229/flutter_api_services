@@ -10,7 +10,7 @@ import 'django_results_service_test_values.dart';
 // ===============================================================================
 
 DjangoResultsService<TestModel> djangoResultsService = DjangoResultsService<TestModel>(
-    client: mockClient, uriApiBase: Uri.parse("127.0.0.1:8000"), fromJson: (Map<String, dynamic> json) => TestModel.fromJson(json));
+    client: mockClient, uriApiBase: Uri.parse("http://127.0.0.1:8000"), fromJson: (Map<String, dynamic> json) => TestModel.fromJson(json));
 DjangoResultsServiceTestValues djangoResultsServiceTestValues = DjangoResultsServiceTestValues();
 String apiName = "DjangoResultsService";
 

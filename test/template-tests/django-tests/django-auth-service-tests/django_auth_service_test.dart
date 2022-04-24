@@ -8,7 +8,7 @@ import 'django_auth_service_test_values.dart';
 // AUTH API TEST =================================================================
 // ===============================================================================
 
-DjangoAuthService djangoAuthService = DjangoAuthService(client: mockClient, uriApiBase: Uri.parse("127.0.0.1:8000"));
+DjangoAuthService djangoAuthService = DjangoAuthService(client: mockClient, uriApiBase: Uri.parse("http://127.0.0.1:8000"));
 DjangoAuthServiceTestValues djangoAuthServiceTestValues = DjangoAuthServiceTestValues();
 String apiName = "DjangoAuthService";
 

@@ -6,6 +6,6 @@ then
   cd ..
 fi
 
-flutter test --coverage --dart-define='ENVIRONMENT=testing' --dart-define='URI_BASE=http://127.0.0.1:8000'
+flutter test --coverage
 genhtml coverage/lcov.info -o coverage
 open coverage/index.html

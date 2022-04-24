@@ -89,10 +89,22 @@ class MessageApi extends CreateService<Message> {
 }
 ```
 
+## Examples
 TODO
 
 - `examples` folder
     - just show each template
+
+## Tests
+
+To run tests manually simply run:
+
+```bash
+flutter test
+```
+
+More simply, to run tests and generate coverage report simply run `./scripts/test_coverage.sh`.
+
 
 -------------------------------------------------------
 
