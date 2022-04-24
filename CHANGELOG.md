@@ -62,16 +62,6 @@ other backends?
 
 ------
 
-#### create api service
-
-validate service works as is?
-
-new methods
-- add patch
-- add delete
-
-------
-
 #### docs
 
 examples folder?
@@ -83,18 +73,35 @@ improve doc strings
 
 ------
 
+#### create api service
+
+validate service works as is?
+
+new methods
+- add patch
+- add delete
+
+------
+
 #### ci/cd
 
+------
 
-code coverage
+#### tests
+
+------
+
+#### TODO now
+
+github actions - test.yml
+- how to replace `brew install lcov`?
+- takes longest by far (30s)
+
 
 coverage
 - coverage ignore
 - // coverage:ignore-file
 
-------
-
-#### tests
 
 Improve!
 - add more asserts to existing check
@@ -104,21 +111,10 @@ Improve!
     - page count
     - next/prev/count etc.
 
-------
 
-#### TODO now
-
-
-### [0.1.0] - 2022-04-DD
-- Auth API cleanup
-- Response Type standardization
-  - Generic types
-- GitHub Actions (CI/CD)
-  - Badges too ofc
-- TESTS and INFRASTRUCTURE
-  - Auth API
-  - Results API
-  - Create API
+### [0.1.1] - 2022-MM-DD
+- Improve tests
+- Coverage improvements/tweaks
 
 -------------------------------------------------------
 

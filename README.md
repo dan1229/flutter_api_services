@@ -3,12 +3,12 @@
 ![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)
 ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
 
-
-![Build](https://github.com/dan1229/flutter_api_services/actions/workflows/build.yml/badge.svg)
+![Build](https://github.com/dan1229/flutter_api_services/actions/workflows/analyze.yml/badge.svg)
 ![Test](https://github.com/dan1229/flutter_api_services/actions/workflows/test.yml/badge.svg)
 [![codecov](https://codecov.io/gh/dan1229/flutter_api_services/branch/main/graph/badge.svg?token=4WK2ND8R75)](https://codecov.io/gh/dan1229/flutter_api_services)
 
 #### By: [Daniel Nazarian](https://danielnazarian) 🐧👹
+
 ##### Contact me at <dnaz@danielnazarian.com>
 
 -------------------------------------------------------
@@ -118,6 +118,11 @@ flutter test
 
 More simply, to run tests and generate coverage report simply run `./scripts/test_coverage.sh`.
 
+## Deployment
+
+To deploy/update simply run the GitHub Action for `deploy` - it will prompt you for a version number
+and create a branch with the most recent commit. It will also create an 'official' GitHub release to
+give another way to find it. sNote, it will use said commits message as the release description.
 
 -------------------------------------------------------
 

@@ -1,4 +1,4 @@
-name: Build
+name: Analyze
 
 on:
   push
@@ -6,10 +6,10 @@ on:
 jobs:
   # ================================================== #
   #
-  # build
+  # analyze
   #
-  build:
-    name: Build
+  analyze:
+    name: Analyze
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
