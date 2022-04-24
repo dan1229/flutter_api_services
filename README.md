@@ -3,7 +3,7 @@
 ![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)
 ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
 
-![Build](https://github.com/dan1229/flutter_api_services/actions/workflows/analyze.yml/badge.svg)
+![Analyze](https://github.com/dan1229/flutter_api_services/actions/workflows/analyze.yml/badge.svg)
 ![Test](https://github.com/dan1229/flutter_api_services/actions/workflows/test.yml/badge.svg)
 [![codecov](https://codecov.io/gh/dan1229/flutter_api_services/branch/main/graph/badge.svg?token=4WK2ND8R75)](https://codecov.io/gh/dan1229/flutter_api_services)
 
