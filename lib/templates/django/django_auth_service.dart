@@ -32,7 +32,7 @@ class DjangoAuthService {
   /// @[RETURN]
   /// ApiResponse                      - error or success based on result(s)
   ///
-  Future<ApiResponse> postLoginApi({required String email, required String password}) async {
+  Future<ApiResponse<dynamic>> postLoginApi({required String email, required String password}) async {
     Uri uri = uriLogin();
     Map<String, String> headers = headerNoAuth();
     String body = bodyGeneric(map: <String, String>{
@@ -46,17 +46,17 @@ class DjangoAuthService {
       DjangoResultsApiJson res = DjangoResultsApiJson.fromJson(json: decoded);
       switch (response.statusCode) {
         case 200: // success
-          return ApiResponseSuccess(message: res.message, results: res.results);
+          return ApiResponseSuccess<dynamic>(message: res.message ?? "Successfully logged in.", details: res.results);
         case 400: // bad request
-          return ApiResponseError(message: res.message);
+          return ApiResponseError<dynamic>(message: res.message ?? "Error logging in.");
         case 500: // server error
-          return ApiResponseError(message: res.message);
+          return ApiResponseError<dynamic>(message: res.message ?? "Error logging in.");
         default: // who knows
-          return ApiResponseError(message: res.message);
+          return ApiResponseError<dynamic>(message: res.message ?? "Error logging in.");
       }
     } catch (e) {
       logApiPrint("AuthService.postLoginApi: error\n${e.toString()}", tag: "EXP");
-      return ApiResponseError();
+      return ApiResponseError<dynamic>();
     }
   }
 
@@ -76,7 +76,7 @@ class DjangoAuthService {
   /// @[RETURN]
   /// ApiResponse                      - error or success based on result(s)
   ///
-  Future<ApiResponse> postSignupApi({required String email, required String password}) async {
+  Future<ApiResponse<dynamic>> postSignupApi({required String email, required String password}) async {
     Uri uri = uriSignup();
     Map<String, String> headers = headerNoAuth();
     String body = bodyGeneric(map: <String, String>{
@@ -90,19 +90,19 @@ class DjangoAuthService {
       DjangoResultsApiJson res = DjangoResultsApiJson.fromJson(json: decoded);
       switch (response.statusCode) {
         case 201: // success
-          return ApiResponseSuccess(message: res.message, results: res.results);
+          return ApiResponseSuccess<dynamic>(message: res.message ?? "Successfully signed up.", details: res.results);
         case 200: // success
-          return ApiResponseSuccess(message: res.message, results: res.results);
+          return ApiResponseSuccess<dynamic>(message: res.message ?? "Successfully signed up.", details: res.results);
         case 400: // bad request
-          return ApiResponseError(message: res.message);
+          return ApiResponseError<dynamic>(message: res.message ?? "Error signing up.");
         case 500: // server error
-          return ApiResponseError(message: res.message);
+          return ApiResponseError<dynamic>(message: res.message ?? "Error signing up.");
         default: // who knows
-          return ApiResponseError(message: res.message);
+          return ApiResponseError<dynamic>(message: res.message ?? "Error signing up.");
       }
     } catch (e) {
       logApiPrint("AuthService.postSignupApi: error\n${e.toString()}", tag: "EXP");
-      return ApiResponseError();
+      return ApiResponseError<dynamic>();
     }
   }
 

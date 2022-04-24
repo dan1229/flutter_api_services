@@ -6,11 +6,11 @@
 /// Generic class to parse generic results from a Django backend
 ///
 class DjangoResultsApiJson {
-  String message;
+  String? message;
   dynamic results;
 
   DjangoResultsApiJson({
-    required this.message,
+    this.message,
     this.results,
   });
 
