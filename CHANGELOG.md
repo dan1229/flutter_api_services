@@ -85,6 +85,8 @@ new methods
 
 #### ci/cd
 
+cd - automate getting version number from commit message
+
 ------
 
 #### tests

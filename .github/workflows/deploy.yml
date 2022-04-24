@@ -1,11 +1,11 @@
-name: Deploy - Web Production
+name: Deploy
 
 on:
   workflow_dispatch:
     branches:
       - 'master'
     inputs:
-      # how to automate getting this?
+      # TODO how to automate getting this?
       # from commit message?
       version:
         required: true
