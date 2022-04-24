@@ -30,9 +30,3 @@ jobs:
 
       - name: Flutter analyze
         run: flutter analyze --fatal-infos
-
-#      - name: Upload production-ready build files
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: production-files
-#          path: ./build/web

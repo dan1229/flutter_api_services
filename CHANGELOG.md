@@ -113,12 +113,6 @@ badges
 - workflows?
 
 
-cd
-- create 'version/X.X.X' branch for versioning
-- create release in github
-
-
-
 ### [0.1.0] - 2022-04-DD
 - Auth API cleanup
 - Response Type standardization
