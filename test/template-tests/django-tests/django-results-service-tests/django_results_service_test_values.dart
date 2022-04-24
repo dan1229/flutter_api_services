@@ -1,14 +1,13 @@
 import 'dart:convert';
 
-import 'package:danielnazarian_com/models/post.dart';
 import 'package:flutter_api_services/flutter_api_services.dart';
 import 'package:http/src/response.dart';
 
 // ====================================================
-// POSTS API TEST VALUES ==============================
+// DJANGO RESULTS SERVICE TEST VALUES =================
 // ====================================================
 
-class PostsApiTestValues {
+class DjangoResultsServiceTestValues {
   // id
   String idValid = 'valid';
   String id400Error = '400error';
@@ -19,14 +18,14 @@ class PostsApiTestValues {
   String search500Error = '500error';
 
   // next
-  String nextPostsValid = 'posts-nextValid?page=2';
-  String nextPosts400Error = 'posts-next400Error?page=2';
-  String nextPosts500Error = 'posts-next500Error?page=2';
+  String nextResultsValid = 'results-nextValid?page=2';
+  String nextResults400Error = 'results-next400Error?page=2';
+  String nextResults500Error = 'results-next500Error?page=2';
 
   // prev
-  String prevPostsValid = 'posts-prevValid?page=2';
-  String prevPosts400Error = 'posts-prev400Error?page=2';
-  String prevPosts500Error = 'posts-prev500Error?page=2';
+  String prevResultsValid = 'results-prevValid?page=2';
+  String prevResults400Error = 'results-prev400Error?page=2';
+  String prevResults500Error = 'results-prev500Error?page=2';
 
   //
   // LIST - responses
@@ -34,8 +33,8 @@ class PostsApiTestValues {
   Map<String, dynamic> responseDataListValid() {
     return {
       "count": 8,
-      "next": nextPostsValid,
-      "previous": prevPostsValid,
+      "next": nextResultsValid,
+      "previous": prevResultsValid,
       "message": "Successfully retrieved results.",
       "results": [
         {
@@ -80,13 +79,13 @@ class PostsApiTestValues {
     return Response(json.encode(responseDataListValid()), 200);
   }
 
-  ApiResponse<Post> responseDataList400Error = ApiResponseError<Post>(message: "Failed retrieving results.");
+  ApiResponse<dynamic> responseDataList400Error = ApiResponseError<dynamic>(message: "Failed retrieving results.");
 
   Response responseList400Error() {
     return Response(json.encode(responseDataList400Error.toMap()), 400);
   }
 
-  ApiResponse<Post> responseDataList500Error = ApiResponseError<Post>(message: "Internal list server error.");
+  ApiResponse<dynamic> responseDataList500Error = ApiResponseError<dynamic>(message: "Internal list server error.");
 
   Response responseList500Error() {
     return Response(json.encode(responseDataList500Error.toMap()), 500);
@@ -118,13 +117,13 @@ class PostsApiTestValues {
     return Response(json.encode(responseDataRetrieveValid), 200);
   }
 
-  ApiResponse<Post> responseDataRetrieve400Error = ApiResponseError<Post>(message: "Failed retrieving details.");
+  ApiResponse<dynamic> responseDataRetrieve400Error = ApiResponseError<dynamic>(message: "Failed retrieving details.");
 
   Response responseRetrieve400Error() {
     return Response(json.encode(responseDataRetrieve400Error.toMap()), 400);
   }
 
-  ApiResponse<Post> responseDataRetrieve500Error = ApiResponseError<Post>(message: "Internal retrieve server error.");
+  ApiResponse<dynamic> responseDataRetrieve500Error = ApiResponseError<dynamic>(message: "Internal retrieve server error.");
 
   Response responseRetrieve500Error() {
     return Response(json.encode(responseDataRetrieve500Error.toMap()), 500);
@@ -197,12 +196,12 @@ class PostsApiTestValues {
     return Response(json.encode(responseDataNextValid), 200);
   }
 
-  ApiResponse<Post> responseDataNext400Error = ApiResponseError<Post>(message: "Failed retrieving next results.");
+  ApiResponse<dynamic> responseDataNext400Error = ApiResponseError<dynamic>(message: "Failed retrieving next results.");
   Response responseNext400Error() {
     return Response(json.encode(responseDataNext400Error.toMap()), 400);
   }
 
-  ApiResponse<Post> responseDataNext500Error = ApiResponseError<Post>(message: "Internal next server error.");
+  ApiResponse<dynamic> responseDataNext500Error = ApiResponseError<dynamic>(message: "Internal next server error.");
   Response responseNext500Error() {
     return Response(json.encode(responseDataNext500Error.toMap()), 500);
   }
@@ -274,12 +273,12 @@ class PostsApiTestValues {
     return Response(json.encode(responseDataPrevValid), 200);
   }
 
-  ApiResponse<Post> responseDataPrev400Error = ApiResponseError<Post>(message: "Failed retrieving prev results.");
+  ApiResponse<dynamic> responseDataPrev400Error = ApiResponseError<dynamic>(message: "Failed retrieving prev results.");
   Response responsePrev400Error() {
     return Response(json.encode(responseDataPrev400Error.toMap()), 400);
   }
 
-  ApiResponse<Post> responseDataPrev500Error = ApiResponseError<Post>(message: "Internal prev server error.");
+  ApiResponse<dynamic> responseDataPrev500Error = ApiResponseError<dynamic>(message: "Internal prev server error.");
   Response responsePrev500Error() {
     return Response(json.encode(responseDataPrev500Error.toMap()), 500);
   }

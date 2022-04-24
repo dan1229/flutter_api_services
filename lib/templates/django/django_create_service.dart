@@ -18,7 +18,7 @@ import 'package:http/http.dart' as http;
 /// - patch API
 /// - delete API
 ///
-class DjangoCreateService<T> {
+class DjangoCreateService {
   // input
   final http.Client client;
   final Uri uriApiBase; // NOTE: this almost definitely should end in a '/'
@@ -47,7 +47,7 @@ class DjangoCreateService<T> {
   /// @[RETURN]
   /// ApiResponse           - error or success based on result(s)
   ///
-  Future<ApiResponse<T>> postApi(
+  Future<ApiResponse<dynamic>> postApi(
       {required Map<String, dynamic> body, bool authenticated = false, Function? onSuccess, Function? onError}) async {
 
     // handle auth
@@ -64,8 +64,8 @@ class DjangoCreateService<T> {
     try {
       response = await client.post(uriApiBase, headers: headers, body: bodyStr);
     } catch (e) {
-      logApiPrint("CreateService.postApi<${T.toString()}>: HTTP error\n${e.toString()}", tag: "EXP");
-      return ApiResponseError<T>();
+      logApiPrint("CreateService.postApi: HTTP error\n${e.toString()}", tag: "EXP");
+      return ApiResponseError<dynamic>();
     }
 
     // deserialize json
@@ -73,8 +73,8 @@ class DjangoCreateService<T> {
     try {
       decoded = jsonDecode(response.body);
     } catch (e) {
-      logApiPrint("CreateService.postApi<${T.toString()}>: jsonDecode error\n${e.toString()}", tag: "EXP");
-      return ApiResponseError<T>();
+      logApiPrint("CreateService.postApi: jsonDecode error\n${e.toString()}", tag: "EXP");
+      return ApiResponseError<dynamic>();
     }
 
     // process results
@@ -84,19 +84,19 @@ class DjangoCreateService<T> {
       if (onSuccess != null) {
         onSuccess();
       }
-      return ApiResponseSuccess<T>(message: res.message ?? "Successfully created.");
+      return ApiResponseSuccess<dynamic>(message: res.message ?? "Successfully created.");
     } else if (response.statusCode == 401) {
       // 401 -> unauthorized
       if (onError != null) {
         onError();
       }
-      return ApiResponseError<T>(message: decoded['detail']);
+      return ApiResponseError<dynamic>(message: decoded['detail']);
     } else {
       // 400, 500 and others -> error
       if (onError != null) {
         onError();
       }
-      return ApiResponseError<T>(message: res.message ?? "Error. Please try again later.");
+      return ApiResponseError<dynamic>(message: res.message ?? "Error. Please try again later.");
     }
   }
 }

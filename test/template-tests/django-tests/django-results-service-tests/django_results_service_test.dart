@@ -82,7 +82,7 @@ void main() {
   tagGroup = "NEXT (GET) -";
   group('$apiName - $tagGroup API test', () {
     test('$tagGroup valid', () async {
-      api.next = postsApiTestValues.nextPostsValid;
+      api.next = postsApiTestValues.nextResultsValid;
       ApiResponse<Post> res = await api.getNext();
       expect(res.message, postsApiTestValues.responseDataNextValid['message']);
       expect(res.details, null);
@@ -105,7 +105,7 @@ void main() {
     });
 
     test('$tagGroup 400 error', () async {
-      api.next = postsApiTestValues.nextPosts400Error;
+      api.next = postsApiTestValues.nextResults400Error;
       ApiResponse<Post> res = await api.getNext();
       expect(res.message, postsApiTestValues.responseDataNext400Error.message);
       expect(res.details, null);
@@ -114,7 +114,7 @@ void main() {
     });
 
     test('$tagGroup 500 error', () async {
-      api.next = postsApiTestValues.nextPosts500Error;
+      api.next = postsApiTestValues.nextResults500Error;
       ApiResponse<Post> res = await api.getNext();
       expect(res.message, postsApiTestValues.responseDataNext500Error.message);
       expect(res.details, null);
@@ -129,7 +129,7 @@ void main() {
   tagGroup = "PREV (GET) -";
   group('$apiName - $tagGroup API test', () {
     test('$tagGroup valid', () async {
-      api.previous = postsApiTestValues.prevPostsValid;
+      api.previous = postsApiTestValues.prevResultsValid;
       ApiResponse<Post> res = await api.getPrevious();
       expect(res.message, postsApiTestValues.responseDataPrevValid['message']);
       expect(res.details, null);
@@ -152,7 +152,7 @@ void main() {
     });
 
     test('$tagGroup 400 error', () async {
-      api.previous = postsApiTestValues.prevPosts400Error;
+      api.previous = postsApiTestValues.prevResults400Error;
       ApiResponse<Post> res = await api.getPrevious();
       expect(res.message, postsApiTestValues.responseDataPrev400Error.message);
       expect(res.details, null);
@@ -161,7 +161,7 @@ void main() {
     });
 
     test('$tagGroup 500 error', () async {
-      api.previous = postsApiTestValues.prevPosts500Error;
+      api.previous = postsApiTestValues.prevResults500Error;
       ApiResponse<Post> res = await api.getPrevious();
       expect(res.message, postsApiTestValues.responseDataPrev500Error.message);
       expect(res.details, null);
