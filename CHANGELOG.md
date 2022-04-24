@@ -95,7 +95,11 @@ coverage
 
 #### tests
 
-TODO
+Improve!
+- add checks for class props
+  - results class
+    - page count
+    - next/prev/count etc.
 
 ------
 
