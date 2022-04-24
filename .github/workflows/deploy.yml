@@ -25,7 +25,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          branch: version/${{ github.event.inputs.vesrion }}
+          branch: version/${{ github.event.inputs.version }}
 
 
       - name: Create release in GitHub
