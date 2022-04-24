@@ -31,7 +31,7 @@ jobs:
       - name: Create release in GitHub
         uses: ncipollo/release-action@v1
         with:
-          tag: ${{ github.event.inputs.vesrion }}
+          tag: ${{ github.event.inputs.version }}
           token: ${{ secrets.GITHUB_TOKEN }}
           commit: ${{ github.event.pull_request.head.sha }}
           body: ${{ github.event.head_commit.message }}
