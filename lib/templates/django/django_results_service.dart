@@ -320,7 +320,6 @@ class DjangoResultsService<T> {
     }
 
     // process response
-    print(decoded);
     DjangoResultsApiJson res = DjangoResultsApiJson.fromJson(json: decoded, fromJson: fromJson);
     if (response.statusCode == 200 || response.statusCode == 201) {
       // 200 -> valid
