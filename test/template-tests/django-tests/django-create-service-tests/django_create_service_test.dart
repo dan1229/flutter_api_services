@@ -8,7 +8,7 @@ import 'django_create_service_test_values.dart';
 // EMAIL API TEST ================================================================
 // ===============================================================================
 
-DjangoCreateService<dynamic> djangoCreateService = DjangoCreateService<dynamic>(client: mockClient, uriApiBase: Uri.parse("127.0.0.1:8000"));
+DjangoCreateService djangoCreateService = DjangoCreateService(client: mockClient, uriApiBase: Uri.parse("127.0.0.1:8000"));
 DjangoCreateServiceTestValues djangoCreateServiceTestValues = DjangoCreateServiceTestValues();
 String apiName = "DjangoCreateService";
 

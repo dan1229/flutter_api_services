@@ -1,18 +1,17 @@
-import 'package:danielnazarian_com/models/post.dart';
-import 'package:danielnazarian_com/services/rest-apis/posts_api.dart';
+
 import 'package:flutter_api_services/flutter_api_services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../mock_client.dart';
-import 'posts_api_test_values.dart';
+import 'django_results_service_test_values.dart';
 
 // ===============================================================================
-// POSTS API TEST ================================================================
+// DJANGO RESULTS SERVICE TEST ===================================================
 // ===============================================================================
 
-PostsApi api = PostsApi(client: mockClient);
-PostsApiTestValues postsApiTestValues = PostsApiTestValues();
-String apiName = "PostsApi";
+DjangoResultsService djangoResultsService = DjangoResultsService(client: mockClient, uriApiBase: "127.0.0.1:8000");
+DjangoResultsServiceTestValues djangoResultsServiceTestValues = DjangoResultsServiceTestValues();
+String apiName = "DjangoResultsService";
 
 void main() {
   //
