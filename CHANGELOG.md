@@ -108,16 +108,13 @@ Improve!
 
 #### TODO now
 
-badges
-- flutter/dart
-- workflows?
-
 
 ### [0.1.0] - 2022-04-DD
 - Auth API cleanup
 - Response Type standardization
   - Generic types
 - GitHub Actions (CI/CD)
+  - Badges too ofc
 - TESTS and INFRASTRUCTURE
   - Auth API
   - Results API
