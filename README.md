@@ -6,7 +6,8 @@
 
 -------------------------------------------------------
 
-Services for HTTP services for Flutter/Dart. Includes templates and support
+HTTP services for Flutter/Dart. Includes templates, helper methods, types and more to help
+interaction with external services of any sort.
 
 Currently supporting:
 
@@ -22,9 +23,12 @@ declaration.
 ### Classes Available
 
 - Django Auth Service
-    - Login/Signup
+    - Login
+    - Signup
 - Django Create Service
     - POST
+    - PATCH (coming soon)
+    - DELETE (coming soon)
 - Django Results Service
     - GET - List
     - GET - Retrieve
@@ -48,7 +52,8 @@ Then run `flutter pub get` to download and install it. Then, you're ready to get
 ### Versioning
 
 Versioning for Git packages in Flutter isn't exactly the best - to work around this, each official
-release will need to be made into a branch on GitHub, then you can reference that branch. The format for these branches is:
+release will need to be made into a branch on GitHub, then you can reference that branch. The format
+for these branches is:
 `version/X.X.X`
 
 ## Usage
@@ -60,36 +65,37 @@ a `DjangoResultsService` API for example you might do something like the followi
 class PostsApi extends DjangoResultsService<Post> {
   PostsApi({
     required Client client,
-  }) : super(
-      client: client,
-      uriApiBase: Uri.parse("https://example.com/api/posts/"),
+  }) : super(client: client,
+      uriApiBase: Uri.parse("https://example.com/posts/"),
       fromJson: (Map<String, dynamic> json) => Post.fromJson(json));
 }
 ```
 
-Now, instances of `PostApi` will have access to all the methods and functionality
+Now, instances of `PostsApi` will have access to all the methods and functionality
 of `DjangoResultsService` including `list`, `retrieve`, `next`, `prev`, etc.
 
 To create a `DjangoCreateService` API for example you might do something like the following:
 
-```dart
+```darta
 import 'package:http/http.dart';
 
-class MessageApi extends CreateService<Message> {
-  MessageApi({
+class EmailApi extends DjangoCreateService<Email> {
+  EmailApi({
     required Client client,
   }) : super(client: client,
-      uriApiBase: Uri.parse("https://example.com/api/messages/"),
-      fromJson: (Map<String, dynamic> json) => Message.fromJson(json));
+      uriApiBase: Uri.parse("https://example.com/email/"),
+      fromJson: (Map<String, dynamic> json) => Email.fromJson(json));
 
 
-  Future<ApiResponse> sendMessage({required String message}) {
-    return super.postApi(body: <String, dynamic>{"message": message});
+  Future<ApiResponse<dynamic>> sendEmail({required String message, String? subject}) {
+    return super.postApi(
+        body: <String, dynamic>{"subject": subject, "message": message}, authenticated: false);
   }
 }
 ```
 
 ## Examples
+
 TODO
 
 - `examples` folder
