@@ -4,7 +4,7 @@ import 'package:flutter_api_services/src/api_helpers.dart';
 import 'package:flutter_api_services/src/response_types.dart';
 import 'package:flutter_api_services/templates/django/json/django_paginated_api_json.dart';
 import 'package:flutter_api_services/templates/django/json/django_results_api_json.dart';
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 
 /// ===============================================================================/
 /// DJANGO RESULTS SERVICE ========================================================/
@@ -22,7 +22,7 @@ import 'package:http/http.dart' as http;
 ///
 class DjangoResultsService<T> {
   // input
-  final http.Client client;
+  final Client client;
   final Function fromJson; // This is the fromJson constructor on the model (T). Dart doesn't support generic constructors sadly (yet?)
   final Uri uriApiBase; // NOTE: this almost definitely should end in a '/'
   final String? token; // Optional, if API requires auth
@@ -123,7 +123,7 @@ class DjangoResultsService<T> {
     Uri uri = uriSearch(search: search);
 
     // send HTTP request to endpoint
-    http.Response response;
+    Response response;
     try {
       response = await client.get(uri, headers: headers);
     } catch (e) {
@@ -190,7 +190,7 @@ class DjangoResultsService<T> {
       }
 
       // send HTTP request to endpoint
-      http.Response response;
+      Response response;
       try {
         response = await client.get(Uri.parse(next!), headers: headers);
       } catch (e) {
@@ -198,19 +198,19 @@ class DjangoResultsService<T> {
         return ApiResponseError<T>();
       }
 
-      // Successful HTTP request
-      if (response.statusCode == 200) {
-        // deserialize json
-        Map<String, dynamic> decoded;
-        try {
-          decoded = jsonDecode(response.body);
-        } catch (e) {
-          logApiPrint("ResultsService.callNext<${T.toString()}>: jsonDecode error\n${e.toString()}", tag: "EXP");
-          return ApiResponseError<T>();
-        }
+      // deserialize json
+      Map<String, dynamic> decoded;
+      try {
+        decoded = jsonDecode(response.body);
+      } catch (e) {
+        logApiPrint("ResultsService.callNext<${T.toString()}>: jsonDecode error\n${e.toString()}", tag: "EXP");
+        return ApiResponseError<T>();
+      }
 
+      // Successful HTTP request
+      DjangoPaginatedApiJson<T> res = DjangoPaginatedApiJson<T>.fromJson(json: decoded, fromJson: fromJson);
+      if (response.statusCode == 200) {
         // process json
-        DjangoPaginatedApiJson<T> res = DjangoPaginatedApiJson<T>.fromJson(json: decoded, fromJson: fromJson);
         next = res.next;
         previous = res.previous;
         count = res.count;
@@ -222,6 +222,12 @@ class DjangoResultsService<T> {
           list = res.results;
         }
         return ApiResponseSuccess<T>(message: res.message ?? "Updated ${T.toString()}(s) list.", list: list);
+      } else if (response.statusCode == 401) {
+        // 401 -> unauthorized
+        return ApiResponseError<T>(message: decoded['detail']);
+      } else {
+        // 400, 500 and others -> error
+        return ApiResponseError<T>(message: res.message ?? "Error. Please try again later.");
       }
     }
     // no next - error
@@ -243,7 +249,7 @@ class DjangoResultsService<T> {
       }
 
       // send HTTP request to endpoint
-      http.Response response;
+      Response response;
       try {
         response = await client.get(Uri.parse(previous!), headers: headers);
       } catch (e) {
@@ -251,25 +257,31 @@ class DjangoResultsService<T> {
         return ApiResponseError<T>();
       }
 
-      // Successful HTTP request
-      if (response.statusCode == 200) {
-        // deserialize json
-        Map<String, dynamic> decoded;
-        try {
-          decoded = jsonDecode(response.body);
-        } catch (e) {
-          logApiPrint("ResultsService.callPrevious<${T.toString()}>: jsonDecode error\n${e.toString()}", tag: "EXP");
-          return ApiResponseError<T>();
-        }
+      // deserialize json
+      Map<String, dynamic> decoded;
+      try {
+        decoded = jsonDecode(response.body);
+      } catch (e) {
+        logApiPrint("ResultsService.callPrevious<${T.toString()}>: jsonDecode error\n${e.toString()}", tag: "EXP");
+        return ApiResponseError<T>();
+      }
 
+      // process response
+      DjangoPaginatedApiJson<T> res = DjangoPaginatedApiJson<T>.fromJson(json: decoded, fromJson: fromJson);
+      if (response.statusCode == 200) {
         // process json
-        DjangoPaginatedApiJson<T> res = DjangoPaginatedApiJson<T>.fromJson(json: decoded, fromJson: fromJson);
         next = res.next;
         previous = res.previous;
         count = res.count;
         list = res.results;
         calculatePageCurrent();
         return ApiResponseSuccess<T>(message: res.message ?? "Updated ${T.toString()}(s) list.", list: list);
+      } else if (response.statusCode == 401) {
+        // 401 -> unauthorized
+        return ApiResponseError<T>(message: decoded['detail']);
+      } else {
+        // 400, 500 and others -> error
+        return ApiResponseError<T>(message: res.message ?? "Error. Please try again later.");
       }
     }
     // no prev - error
@@ -302,7 +314,7 @@ class DjangoResultsService<T> {
 
     // send HTTP request to endpoint
     Uri uri = uriDetails(id: id);
-    http.Response response;
+    Response response;
     try {
       response = await client.get(uri, headers: headers);
     } catch (e) {
