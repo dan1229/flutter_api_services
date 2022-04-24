@@ -118,10 +118,6 @@ cd
 - create release in github
 
 
-ci
-- run tests
-- build?
-
 
 ### [0.1.0] - 2022-04-DD
 - Auth API cleanup
