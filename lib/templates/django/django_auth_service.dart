@@ -46,17 +46,17 @@ class DjangoAuthService {
       DjangoResultsApiJson res = DjangoResultsApiJson.fromJson(json: decoded);
       switch (response.statusCode) {
         case 200: // success
-          return ApiResponseSuccess(message: res.message, results: res.results);
+          return ApiResponseSuccess<Map<String, dynamic>>(message: res.message, details: res.results);
         case 400: // bad request
-          return ApiResponseError(message: res.message);
+          return ApiResponseError<Map<String, dynamic>>(message: res.message);
         case 500: // server error
-          return ApiResponseError(message: res.message);
+          return ApiResponseError<Map<String, dynamic>>(message: res.message);
         default: // who knows
-          return ApiResponseError(message: res.message);
+          return ApiResponseError<Map<String, dynamic>>(message: res.message);
       }
     } catch (e) {
       logApiPrint("AuthService.postLoginApi: error\n${e.toString()}", tag: "EXP");
-      return ApiResponseError();
+      return ApiResponseError<Map<String, dynamic>>();
     }
   }
 
@@ -90,19 +90,19 @@ class DjangoAuthService {
       DjangoResultsApiJson res = DjangoResultsApiJson.fromJson(json: decoded);
       switch (response.statusCode) {
         case 201: // success
-          return ApiResponseSuccess(message: res.message, results: res.results);
+          return ApiResponseSuccess<Map<String, dynamic>>(message: res.message, details: res.results);
         case 200: // success
-          return ApiResponseSuccess(message: res.message, results: res.results);
+          return ApiResponseSuccess<Map<String, dynamic>>(message: res.message, details: res.results);
         case 400: // bad request
-          return ApiResponseError(message: res.message);
+          return ApiResponseError<Map<String, dynamic>>(message: res.message);
         case 500: // server error
-          return ApiResponseError(message: res.message);
+          return ApiResponseError<Map<String, dynamic>>(message: res.message);
         default: // who knows
-          return ApiResponseError(message: res.message);
+          return ApiResponseError<Map<String, dynamic>>(message: res.message);
       }
     } catch (e) {
       logApiPrint("AuthService.postSignupApi: error\n${e.toString()}", tag: "EXP");
-      return ApiResponseError();
+      return ApiResponseError<Map<String, dynamic>>();
     }
   }
 

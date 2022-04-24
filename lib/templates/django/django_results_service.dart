@@ -107,7 +107,7 @@ class DjangoResultsService<T> {
   /// @[RETURN]
   /// ApiResponse           - error or success based on result(s)
   ///
-  Future<ApiResponse> getApiList({String? search, Function? onSuccess, Function? onError}) async {
+  Future<ApiResponse<T>> getApiList({String? search, Function? onSuccess, Function? onError}) async {
     // build request
     Map<String, String> headers = headerNoAuth();
     if (token != null && token != '') {
@@ -124,7 +124,7 @@ class DjangoResultsService<T> {
       response = await client.get(uri, headers: headers);
     } catch (e) {
       logApiPrint("ResultsService.callApiList<${T.toString()}>: HTTP error\n${e.toString()}", tag: "EXP");
-      return ApiResponseError();
+      return ApiResponseError<T>();
     }
 
     // deserialize json
@@ -133,10 +133,11 @@ class DjangoResultsService<T> {
       decoded = jsonDecode(response.body);
     } catch (e) {
       logApiPrint("ResultsService.callApiList<${T.toString()}>: jsonDecode error\n${e.toString()}", tag: "EXP");
-      return ApiResponseError();
+      return ApiResponseError<T>();
     }
 
     // process response
+    print(decoded);
     DjangoPaginatedApiJson<T> res = DjangoPaginatedApiJson<T>.fromJson(json: decoded, fromJson: fromJson);
     if (response.statusCode == 200) {
       // 200 -> valid
@@ -145,8 +146,6 @@ class DjangoResultsService<T> {
       count = res.count;
       list = res.results;
 
-      print(res);
-      print(list);
       // calculate page info
       calculatePageCurrent();
       calculatePageTotal();
@@ -154,19 +153,19 @@ class DjangoResultsService<T> {
       if (onSuccess != null) {
         onSuccess();
       }
-      return ApiResponseSuccess(message: res.message, results: <String, dynamic> {"list": list});
+      return ApiResponseSuccess<T>(message: res.message, list: list);
     } else if (response.statusCode == 401) {
       // 401 -> unauthorized
       if (onError != null) {
         onError();
       }
-      return ApiResponseError(message: decoded['detail']);
+      return ApiResponseError<T>(message: decoded['detail']);
     } else {
       // 400, 500 and others -> error
       if (onError != null) {
         onError();
       }
-      return ApiResponseError(message: res.message);
+      return ApiResponseError<T>(message: res.message);
     }
   }
 
@@ -179,7 +178,7 @@ class DjangoResultsService<T> {
   /// @[RETURN]
   /// ApiResponse           - error or success based on result(s)
   ///
-  Future<ApiResponse> getNext({bool addResults = false}) async {
+  Future<ApiResponse<T>> getNext({bool addResults = false}) async {
     if (next != null) {
       // get appropriate header
       Map<String, String> headers = headerNoAuth();
@@ -193,7 +192,7 @@ class DjangoResultsService<T> {
         response = await client.get(Uri.parse(next!), headers: headers);
       } catch (e) {
         logApiPrint("ResultsService.callNext<${T.toString()}>: HTTP error\n${e.toString()}", tag: "EXP");
-        return ApiResponseError();
+        return ApiResponseError<T>();
       }
 
       // Successful HTTP request
@@ -204,7 +203,7 @@ class DjangoResultsService<T> {
           decoded = jsonDecode(response.body);
         } catch (e) {
           logApiPrint("ResultsService.callNext<${T.toString()}>: jsonDecode error\n${e.toString()}", tag: "EXP");
-          return ApiResponseError();
+          return ApiResponseError<T>();
         }
 
         // process json
@@ -219,20 +218,20 @@ class DjangoResultsService<T> {
           // replace results
           list = res.results;
         }
-        return ApiResponseSuccess(message: "Updated ${T.toString()}(s) list.", results: <String, dynamic> {"list": list});
+        return ApiResponseSuccess<T>(message: "Updated ${T.toString()}(s) list.", list: list);
       }
     }
     // no next - error
-    return ApiResponseError();
+    return ApiResponseError<T>();
   }
 
   /// =======================================/
-  /// GET PREV
+  /// GET PREVIOUS
   ///
   /// @[RETURN]
   /// ApiResponse           - error or success based on result(s)
   ///
-  Future<ApiResponse> getPrevious() async {
+  Future<ApiResponse<T>> getPrevious() async {
     if (previous != null) {
       // get appropriate header
       Map<String, String> headers = headerNoAuth();
@@ -257,7 +256,7 @@ class DjangoResultsService<T> {
           decoded = jsonDecode(response.body);
         } catch (e) {
           logApiPrint("ResultsService.callPrevious<${T.toString()}>: jsonDecode error\n${e.toString()}", tag: "EXP");
-          return ApiResponseError();
+          return ApiResponseError<T>();
         }
 
         // process json
@@ -267,11 +266,11 @@ class DjangoResultsService<T> {
         count = res.count;
         list = res.results;
         calculatePageCurrent();
-        return ApiResponseSuccess(message: "Updated ${T.toString()}(s) list.", results: <String, dynamic> {"list": list});
+        return ApiResponseSuccess<T>(message: "Updated ${T.toString()}(s) list.", list: list);
       }
     }
     // no prev - error
-    return ApiResponseError();
+    return ApiResponseError<T>();
   }
 
   /// =============================================================================/
@@ -290,7 +289,7 @@ class DjangoResultsService<T> {
   /// @[RETURN]
   /// ApiResponse           - error or success based on result(s)
   ///
-  Future<ApiResponse> getApiDetails({required String id, Function? onSuccess, Function? onError}) async {
+  Future<ApiResponse<T>> getApiDetails({required String id, Function? onSuccess, Function? onError}) async {
     // build request
     Map<String, String> headers = headerNoAuth();
     if (token != null && token != '') {
@@ -305,7 +304,7 @@ class DjangoResultsService<T> {
       response = await client.get(uri, headers: headers);
     } catch (e) {
       logApiPrint("ResultsService.callApiDetails<${T.toString()}>: HTTP error\n${e.toString()}", tag: "EXP");
-      return ApiResponseError();
+      return ApiResponseError<T>();
     }
 
     // deserialize json
@@ -314,7 +313,7 @@ class DjangoResultsService<T> {
       decoded = jsonDecode(response.body);
     } catch (e) {
       logApiPrint("ResultsService.callApiDetails<${T.toString()}>: jsonDecode error\n${e.toString()}", tag: "EXP");
-      return ApiResponseError();
+      return ApiResponseError<T>();
     }
 
     // process response
@@ -325,21 +324,20 @@ class DjangoResultsService<T> {
       if (onSuccess != null) {
         onSuccess();
       }
-      return ApiResponseSuccess(message: res.message, results: <String, dynamic> {"details": resultDetails});
+      return ApiResponseSuccess<T>(message: res.message, details: resultDetails);
     } else if (response.statusCode == 401) {
       // 401 -> unauthorized
       if (onError != null) {
         onError();
       }
-      return ApiResponseError(message: decoded['detail']);
+      return ApiResponseError<T>(message: decoded['detail']);
     } else {
       // 400, 500 and others -> error
       if (onError != null) {
         onError();
       }
-      return ApiResponseError(message: res.message);
+      return ApiResponseError<T>(message: res.message);
     }
   }
-
 
 }
