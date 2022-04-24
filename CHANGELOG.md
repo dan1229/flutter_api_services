@@ -108,6 +108,9 @@ Improve!
 
 #### TODO now
 
+flutter analyze
+
+
 badges
 - flutter/dart
 - workflows?
