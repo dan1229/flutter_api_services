@@ -6,25 +6,15 @@ import 'package:flutter_api_services/flutter_api_services.dart';
 import 'package:http/http.dart';
 import 'package:http/testing.dart';
 
-import 'service-tests/rest-api-tests/posts-api-tests/posts_api_test.dart';
-import 'service-tests/rest-api-tests/posts-api-tests/posts_api_test_values.dart';
 import 'template-tests/django-tests/django-auth-service-tests/django_auth_service_test.dart';
 import 'template-tests/django-tests/django-create-service-tests/django_create_service_test.dart';
+import 'template-tests/django-tests/django-results-service-tests/django_results_service_test.dart';
 
 // function to get test resource file/json and return as string
 String getTestResource(String path) {
   String dir = Directory.current.path;
   return File('$dir/test/test_resources/$path').readAsStringSync();
 }
-
-//
-// api setup
-//
-
-// posts api
-DjangoResultsService postsApi = DjangoResultsService(client: Client());
-PostsApiTestValues postApiTestValues = PostsApiTestValues();
-
 /// ==========================================================
 /// MOCK CLIENT ==============================================
 /// ==========================================================
@@ -37,50 +27,50 @@ MockClient mockClient = MockClient((Request request) async {
   String url = request.url.toString().toLowerCase();
 
   //
-  // POSTS
+  // DJANGO RESULTS SERVICE
   //
   // list
-  if (url == postsApi.uriApiBase.toString().toLowerCase()) {
-    return postsApiTestValues.responseListValid();
+  if (url == djangoResultsService.uriApiBase.toString().toLowerCase()) {
+    return djangoResultsServiceTestValues.responseListValid();
   }
-  if (url == postsApi.uriSearch(search: postApiTestValues.search400Error).toString().toLowerCase()) {
-    return postsApiTestValues.responseList400Error();
+  if (url == djangoResultsService.uriSearch(search: djangoResultsServiceTestValues.search400Error).toString().toLowerCase()) {
+    return djangoResultsServiceTestValues.responseList400Error();
   }
-  if (url == postsApi.uriSearch(search: postApiTestValues.search500Error).toString().toLowerCase()) {
-    return postsApiTestValues.responseList500Error();
+  if (url == djangoResultsService.uriSearch(search: djangoResultsServiceTestValues.search500Error).toString().toLowerCase()) {
+    return djangoResultsServiceTestValues.responseList500Error();
   }
   // retrieve
-  if (url == postsApi.uriDetails(id: postApiTestValues.idValid).toString()) {
-    return postsApiTestValues.responseRetrieveValid();
+  if (url == djangoResultsService.uriDetails(id: djangoResultsServiceTestValues.idValid).toString()) {
+    return djangoResultsServiceTestValues.responseRetrieveValid();
   }
-  if (url == postsApi.uriDetails(id: postApiTestValues.id400Error).toString()) {
-    return postsApiTestValues.responseRetrieve400Error();
+  if (url == djangoResultsService.uriDetails(id: djangoResultsServiceTestValues.id400Error).toString()) {
+    return djangoResultsServiceTestValues.responseRetrieve400Error();
   }
-  if (url == postsApi.uriDetails(id: postApiTestValues.id500Error).toString()) {
-    return postsApiTestValues.responseRetrieve500Error();
+  if (url == djangoResultsService.uriDetails(id: djangoResultsServiceTestValues.id500Error).toString()) {
+    return djangoResultsServiceTestValues.responseRetrieve500Error();
   }
   // next
-  if (url.contains(postApiTestValues.nextPostsValid.toLowerCase())) {
-    return postsApiTestValues.responseNextValid();
+  if (url.contains(djangoResultsServiceTestValues.nextResultsValid.toLowerCase())) {
+    return djangoResultsServiceTestValues.responseNextValid();
   }
-  if (url.contains(postApiTestValues.nextPosts400Error.toLowerCase())) {
-    return postsApiTestValues.responseNext400Error();
+  if (url.contains(djangoResultsServiceTestValues.nextResults400Error.toLowerCase())) {
+    return djangoResultsServiceTestValues.responseNext400Error();
   }
-  if (url.contains(postApiTestValues.nextPosts500Error.toLowerCase())) {
-    return postsApiTestValues.responseNext500Error();
+  if (url.contains(djangoResultsServiceTestValues.nextResults500Error.toLowerCase())) {
+    return djangoResultsServiceTestValues.responseNext500Error();
   }
   // prev
-  if (url.contains(postApiTestValues.prevPostsValid.toLowerCase())) {
-    return postsApiTestValues.responsePrevValid();
+  if (url.contains(djangoResultsServiceTestValues.prevResultsValid.toLowerCase())) {
+    return djangoResultsServiceTestValues.responsePrevValid();
   }
-  if (url.contains(postApiTestValues.prevPosts400Error.toLowerCase())) {
-    return postsApiTestValues.responsePrev400Error();
+  if (url.contains(djangoResultsServiceTestValues.prevResults400Error.toLowerCase())) {
+    return djangoResultsServiceTestValues.responsePrev400Error();
   }
-  if (url.contains(postApiTestValues.prevPosts500Error.toLowerCase())) {
-    return postsApiTestValues.responsePrev500Error();
+  if (url.contains(djangoResultsServiceTestValues.prevResults500Error.toLowerCase())) {
+    return djangoResultsServiceTestValues.responsePrev500Error();
   }
   //
-  // AUTH
+  // DJANGO AUTH SERVICE
   //
   // login
   if (url == djangoAuthService.uriLogin().toString().toLowerCase()) {
@@ -119,7 +109,7 @@ MockClient mockClient = MockClient((Request request) async {
     return response;
   }
   //
-  // EMAIL
+  // DJANGO CREATE SERVICE
   //
   // email
   if (url == djangoCreateService.uriApiBase.toString().toLowerCase()) {

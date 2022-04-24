@@ -38,38 +38,12 @@ class DjangoResultsServiceTestValues {
       "message": "Successfully retrieved results.",
       "results": [
         {
-          "id": "b60a208e-9d32-4dcc-9bc7-13e80654f7be",
-          "title": "Obsidian - Git and iOS DEBUG",
-          "pinned": true,
-          "datetime_created": "2022-04-12T22:08:32.685932Z",
-          "author": "44005471-1d86-415f-85a7-dabba7e0e5b3",
-          "author_ref": {
-            "id": "44005471-1d86-415f-85a7-dabba7e0e5b3",
-            "email": "danielnazarian@outlook.com",
-            "first_name": "Daniel",
-            "last_name": "Nazarian",
-            "stringify": "Daniel Nazarian",
-            "is_staff": true
-          },
-          "image":
-          "https://dansbackend.s3.amazonaws.com/media-debug/44005471-1d86-415f-85a7-dabba7e0e5b3/posts/b60a208e-9d32-4dcc-9bc7-13e80654f7be/image.png"
+          "message": "this is a list message 1",
+          "subject": "this is a list subject 1"
         },
         {
-          "id": "1384a29b-22ac-4230-9671-593c43267d57",
-          "title": "Flutter SEO - Intro + SEO Renderer DEBUG",
-          "pinned": true,
-          "datetime_created": "2022-02-28T23:53:38.747845Z",
-          "author": "44005471-1d86-415f-85a7-dabba7e0e5b3",
-          "author_ref": {
-            "id": "44005471-1d86-415f-85a7-dabba7e0e5b3",
-            "email": "danielnazarian@outlook.com",
-            "first_name": "Daniel",
-            "last_name": "Nazarian",
-            "stringify": "Daniel Nazarian",
-            "is_staff": true
-          },
-          "image":
-          "https://dansbackend.s3.amazonaws.com/media-debug/44005471-1d86-415f-85a7-dabba7e0e5b3/posts/1384a29b-22ac-4230-9671-593c43267d57/image.png"
+          "message": "this is a list message 2",
+          "subject": "this is a list subject 2"
         },
       ]
     };
@@ -94,23 +68,10 @@ class DjangoResultsServiceTestValues {
   //
   // RETRIEVE - responses
   //
-  Map<String, dynamic> responseDataRetrieveValid = <String, dynamic>{
-    "message": "Successfully retrieved details.",
-    "id": "1384a29b-22ac-4230-9671-593c43267d57",
-    "title": "Flutter SEO - Intro + SEO Renderer DEBUG",
-    "pinned": true,
-    "datetime_created": "2022-02-28T23:53:38.747845Z",
-    "author": "44005471-1d86-415f-85a7-dabba7e0e5b3",
-    "author_ref": {
-      "id": "44005471-1d86-415f-85a7-dabba7e0e5b3",
-      "email": "danielnazarian@outlook.com",
-      "first_name": "Daniel",
-      "last_name": "Nazarian",
-      "stringify": "Daniel Nazarian",
-      "is_staff": true
-    },
-    "image":
-    "https://dansbackend.s3.amazonaws.com/media-debug/44005471-1d86-415f-85a7-dabba7e0e5b3/posts/1384a29b-22ac-4230-9671-593c43267d57/image.png"
+  Map<String, dynamic> responseDataRetrieveValid = <String, dynamic>
+  {
+    "message": "this is a message details",
+    "subject": "this is a subject details"
   };
 
   Response responseRetrieveValid() {
@@ -139,55 +100,12 @@ class DjangoResultsServiceTestValues {
     "message": "Successfully retrieved next results.",
     "results": [
       {
-        "id": "b60a208e-9d32-4dcc-9bc7-13e80654f7be",
-        "title": "Obsidian - Git and iOS DEBUG",
-        "pinned": true,
-        "datetime_created": "2022-04-12T22:08:32.685932Z",
-        "author": "44005471-1d86-415f-85a7-dabba7e0e5b3",
-        "author_ref": {
-          "id": "44005471-1d86-415f-85a7-dabba7e0e5b3",
-          "email": "danielnazarian@outlook.com",
-          "first_name": "Daniel",
-          "last_name": "Nazarian",
-          "stringify": "Daniel Nazarian",
-          "is_staff": true
-        },
-        "image":
-        "https://dansbackend.s3.amazonaws.com/media-debug/44005471-1d86-415f-85a7-dabba7e0e5b3/posts/b60a208e-9d32-4dcc-9bc7-13e80654f7be/image.png"
+        "message": "this is a next message 1",
+        "subject": "this is a next subject 1"
       },
       {
-        "id": "1384a29b-22ac-4230-9671-593c43267d57",
-        "title": "Flutter SEO - Intro + SEO Renderer DEBUG",
-        "pinned": true,
-        "datetime_created": "2022-02-28T23:53:38.747845Z",
-        "author": "44005471-1d86-415f-85a7-dabba7e0e5b3",
-        "author_ref": {
-          "id": "44005471-1d86-415f-85a7-dabba7e0e5b3",
-          "email": "danielnazarian@outlook.com",
-          "first_name": "Daniel",
-          "last_name": "Nazarian",
-          "stringify": "Daniel Nazarian",
-          "is_staff": true
-        },
-        "image":
-        "https://dansbackend.s3.amazonaws.com/media-debug/44005471-1d86-415f-85a7-dabba7e0e5b3/posts/1384a29b-22ac-4230-9671-593c43267d57/image.png"
-      },
-      {
-        "id": "1384a29b-22ac-4230-9671-593c43267d57",
-        "title": "third article",
-        "pinned": true,
-        "datetime_created": "2022-02-28T23:53:38.747845Z",
-        "author": "44005471-1d86-415f-85a7-dabba7e0e5b3",
-        "author_ref": {
-          "id": "44005471-1d86-415f-85a7-dabba7e0e5b3",
-          "email": "danielnazarian@outlook.com",
-          "first_name": "Daniel",
-          "last_name": "Nazarian",
-          "stringify": "Daniel Nazarian",
-          "is_staff": true
-        },
-        "image":
-        "https://dansbackend.s3.amazonaws.com/media-debug/44005471-1d86-415f-85a7-dabba7e0e5b3/posts/1384a29b-22ac-4230-9671-593c43267d57/image.png"
+        "message": "this is a next message 2",
+        "subject": "this is a next subject 2"
       },
     ]
   };
@@ -216,55 +134,16 @@ class DjangoResultsServiceTestValues {
     "message": "Successfully retrieved prev results.",
     "results": [
       {
-        "id": "b60a208e-9d32-4dcc-9bc7-13e80654f7be",
-        "title": "Obsidian - Git and iOS DEBUG",
-        "pinned": true,
-        "datetime_created": "2022-04-12T22:08:32.685932Z",
-        "author": "44005471-1d86-415f-85a7-dabba7e0e5b3",
-        "author_ref": {
-          "id": "44005471-1d86-415f-85a7-dabba7e0e5b3",
-          "email": "danielnazarian@outlook.com",
-          "first_name": "Daniel",
-          "last_name": "Nazarian",
-          "stringify": "Daniel Nazarian",
-          "is_staff": true
-        },
-        "image":
-        "https://dansbackend.s3.amazonaws.com/media-debug/44005471-1d86-415f-85a7-dabba7e0e5b3/posts/b60a208e-9d32-4dcc-9bc7-13e80654f7be/image.png"
+        "message": "this is a prev message 1",
+        "subject": "this is a prev subject 1"
       },
       {
-        "id": "1384a29b-22ac-4230-9671-593c43267d57",
-        "title": "Flutter SEO - Intro + SEO Renderer DEBUG",
-        "pinned": true,
-        "datetime_created": "2022-02-28T23:53:38.747845Z",
-        "author": "44005471-1d86-415f-85a7-dabba7e0e5b3",
-        "author_ref": {
-          "id": "44005471-1d86-415f-85a7-dabba7e0e5b3",
-          "email": "danielnazarian@outlook.com",
-          "first_name": "Daniel",
-          "last_name": "Nazarian",
-          "stringify": "Daniel Nazarian",
-          "is_staff": true
-        },
-        "image":
-        "https://dansbackend.s3.amazonaws.com/media-debug/44005471-1d86-415f-85a7-dabba7e0e5b3/posts/1384a29b-22ac-4230-9671-593c43267d57/image.png"
+        "message": "this is a prev message 2",
+        "subject": "this is a prev subject 2"
       },
       {
-        "id": "1384a29b-22ac-4230-9671-593c43267d57",
-        "title": "third article",
-        "pinned": true,
-        "datetime_created": "2022-02-28T23:53:38.747845Z",
-        "author": "44005471-1d86-415f-85a7-dabba7e0e5b3",
-        "author_ref": {
-          "id": "44005471-1d86-415f-85a7-dabba7e0e5b3",
-          "email": "danielnazarian@outlook.com",
-          "first_name": "Daniel",
-          "last_name": "Nazarian",
-          "stringify": "Daniel Nazarian",
-          "is_staff": true
-        },
-        "image":
-        "https://dansbackend.s3.amazonaws.com/media-debug/44005471-1d86-415f-85a7-dabba7e0e5b3/posts/1384a29b-22ac-4230-9671-593c43267d57/image.png"
+        "message": "this is a prev message 3",
+        "subject": "this is a prev subject 3"
       },
     ]
   };
