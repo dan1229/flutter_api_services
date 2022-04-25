@@ -83,7 +83,7 @@ of `DjangoResultsService` including `list`, `retrieve`, `next`, `prev`, etc.
 
 To create a `DjangoCreateService` API for example you might do something like the following:
 
-```darta
+```dart
 import 'package:http/http.dart';
 
 class EmailApi extends DjangoCreateService<Email> {
