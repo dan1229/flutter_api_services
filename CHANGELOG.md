@@ -97,15 +97,16 @@ cd - automate getting version number from commit message
 
 github actions - test.yml
 - how to replace `brew install lcov`?
-- takes longest by far (30s)
+  - takes longest by far (30s)
+- do we need the coverage remove step?
 
 
-coverage
+coverage support
 - coverage ignore
 - // coverage:ignore-file
 
 
-Improve!
+Improve tests!
 - add more asserts to existing check
   - auth api should use '400' instead of 'invalid' test?
 - add checks for class props

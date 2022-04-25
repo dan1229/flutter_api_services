@@ -22,11 +22,5 @@ jobs:
           cache: true
           cache-key: flutter1 # optional, change this to force refresh cache
 
-      - name: Clean Flutter environment
-        run: flutter clean
-
-      - name: Get dependencies
-        run: flutter pub get
-
       - name: Flutter analyze
         run: flutter analyze --fatal-infos

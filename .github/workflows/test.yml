@@ -28,7 +28,7 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
-      # Run widget tests for our flutter project
+      # Run unit tests for our flutter project
       - name: Run tests
         run: flutter test --coverage
 
@@ -36,9 +36,10 @@ jobs:
       - name: Install lcov
         run: brew install lcov
 
-      # Remove generated files
-      - name: Remove generated files
-        run: lcov --remove coverage/lcov.info 'lib/*/*.freezed.dart' 'lib/*/*.g.dart' 'lib/*/*.part.dart' 'lib/generated/*.dart' 'lib/generated/*/*.dart' -o coverage/lcov.info
+#      TODO does this do anything?
+#      # Remove generated files
+#      - name: Remove generated files
+#        run: lcov --remove coverage/lcov.info 'lib/*/*.freezed.dart' 'lib/*/*.g.dart' 'lib/*/*.part.dart' 'lib/generated/*.dart' 'lib/generated/*/*.dart' -o coverage/lcov.info
 
       # Upload to CodeCov
       - name: Upload to CodeCov
