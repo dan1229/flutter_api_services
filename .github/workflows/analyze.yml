@@ -4,10 +4,6 @@ on:
   push
 
 jobs:
-  # ================================================== #
-  #
-  # analyze
-  #
   analyze:
     name: Analyze
     runs-on: ubuntu-latest

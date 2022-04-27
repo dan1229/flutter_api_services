@@ -4,44 +4,26 @@ on:
   push
 
 jobs:
-  # ================================================== #K
-  #
-  # test
-  #
   test:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      # Setup checkout
       - uses: actions/checkout@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Setup the flutter environment
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '2.10.0'
           cache: true
           cache-key: flutter1 # optional, change this to force refresh cache
 
-      # Get flutter dependencies
       - name: Get dependencies
         run: flutter pub get
 
-      # Run unit tests for our flutter project
       - name: Run tests
         run: flutter test --coverage
 
-      # Install lcov
-      - name: Install lcov
-        run: brew install lcov
-
-#      TODO does this do anything?
-#      # Remove generated files
-#      - name: Remove generated files
-#        run: lcov --remove coverage/lcov.info 'lib/*/*.freezed.dart' 'lib/*/*.g.dart' 'lib/*/*.part.dart' 'lib/generated/*.dart' 'lib/generated/*/*.dart' -o coverage/lcov.info
-
-      # Upload to CodeCov
       - name: Upload to CodeCov
         uses: codecov/codecov-action@v1.2.1
         with:

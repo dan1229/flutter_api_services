@@ -5,18 +5,12 @@ on:
     branches:
       - 'master'
     inputs:
-      # TODO how to automate getting this?
-      # from commit message?
       version:
         required: true
         type: string
         description: Version for this release. Format "X.X.X".
 
 jobs:
-  # ================================================== #
-  #
-  # deploy
-  #
   deploy:
     runs-on: ubuntu-latest
     steps:
