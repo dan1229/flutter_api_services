@@ -41,6 +41,7 @@ Map<String, String> headerTokenAuth({required String token, String contentType =
     "Content-Type": contentType,
     "Accept": "application/json",
     "Authorization": "Token $token",
+    "Access-Control_Allow_Origin": "*",
   };
 }
 
@@ -48,6 +49,7 @@ Map<String, String> headerNoAuth({String contentType = "application/json"}) {
   return <String, String>{
     "Content-Type": contentType,
     "Accept": "application/json",
+    "Access-Control_Allow_Origin": "*",
   };
 }
 

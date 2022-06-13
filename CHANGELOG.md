@@ -95,11 +95,6 @@ cd - automate getting version number from commit message
 
 #### TODO now
 
-github actions - test.yml
-- how to replace `brew install lcov`?
-  - takes longest by far (30s)
-- do we need the coverage remove step?
-
 
 coverage support
 - coverage ignore
@@ -115,9 +110,20 @@ Improve tests!
     - next/prev/count etc.
 
 
-### [0.1.1] - 2022-MM-DD
+### [0.1.2] - 2022-MM-
 - Improve tests
 - Coverage improvements/tweaks
+
+-----
+
+cors issue
+- https://navoki.com/solved-flutter-web-cors-error/
+- https://stackoverflow.com/questions/69277199/flutter-no-access-control-allow-origin-header-is-present-on-the-requested-res
+
+
+### [0.1.1] - 2022-06-13
+#### TODO
+- Fix CORS issue
 
 -------------------------------------------------------
 
