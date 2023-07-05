@@ -128,4 +128,4 @@ give another way to find it. sNote, it will use said commits message as the rele
 
 ##### [https://danielnazarian.com](https://danielnazarian.com)
 
-##### Copyright 2022 © Daniel Nazarian.
+##### Copyright 2023 © Daniel Nazarian.
