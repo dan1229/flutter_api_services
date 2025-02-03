@@ -16,7 +16,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Released]
 
-### [0.2.2] - 2025-02-03
+### [0.2.1] - 2025-02-03
 - Improved CD
 - Fixed version numbering
 
