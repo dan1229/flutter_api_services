@@ -16,6 +16,11 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Released]
 
+### [0.2.2] - 2025-02-03
+- Improved CD
+- Fixed version numbering
+
+
 ### [0.2.0] - 2025-02-03
 - Update Flutter version, no more Flutter 2.X supporrt
 - Update http dependency
