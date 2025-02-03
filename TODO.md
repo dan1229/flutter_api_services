@@ -17,7 +17,7 @@ TODO
 
 
 ### [0.2.2] - 2025-MM-DD
-- todo
+- Tried to actually fix release / CD script
 
 -------------------------------------------------------
 

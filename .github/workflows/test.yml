@@ -14,7 +14,7 @@ jobs:
 
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '2.10.0'
+          flutter-version: '3.27.3'
           cache: true
           cache-key: flutter1 # optional, change this to force refresh cache
 
