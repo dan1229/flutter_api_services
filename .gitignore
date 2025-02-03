@@ -30,3 +30,6 @@ build/
 
 # test
 coverage/
+
+# FVM Version Cache
+.fvm/
